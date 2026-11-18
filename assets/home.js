@@ -112,21 +112,28 @@ show('rover');
 /* NURI in action: created when the section comes near the screen */
 (() => {
   const el = document.getElementById('sceneStage'); if (!el) return;
-  const chips = [...document.querySelectorAll('.chips [data-scene]')], btn = document.getElementById('playBtn');
+  const chips = [...document.querySelectorAll('.chips [data-scene]')], btn = document.getElementById('playBtn'), snd = document.getElementById('soundBtn');
   const who = document.getElementById('capWho'), text = document.getElementById('capText');
-  if (!gl) { text.textContent = 'The animations need WebGL.'; btn.hidden = true; return; }
+  if (!gl) { text.textContent = 'The animations need WebGL.'; btn.hidden = snd.hidden = true; return; }
   let player = null;
+  const sync = () => {
+    if (!player) return;
+    btn.textContent = player.playing ? 'Pause' : 'Play'; btn.setAttribute('aria-pressed', player.playing);
+    snd.setAttribute('aria-pressed', player.sound); snd.querySelector('span').textContent = player.sound ? 'Sound on' : 'Sound off';
+  };
   const ui = {
     onScene(i) { chips.forEach((c, k) => { c.setAttribute('aria-selected', k === i); c.querySelector('em').style.width = k < i ? '100%' : '0'; }); },
     onCaption(w, s) { who.textContent = w + ':'; text.textContent = s; },
-    onProgress(i, p) { const em = chips[i].querySelector('em'); em.style.width = (p * 100).toFixed(1) + '%'; }
+    onProgress(i, p) { const em = chips[i].querySelector('em'); em.style.width = (p * 100).toFixed(1) + '%'; },
+    onSound() { sync(); }
   };
   const io = new IntersectionObserver(es => {
     if (!es.some(e => e.isIntersecting) || player) return; io.disconnect();
-    try { player = createPlayer(el, ui); if (!player.playing) { btn.textContent = 'Play'; btn.setAttribute('aria-pressed', 'false'); } }
+    try { player = createPlayer(el, ui); sync(); }
     catch (e) { console.warn('3D unavailable', e); text.textContent = 'Animations are unavailable on this device.'; }
   }, {rootMargin: '300px 0px'});
   io.observe(el);
-  chips.forEach((c, i) => c.addEventListener('click', () => player && player.go(i)));
-  btn.addEventListener('click', () => { if (!player) return; const on = player.toggle(); btn.textContent = on ? 'Pause' : 'Play'; btn.setAttribute('aria-pressed', on); });
+  chips.forEach((c, i) => c.addEventListener('click', () => { if (player) { player.go(i); sync(); } }));
+  btn.addEventListener('click', () => { if (!player) return; player.toggle(); sync(); });
+  snd.addEventListener('click', () => { if (!player) return; player.setSound(!player.sound); sync(); });
 })();

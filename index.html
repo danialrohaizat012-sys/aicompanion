@@ -79,12 +79,12 @@
  <div class="wrap">
   <div class="section-head">
    <div><span class="label">NURI in action</span><h2 style="margin-top:12px">See where NURI fits in your day.</h2></div>
-   <p class="lead">Short concept animations made with the same 3D model as this site. They show how NURI is designed to help; the features themselves are still in development.</p>
+   <p class="lead">Short concept animations made with the same 3D model as this site, with an AI-generated voice. Turn the sound on to hear NURI. They show how NURI is designed to help; the features themselves are still in development.</p>
   </div>
   <div class="player">
    <div class="player-stage" id="sceneStage" aria-label="Animated scenes of NURI in use">
     <span class="scene-tag">Concept animation</span>
-    <button type="button" class="play-btn" id="playBtn" aria-pressed="true">Pause</button>
+    <div class="player-ctl"><button type="button" class="play-btn sound-btn" id="soundBtn" aria-pressed="false" aria-label="Sound"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Sound off</span></button><button type="button" class="play-btn" id="playBtn" aria-pressed="true">Pause</button></div>
     <div class="caption" aria-live="polite"><b id="capWho"></b><span id="capText"></span></div>
    </div>
    <div class="chips" role="tablist" aria-label="Scenes">
