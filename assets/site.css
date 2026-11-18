@@ -32,9 +32,9 @@ p{margin:0}
 /* header */
 .site-head{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
 .site-head.scrolled{border-bottom-color:var(--line)}
-.head-row{height:64px;display:flex;align-items:center;gap:28px}
-.brand{font-weight:700;font-size:17px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:10px}
-.brand svg{width:22px;height:22px}
+.head-row{height:68px;display:flex;align-items:center;gap:28px}
+.brand{font-weight:700;font-size:19px;letter-spacing:-.025em;text-decoration:none;display:flex;align-items:center;gap:11px}
+.brand svg{width:30px;height:30px;flex:none}
 .nav{display:flex;gap:22px;margin-left:auto}
 .nav a{text-decoration:none;font-size:14px;color:var(--ink-2)}
 .nav a:hover{color:var(--ink)}
@@ -84,10 +84,20 @@ section{scroll-margin-top:72px}
 .use ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--ink-2)}
 .use li{padding-left:16px;position:relative}.use li::before{content:"";position:absolute;left:0;top:.7em;width:7px;height:1px;background:var(--muted)}
 .use .status{margin-top:auto;padding-top:8px}
-.day{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
-.day div{padding:16px 20px;font-size:14px}.day div+div{border-left:1px solid var(--line)}
-.day time{display:block;font-weight:600;font-variant-numeric:tabular-nums}
 .note{font-size:13px;color:var(--muted);margin-top:14px}
+
+.endless{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;font-size:17px;color:var(--ink-2)}
+.endless strong{color:var(--ink);font-weight:600}
+
+/* character */
+.character{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,4vw,48px)}
+.character .status{display:flex}
+.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:0}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:4px 14px;padding:18px 0;border-top:1px solid var(--line)}
+.steps li:first-child{border-top:0;padding-top:4px}
+.steps li::before{content:counter(s,decimal-leading-zero);grid-row:1/3;font-size:13px;font-weight:600;color:var(--accent);padding-top:3px}
+.steps b{font-weight:600;font-size:17px}
+.steps span{color:var(--ink-2);font-size:15px}
 
 /* product grid */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -206,21 +216,20 @@ section{scroll-margin-top:72px}
 
 /* responsive */
 @media (max-width:980px){
-  .hero-grid,.box,.addon,.cfg{grid-template-columns:1fr}
+  .hero-grid,.box,.addon,.cfg,.character{grid-template-columns:1fr}
   .uses{grid-template-columns:repeat(2,1fr)}
   .section-head{grid-template-columns:1fr;gap:16px}.section-head .lead{justify-self:start}
   .specs{grid-template-columns:1fr}
   .cfg-view{position:relative;top:0}.cfg-view .stage{height:min(62vh,520px)}
 }
 @media (max-width:760px){
-  .nav{display:none;position:absolute;left:0;right:0;top:64px;background:var(--paper);flex-direction:column;gap:0;padding:8px var(--gutter) 16px;border-bottom:1px solid var(--line)}
+  .nav{display:none;position:absolute;left:0;right:0;top:68px;background:var(--paper);flex-direction:column;gap:0;padding:8px var(--gutter) 16px;border-bottom:1px solid var(--line)}
   .nav.open{display:flex}.nav a{padding:12px 0;font-size:16px;border-bottom:1px solid var(--line)}
   .menu-btn{display:block}
   .head-row .btn{display:none}
-  .facts,.cards,.cards-2,.day,.sheets{grid-template-columns:1fr}
+  .facts,.cards,.cards-2,.sheets{grid-template-columns:1fr}
   .sheet-card figcaption{grid-template-columns:1fr}.sheet-card figcaption .link-arrow{grid-column:1;grid-row:auto;justify-self:start;margin-top:8px}
-  .facts div+div,.day div+div{border-left:0;padding-left:0;border-top:1px solid var(--line)}
-  .day div+div{padding-left:20px}
+  .facts div+div{border-left:0;padding-left:0;border-top:1px solid var(--line)}
   .uses{grid-template-columns:1fr}
   .opts{grid-template-columns:repeat(3,1fr);gap:8px}
   .opts.opts-2{grid-template-columns:repeat(2,1fr);max-width:none}

@@ -1,7 +1,7 @@
 import * as N from './nuri3d.js';
 
 const $ = id => document.getElementById(id);
-const state = {look: 'signature', colour: 'pearl', dock: 'slim', name: '', rover: false, board: false, scene: 'dock', moving: false};
+const state = {look: 'signature', colour: 'pearl', dock: '', name: '', rover: false, board: false, scene: 'dock', moving: false};
 const still = N.prefersReducedMotion();
 
 /* restore from URL so a configuration can be shared */
@@ -34,15 +34,15 @@ $('moveBtn').addEventListener('click', () => { state.moving = !state.moving; $('
 
 const name = id => (list => list.find(o => o.id === id).name);
 function renderText() {
-  const look = name(state.look)(N.LOOKS), colour = name(state.colour)(N.COLOURS), dock = name(state.dock)(N.DOCKS), eng = N.engraving(state.name);
+  const look = name(state.look)(N.LOOKS), colour = name(state.colour)(N.COLOURS), dock = state.dock ? name(state.dock)(N.DOCKS) : '', eng = N.engraving(state.name);
   $('lookName').textContent = look; $('colourName').textContent = colour; $('engravePreview').textContent = eng;
   const addons = [state.rover && 'NURI Rover', state.board && 'NURI Board'].filter(Boolean);
-  const dockPrice = N.DOCKS.find(d => d.id === state.dock).price, total = N.BASE_PRICE + dockPrice;
-  $('dockPrice').textContent = dockPrice ? '+RM' + dockPrice : 'Included';
+  const dockPrice = state.dock ? N.DOCKS.find(d => d.id === state.dock).price : 0, total = N.BASE_PRICE + dockPrice;
+  $('dockPrice').textContent = !state.dock ? 'Slim included · pick one to see it' : dockPrice ? '+RM' + dockPrice : 'Included';
   $('total').textContent = 'RM' + total.toLocaleString('en-MY');
-  $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], ['Look', look], ['Colour', colour], ['Dock', dock + (dockPrice ? ' (+RM' + dockPrice + ')' : ' (included)')], ['Engraving', eng + ' (free)'], ['Add-ons', addons.join(', ') || 'None']].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], ['Look', look], ['Colour', colour], ['Dock', !dock ? 'Slim Dock (included, not chosen yet)' : dock + (dockPrice ? ' (+RM' + dockPrice + ')' : ' (included)')], ['Engraving', eng + ' (free)'], ['Add-ons', addons.join(', ') || 'None']].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
   $('addonNote').textContent = addons.length ? 'Add-on prices will be announced after prototyping and are not included above.' : '';
-  const url = new URL(location.href); url.search = new URLSearchParams({look: state.look, colour: state.colour, dock: state.dock, ...(state.name ? {name: state.name} : {})}).toString();
+  const url = new URL(location.href); url.search = new URLSearchParams({look: state.look, colour: state.colour, ...(state.dock ? {dock: state.dock} : {}), ...(state.name ? {name: state.name} : {})}).toString();
   history.replaceState(null, '', url);
 }
 function update() {

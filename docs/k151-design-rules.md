@@ -42,15 +42,15 @@ All parts are snap-on: no glue, no screws into the K151. Keep head-mounted parts
 - **Charging:** a fixed USB-C plug in the pocket's rear wall lines up with the base USB-C port when NURI slides in from the front. The dock has its own USB-C input for the power adapter. NURI keeps working while it charges.
 - **Pan clearance:** pocket walls stay **below the base top (11.1 mm)**, so the head can turn freely over them. The front wall is lower (4 mm) to slide NURI in and out.
 - **Ventilation:** the base rests on three ribs, leaving a **2 mm air gap** under the battery and power IC. Side walls have vent slots. Nothing seals the base underside.
-- **Slim Dock:** low rectangular tray, 5 mm floor, side vent slots, four rubber feet.
+- **Slim Dock:** soft rounded slab (4.5 mm, 10 mm corner radius) with a continuous U-shaped rim that is open at the front so NURI slides onto the USB-C plug. Three slim vents per side, a thin accent line, and the engraving on top of the front lip.
 - **Nest Dock:** shallow round bowl (Ø ≈ 110 mm) wrapped in nine thin woven rings. Every ring sits outside the head's ≈ 41 mm pan sweep, so rings may rise above the base top without touching the head; the gaps between rings act as vents. Engraved tag on the front of the rim, three rubber feet.
 - **Stability:** rubber feet on both docks. The browser clearance check also flags any dock part that rises above the base top inside the pan sweep.
-- **Engraving:** `NURI` + the companion's name (up to 10 characters), engraved on the dock front. Free.
+- **Engraving:** `NURI` + the companion's name (up to 10 characters), on the Slim Dock's front lip or the Nest Dock's front tag. Free.
 
 ## Add-ons (optional, concept)
 
 - **NURI Rover:** a tracked base with the same pocket and USB-C plug as the docks, powered by its own battery. NURI sits on it exactly as on a dock.
-- **NURI Board:** a 10.1" display on a stand, linked to the NURI app over Wi-Fi with its own USB-C power. The K151 cannot drive an external display directly, so the Board is not wired to it.
+- **NURI Board:** a slim 10.1" display (6.5 mm) on a minimal aluminium stand, linked to the NURI app over Wi-Fi with its own USB-C power. The K151 cannot drive an external display directly, so the Board is not wired to it.
 
 ## Before production
 

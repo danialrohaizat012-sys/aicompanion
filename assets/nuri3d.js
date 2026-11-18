@@ -232,12 +232,29 @@ function buildDock(id, m, g, name) {
     add(g, new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({map: tex, roughness: .55}), [0, y, z + mm(.05)]);
   };
   if (id === 'slim') {
-    const floor = mm(5), wall = mm(3.5);
-    const {W, D} = pocketRim(g, m, wall, mm(8.5), mm(4));
-    add(g, rbox(W, floor, D, mm(2.5)), m.dock, [0, -floor / 2, 0]);
-    plate(mm(40), mm(5.6), -floor / 2 + mm(1.4), D / 2, false);
-    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => add(g, cyl(mm(3), mm(3), mm(1), 20), m.rubber, [a * (W / 2 - mm(6)), -floor - mm(.5), b * (D / 2 - mm(6))]));
-    info = {height: floor + mm(1), footprint: [W, D]};
+    // a soft, rounded slab with a continuous U-shaped rim (open at the front so NURI slides in)
+    const floor = mm(4.5), t = mm(3.2), rimH = mm(7), lip = mm(9);
+    const px = POCKET.w / 2, pz = POCKET.d / 2, W = POCKET.w + 2 * t + mm(2), D = POCKET.d + t + lip + mm(1);
+    const cz = (lip - t) / 2;                                   // slab centre, shifted forward for the engraving lip
+    const slab = extrude(rr(W, D, mm(10)), floor, mm(1.6)); slab.rotateX(-PI / 2); slab.translate(0, -floor / 2 - floor / 2, 0);
+    add(g, slab, m.dock, [0, 0, cz]);
+    // U rim: shape drawn in plan view (x, -z), extruded upward
+    const u = new THREE.Shape(), ro = mm(6), ri = mm(2), X = px + t, Zb = pz + t, Zf = pz;
+    u.moveTo(-X, -Zf); u.lineTo(-X, Zb - ro); u.quadraticCurveTo(-X, Zb, -X + ro, Zb); u.lineTo(X - ro, Zb); u.quadraticCurveTo(X, Zb, X, Zb - ro);
+    u.lineTo(X, -Zf); u.lineTo(px, -Zf); u.lineTo(px, pz - ri); u.quadraticCurveTo(px, pz, px - ri, pz); u.lineTo(-px + ri, pz); u.quadraticCurveTo(-px, pz, -px, pz - ri); u.lineTo(-px, -Zf); u.closePath();
+    const rim = extrude(u, rimH, mm(1.2)); rim.rotateX(-PI / 2); rim.translate(0, -rimH / 2, 0);
+    add(g, rim, m.dock, [0, rimH / 2 + mm(.4), 0]);
+    // thin accent line around the slab, three slim vents per side, USB-C plug and input, support ribs
+    const band = extrude(rr(W + mm(.9), D + mm(.9), mm(10.4)), mm(.7), 0); band.rotateX(-PI / 2);
+    add(g, band, m.accent, [0, -floor + mm(.8), cz]);
+    mirror(sd => [-1, 0, 1].forEach(i => add(g, rbox(mm(.5), mm(3.2), mm(9), mm(.25)), m.hole, [sd * (X + mm(.2)), rimH * .55, i * mm(13) - mm(4)])));
+    add(g, rbox(mm(8.2), mm(2.4), mm(5), mm(1)), m.metal, [0, mm(7.5), -pz + mm(2)]);
+    add(g, rbox(mm(9.2), mm(3.4), mm(.8), mm(1.5)), m.port, [0, mm(3.2), -Zb - mm(1.4)]);
+    [-1, 0, 1].forEach(i => add(g, rbox(mm(3), mm(2), POCKET.d - mm(8), mm(.6)), m.rubber, [i * mm(14), mm(1), 0]));
+    // engraving on the top of the front lip, slightly recessed
+    const tex = engraveTexture(engraving(name), false);
+    add(g, new THREE.PlaneGeometry(mm(36), mm(5.4)), new THREE.MeshStandardMaterial({map: tex, roughness: .55}), [0, mm(.02), pz + lip / 2 + mm(.3)], [-PI / 2, 0, 0]);
+    info = {height: floor + mm(.6), footprint: [W, D]};
   }
   if (id === 'nest') {
     // shallow bowl with six thin woven rings around the rim; the gaps between rings vent the base.
@@ -395,18 +412,22 @@ export function createRover(colourId = 'pearl') {
 /* ------------------------------------------------------------------ */
 export function createBoard() {
   const g = new THREE.Group(), m = materials(COLOURS[1]);
-  const W = mm(246), H = mm(172), T = mm(8.5), bez = mm(9);
+  const W = mm(246), H = mm(172), T = mm(6.5), bez = mm(6);
   const canvas = document.createElement('canvas'); canvas.width = 1280; canvas.height = 860;
   const ctx = canvas.getContext('2d'), tex = new THREE.CanvasTexture(canvas); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
-  // stand
+  // minimal aluminium stand: thin base plate, front lip and a leaning back support
+  const alu = new THREE.MeshStandardMaterial({color: '#c9ced3', metalness: .85, roughness: .32});
   const stand = new THREE.Group(); g.add(stand);
-  add(stand, rbox(mm(130), mm(7), mm(96), mm(3)), m.core, [0, mm(3.5), 0]);
-  add(stand, rbox(mm(40), mm(70), mm(10), mm(3)), m.core, [0, mm(40), -mm(18)], [-.18, 0, 0]);
-  const panel = new THREE.Group(); panel.position.set(0, mm(78), -mm(10)); panel.rotation.x = -.2; stand.add(panel);
-  add(panel, rbox(W, H, T, mm(6)), m.core, [0, H / 2 - mm(8), 0]);
+  add(stand, rbox(mm(120), mm(4), mm(78), mm(2)), alu, [0, mm(2), -mm(6)]);
+  add(stand, rbox(mm(120), mm(9), mm(4), mm(1.5)), alu, [0, mm(6.5), mm(31)]);
+  add(stand, rbox(mm(70), mm(118), mm(3), mm(1.5)), alu, [0, mm(58), -mm(10)], [-.26, 0, 0]);
+  const tilt = -.24, panel = new THREE.Group(); panel.position.set(0, mm(5), mm(27)); panel.rotation.x = tilt; stand.add(panel);
+  const backMat = new THREE.MeshStandardMaterial({color: '#aab0b6', metalness: .7, roughness: .38});
+  add(panel, rbox(W, H, T, mm(10)), backMat, [0, H / 2, -T / 2]);
+  add(panel, rbox(W - mm(.6), H - mm(.6), mm(1), mm(9.6)), m.glass, [0, H / 2, mm(.1)]);
   const screen = new THREE.Mesh(new THREE.PlaneGeometry(W - 2 * bez, H - 2 * bez), new THREE.MeshBasicMaterial({map: tex, toneMapped: false}));
-  screen.position.set(0, H / 2 - mm(8), T / 2 + mm(.1)); panel.add(screen);
-  add(panel, cyl(mm(1.5), mm(1.5), mm(.5), 16), m.glass, [0, H - mm(12), T / 2 + mm(.1)], [PI / 2, 0, 0]);
+  screen.position.set(0, H / 2, mm(.7)); panel.add(screen);
+  add(panel, cyl(mm(1.2), mm(1.2), mm(.4), 16), m.core, [0, H - bez / 2, mm(.7)], [PI / 2, 0, 0]);
   const steps = ['2x + 3 = 11', '2x = 11 − 3', '2x = 8', 'x = 8 ÷ 2', 'x = 4'];
   const notes = ['Start with the equation', 'Move +3 to the right side', 'Simplify', 'Divide both sides by 2', 'Check: 2(4) + 3 = 11 ✓'];
   function draw(t) {
