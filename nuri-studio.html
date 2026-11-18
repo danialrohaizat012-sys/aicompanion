@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1020">
+<meta name="description" content="Build your NURI: personalize five wardrobe zones in an interactive 3D concept preview. NURI Base planned at RM899.">
+<title>Build Your NURI | Cipta Robo</title><link rel="icon" href="./favicon.svg">
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,Arial,sans-serif;color:#eff5ff;background:#0b1020}*{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}button,select,input{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #aeefcf;outline-offset:3px}.wrap{width:min(1440px,calc(100% - 44px));margin:auto}.banner{padding:10px 20px;text-align:center;background:#dbf7e6;color:#153b32;font-weight:800;font-size:12px}.nav{height:78px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:900;font-size:22px;letter-spacing:-.06em}.brand span{color:#94e8c7}.nav a.back{color:#adbed0;font-size:13px}.head{padding:36px 0 26px}.eyebrow{color:#95ddbd;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.head h1{font-size:clamp(38px,5vw,66px);line-height:1.05;letter-spacing:-.06em;margin:10px 0}.head p{max-width:800px;line-height:1.65;color:#aabcce;margin:0}.workbench{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(360px,.9fr);gap:22px;padding-bottom:65px}.viewer{background:radial-gradient(circle at 45% 38%,#34536a,#15253a 47%,#10192b 78%);border:1px solid #3b5167;border-radius:28px;min-height:640px;position:relative;overflow:hidden}.viewer canvas{display:block;width:100%;height:100%;touch-action:none}.pill-label{position:absolute;top:20px;left:20px;background:#12263dbb;border:1px solid #557386;border-radius:20px;padding:10px 14px;font-size:11px;font-weight:800;z-index:1}.drag{position:absolute;bottom:22px;left:22px;right:22px;text-align:center;color:#c1d4e3;font-size:12px;pointer-events:none}.viewer .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#c3d4e1;padding:50px;text-align:center}.controls{background:#121f30;border:1px solid #34495f;border-radius:27px;padding:25px;align-self:start}.row{display:flex;align-items:center;justify-content:space-between;gap:15px}.tag{background:#1c443d;color:#bdfbe2;border-radius:30px;padding:6px 10px;font-size:11px;font-weight:800}.price{font-size:38px;font-weight:900;letter-spacing:-.05em;margin:5px 0}.muted{color:#a8bed0;font-size:12px;line-height:1.6}.controls h2{font-size:22px;letter-spacing:-.035em;margin:2px 0}.section{margin-top:25px;padding-top:19px;border-top:1px solid #ffffff19}.section h3{font-size:15px;margin:0 0 8px}.label{color:#c5d4df;font-size:12px;margin:12px 0 8px;display:block}.choices{display:flex;flex-wrap:wrap;gap:8px}.choices button{padding:9px 12px;border:1px solid #496074;border-radius:13px;color:#d7e6f2;background:#192b41;font-size:12px}.choices button.active{border-color:#b5f2d1;background:#285248;color:white}.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.swatches button{height:34px;width:34px;border-radius:50%;border:3px solid #203043;outline:1px solid #8ca0ae}.swatches button.active{outline:3px solid #beffdd}.selectgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.selectgrid select,.input{width:100%;padding:11px 12px;border:1px solid #556c80;border-radius:12px;background:#101b2b;color:#f0f5ff;max-width:100%}.outline{background:none;border:1px solid #60798a;color:#e8f5fa;padding:12px 18px;border-radius:13px}.primary{background:#c0f3ce;border:0;border-radius:13px;color:#153226;font-weight:850;padding:14px 18px;width:100%;margin-top:15px}.primary:hover{filter:brightness(1.05)}.order{padding:18px;background:#182d39;border:1px solid #406456;border-radius:16px;margin-top:20px}.order strong{font-size:24px}.note{padding:14px 0 45px;color:#a9bdcb;font-size:12px;line-height:1.85}.dot{width:12px;height:12px;border-radius:50%;background:#a7f3cf;display:inline-block;margin-right:8px}.future{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;padding-bottom:60px}.tile{background:#142239;border:1px solid #31485e;border-radius:18px;padding:21px}.tile h3{margin:0 0 12px}.tile p{margin:0;color:#abbfce;font-size:13px;line-height:1.65}.hidden{display:none!important}footer{border-top:1px solid #34465b;padding:25px 0;color:#91a9bc;font-size:12px}@media(max-width:1020px){.workbench{grid-template-columns:1fr}.viewer{height:550px;min-height:550px}.controls{width:100%}.future{grid-template-columns:1fr 1fr}}@media(max-width:600px){.wrap{width:calc(100% - 26px)}.head{padding-top:25px}.viewer{height:420px;min-height:420px}.controls{padding:18px}.selectgrid{grid-template-columns:1fr}.future{grid-template-columns:1fr}.nav{height:65px}.price{font-size:32px}}
+</style></head>
+<body><div class="banner">DESIGN PREVIEW ONLY · RM899 TARGET PRICE · NOT TAKING ORDERS</div>
+<header class="wrap nav"><a class="brand" href="./">cipta<span>.</span> ROBO</a><a class="back" href="./">← Back to Cipta Robo</a></header>
+<main class="wrap"><div class="head"><div class="eyebrow">NURI Identity Studio / Concept configurator</div><h1>Build your <span style="color:#aaf2d0">NURI.</span></h1><p>One companion. Your signature look. Choose five wardrobe styles and a colorway, then rotate your NURI in 3D. Base suit and one standard choice per category are included in the proposed RM899 plan.</p></div>
+<div class="workbench">
+<section id="viewer" class="viewer" aria-label="Interactive 3D concept preview of NURI robot"><div class="pill-label"><span class="dot"></span>LIVE 3D DESIGN STUDY</div><div id="fallback" class="fallback">Loading interactive model... The 3D preview requires WebGL and an internet connection.</div><div class="drag">Drag to rotate · Scroll to zoom · Concept geometry, not verified K151 CAD</div></section>
+<aside class="controls">
+<div class="row"><div><span class="eyebrow">NURI Base · Signature Suit</span><div class="price">RM899</div></div><span class="tag">Planned</span></div>
+<div class="muted">Original M5Stack StackChan K151 + NURI visual suit + five standard wardrobe selections. Functional setup, fulfillment, warranty and supplier conditions still require confirmation.</div>
+<div class="section"><h3>01 · Pick a complete look</h3><div class="choices" id="presets"></div></div>
+<div class="section"><h3>02 · Pick your wardrobe</h3><p class="muted">Each area has 10 design concepts. The 3D illustration changes by style family; individual production designs will be refined from measured CAD.</p><div class="selectgrid" id="selectors"></div></div>
+<div class="section"><h3>03 · Your colorway</h3><div class="swatches" id="swatches"></div><p class="muted" id="colorLabel"></p></div>
+<div class="section"><h3>04 · Optional personalized nameplate</h3><label class="label"><input type="checkbox" id="plate"> Add removable engraved-style nameplate (+RM25 indicative)</label><label class="label" for="plateName">Your companion's name (max 14 characters)</label><input id="plateName" class="input" maxlength="14" value="NURI" disabled><p class="muted">Illustration only. Final mounting may use a clip-in plate rather than a magnet until sensor and interference tests are complete.</p></div>
+<div class="order"><div class="row"><span>Design total (indicative)</span><strong id="total">RM899</strong></div><p class="muted" id="summary">Five standard wardrobe parts included. No checkout or deposit.</p></div><button id="save" class="primary" type="button">Copy my NURI design</button><button id="reset" class="outline" style="margin-top:10px;width:100%" type="button">Reset design</button>
+</aside></div>
+<div class="future"><article class="tile"><h3>Included in the RM899 concept</h3><p>K151 hardware, five-zone Signature Suit, base personalization and assembly. No extra charge for standard styles; the final price remains subject to production feasibility.</p></article><article class="tile"><h3>Wardrobe shop · Later</h3><p>Returning customers will be able to purchase replacement hats, face frames, sidewear, outfits and base accents without buying another NURI.</p></article><article class="tile"><h3>Future hardware · Separate R&D</h3><p>Desk dock, rover base, arm and drone carrier are engineering concepts only, not included with NURI Base. No flight or mobility claims are made.</p></article></div>
+<div class="note"><strong>Design and availability notice:</strong> This is a parametric visualization, not a 3D scan, production STL, measured K151 geometry or validated mechanical fit. Display, front camera, top touch panel, side vents, USB-C, speaker, microphones and pan/tilt joint must remain accessible. Every component must pass physical fit, thermal, stability, attachment and servo-clearance tests. Resale/branding terms remain subject to supplier or rights-holder confirmation. No payment is collected.</div></main><footer><div class="wrap">© Cipta Robo · NURI Identity Studio · Design preview only</div></footer>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js';
+const styles={
+'Headwear':['Open-Rim Cap','Side Beret','Open Crown','Explorer Brim','Graduate Halo','Cyber Arcs','Mecha Fins','Pixel Crest','Retro Headband','Minimal Rail'],
+'Facewear':['Signature Frame','Soft Rounded','Sharp Neo','Pixel Edge','Academic Rim','Arc Contour','Guardian Frame','Aero Bezel','Comet Frame','Studio Frame'],
+'Sidewear':['Signature Wing','Audio-Cup Look','Slim Fin','Aero Wings','Mecha Shield','Orbit Disc','Soft Cheeks','Crystal Edge','Minimal Line','Pulse Panel'],
+'Outfit':['Signature Collar','Hoodie Look','Bomber Trim','Formal Collar','Racing Trim','Astronaut Shell','Kimono Accent','Cyber Armor','Casual Cuff','Studio Jacket'],
+'Basewear':['Signature Cuff','Rounded Base','Orbit Ring','Studio Stand','Sport Edge','Pixel Base','Industrial Cuff','Monolith','Aero Base','Collector Base']};
+const palettes=[['Pearl Mint','#e8f2f2','#8ce3c7'],['Graphite Mint','#353d4b','#80d9bf'],['Lavender','#e4daff','#afa0ec'],['Sunset','#f7e7e1','#ff9986'],['Arctic','#e5f3ff','#8ecaff'],['Forest','#d6e7df','#5dbba0'],['Midnight','#252b37','#8aa5e6'],['Sand','#eae1d3','#d5a876'],['Cherry','#f8e4e7','#ed8a9d'],['Solar','#f9f3db','#efc878']];
+const presets={Signature:[0,0,0,0,0,0],Gamer:[5,2,1,4,4,1],Cute:[2,1,6,1,1,2],Executive:[9,4,8,3,3,6],Futuristic:[6,6,4,7,7,4],Casual:[0,1,6,8,1,5],Scholar:[4,4,8,3,3,7]};
+const state={choices:[0,0,0,0,0],color:0,plate:false,name:'NURI',preset:'Signature'};
+let scene,camera,renderer,root,headGroup,baseGroup,parts=[];
+const $$=(id)=>document.getElementById(id);
+const clean=(obj)=>{while(obj.children.length){let ch=obj.children[0];obj.remove(ch);if(ch.geometry)ch.geometry.dispose();if(ch.material&&ch.material.dispose)ch.material.dispose()}};
+function mat(color,metalness=.06){return new THREE.MeshStandardMaterial({color,roughness:.54,metalness})}
+function box(parent,w,h,d,color,x,y,z,r=0){let m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(color));m.position.set(x,y,z);parent.add(m);return m}
+function cylinder(parent,rt,rb,h,color,x,y,z){let m=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,28),mat(color));m.position.set(x,y,z);parent.add(m);return m}
+function sphere(parent,r,color,x,y,z,sx=1,sy=1,sz=1){let m=new THREE.Mesh(new THREE.SphereGeometry(r,20,12),mat(color));m.position.set(x,y,z);m.scale.set(sx,sy,sz);parent.add(m);return m}
+function torus(parent,r,t,color,x,y,z){let m=new THREE.Mesh(new THREE.TorusGeometry(r,t,9,48),mat(color));m.position.set(x,y,z);parent.add(m);return m}
+function addL(parent,w,h,d,color,x,y,z){return box(parent,w,h,d,color,x,y,z)}
+function build(){
+if(!root)return;
+clean(root);const shell=palettes[state.color][1],accent=palettes[state.color][2],dark='#1a2531';
+headGroup=new THREE.Group();baseGroup=new THREE.Group();root.add(headGroup,baseGroup);
+root.rotation.y=0.28;
+box(headGroup,2.07,1.9,1.58,shell,0,1.25,0);
+box(headGroup,1.76,1.53,.09,'#101923',0,1.24,.825);
+box(headGroup,1.57,1.24,.018,'#060d18',0,1.14,.883);
+// raised camera window remains visible
+box(headGroup,.42,.115,.04,'#1b2837',0,1.913,.83);sphere(headGroup,.032,'#475e6e',0,1.914,.861);
+for(let x of [-.36,.36]){torus(headGroup,.15,.045,accent,x,1.28,.906);}
+// tiny smile
+box(headGroup,.21,.035,.02,accent,0,.92,.901);
+// top three-zone touch region left uncovered
+for(let x of [-.56,0,.56]){box(headGroup,.49,.014,1.02,'#273e57',x,2.215,0)}
+// side vents indicated as dark dots
+for(let k=0;k<4;k++){sphere(headGroup,.033,dark,1.048,1.3+(k-1.5)*.16,.28,.55,1,1.5)}
+// side USB accessible on original chassis
+box(headGroup,.015,.1,.25,'#141c27',1.055,.87,-.18);
+// neck + stationary base
+cylinder(baseGroup,.3,.3,.23,'#394754',0,.2,0);
+cylinder(baseGroup,1.02,1.13,.33,'#4b5967',0,-.03,0);
+// face frame outer narrow geometry, nowhere across camera display
+let f=state.choices[1];
+let wide=f===2||f===6?.16:.105;
+for(let x of [-1,1]){box(headGroup,wide,1.63,.13,accent,x*.96,1.24,.865)}
+for(let y of [.43,2.045]){box(headGroup,1.89,.105,.13,accent,0,y,.865)}
+if([2,6,7].includes(f)){for(let x of [-1,1])box(headGroup,.2,.22,.16,accent,x*.96,1.99,.9)}
+// sidewear: slim, intentionally hovering near side edge instead of vent cover
+let s=state.choices[2];
+for(let side of [-1,1]){
+ let height=([1,4,5].includes(s)?.42:.65),len=([1,4,5].includes(s)?.15:.08);
+ let sidePart=box(headGroup,len,height,.28,accent,side*1.1,1.18,-.48);
+ if([2,3,4,7].includes(s))sidePart.rotation.z=side*.33;
+ if(s===1||s===5){cylinder(headGroup,.20,.20,.065,accent,side*1.12,1.35,-.55).rotation.z=Math.PI/2;}
+}
+// open-top headwear support confined to side corners / back, centre top stays exposed
+let h=state.choices[0];
+const headAccent=mat(accent);
+if(h===0||h===1||h===3||h===9){box(headGroup,1.7,.095,.13,accent,0,2.29,-.63);
+for(let side of [-1,1])box(headGroup,.1,.19,.15,accent,side*.81,2.28,-.6);
+if(h===3)box(headGroup,1.48,.055,.4,accent,0,2.29,-.83)}
+else if(h===2||h===4||h===8){for(let side of [-1,1])box(headGroup,.1,.23,.7,accent,side*.83,2.33,-.32);
+box(headGroup,1.7,.08,.11,accent,0,2.44,-.69)}
+else if(h===5||h===6||h===7){for(let side of [-1,1]){let fin=box(headGroup,.14,.37,.25,accent,side*.84,2.38,-.3);fin.rotation.z=side*.28}}
+// outfit on base stationary front only (no fabric around joint)
+let o=state.choices[3];
+box(baseGroup,1.53,.21,.14,accent,0,-.04,.92);
+if([1,2,4,5,7,8].includes(o)){for(let side of [-1,1])box(baseGroup,.20,.24,.18,shell,side*.65,-.045,.9)}
+if([3,5].includes(o))box(baseGroup,.16,.19,.15,'#f0f3f4',0,-.03,1);
+if([6,7].includes(o))box(baseGroup,.26,.16,.12,accent,0,-.02,1.02);
+// basewear on fixed base; simple accent band
+let b=state.choices[4];
+let band=([2,6,7].includes(b)?.115:.07);
+box(baseGroup,1.9,band,.11,accent,0,-.15,1.02);
+if([4,8,9].includes(b)){for(let side of [-1,1])box(baseGroup,.23,.1,.11,accent,side*.86,-.08,.89)}
+if(state.plate){box(baseGroup,.72,.18,.07,'#c9b681',0,-.03,1.076);const cvs=document.createElement('canvas');cvs.width=480;cvs.height=128;const ctx=cvs.getContext('2d');ctx.fillStyle='#e9dfbc';ctx.fillRect(0,0,480,128);ctx.fillStyle='#18212b';ctx.font='bold 60px Arial';ctx.textAlign='center';ctx.fillText(state.name||'NURI',240,83);const tex=new THREE.CanvasTexture(cvs);let label=new THREE.Mesh(new THREE.PlaneGeometry(.67,.15),new THREE.MeshBasicMaterial({map:tex}));label.position.set(0,-.028,1.116);baseGroup.add(label)}
+}
+function init(){
+let el=$$('viewer');scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(35,el.clientWidth/el.clientHeight,.1,100);camera.position.set(4.6,3.25,6.7);camera.lookAt(0,1,0);renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(el.clientWidth,el.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;el.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xffffff,0x406078,2.2));let light=new THREE.DirectionalLight(0xffffff,3.1);light.position.set(2,7,6);scene.add(light);
+root=new THREE.Group();scene.add(root);build();
+$$('fallback').remove();let dragging=false,lastX=0,lastY=0,tilt=0;let canvas=renderer.domElement;
+canvas.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{if(!dragging)return;root.rotation.y+=(e.clientX-lastX)*.009;tilt=Math.min(.35,Math.max(-.27,tilt+(e.clientY-lastY)*.004));root.rotation.x=tilt;lastX=e.clientX;lastY=e.clientY});
+canvas.addEventListener('pointerup',()=>dragging=false);canvas.addEventListener('pointercancel',()=>dragging=false);
+canvas.addEventListener('wheel',e=>{e.preventDefault();camera.position.multiplyScalar(e.deltaY>0?1.06:.94);camera.position.clampLength(4.5,12)},{passive:false});
+window.addEventListener('resize',()=>{let w=el.clientWidth,h=el.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)});
+(function animate(){requestAnimationFrame(animate);renderer.render(scene,camera)})();
+}
+function updateUI(){
+document.querySelectorAll('[data-preset]').forEach(b=>b.classList.toggle('active',b.dataset.preset===state.preset));
+document.querySelectorAll('[data-color]').forEach(b=>b.classList.toggle('active',+b.dataset.color===state.color));
+document.querySelectorAll('[data-zone]').forEach(sel=>sel.value=String(state.choices[+sel.dataset.zone]));
+$$('colorLabel').textContent=palettes[state.color][0]+' · shell + accent';
+$$('plate').checked=state.plate;$$('plateName').disabled=!state.plate;$$('plateName').value=state.name;
+$$('total').textContent='RM'+(899+(state.plate?25:0));$$('summary').textContent='Five standard wardrobe styles included'+(state.plate?' · Optional nameplate +RM25':'')+' · Not available for checkout.';
+build();
+}
+Object.entries(presets).forEach(([name,val])=>{let b=document.createElement('button');b.textContent=name;b.dataset.preset=name;b.onclick=()=>{state.preset=name;state.choices=val.slice(0,5);state.color=val[5];updateUI()};$$('presets').appendChild(b)});
+Object.entries(styles).forEach(([name,arr],i)=>{let wrap=document.createElement('label');wrap.innerHTML='<span class="label">'+String(i+1).padStart(2,'0')+' · '+name+'</span>';let select=document.createElement('select');select.dataset.zone=i;select.setAttribute('aria-label',name+' design');arr.forEach((n,k)=>{let opt=document.createElement('option');opt.value=k;opt.textContent=String(k+1).padStart(2,'0')+' · '+n;select.appendChild(opt)});select.addEventListener('change',()=>{state.choices[i]=+select.value;state.preset='Custom';updateUI()});wrap.appendChild(select);$$('selectors').appendChild(wrap)});
+palettes.forEach((p,i)=>{let b=document.createElement('button');b.style.background='linear-gradient(135deg,'+p[1]+' 50%,'+p[2]+' 50%)';b.dataset.color=i;b.setAttribute('aria-label',p[0]);b.title=p[0];b.onclick=()=>{state.color=i;state.preset='Custom';updateUI()};$$('swatches').appendChild(b)});
+$$('plate').addEventListener('change',e=>{state.plate=e.target.checked;updateUI()});
+$$('plateName').addEventListener('input',e=>{state.name=e.target.value.replace(/[<>]/g,'').slice(0,14);build()});
+$$('reset').onclick=()=>{state.choices=[0,0,0,0,0];state.color=0;state.plate=false;state.name='NURI';state.preset='Signature';updateUI()};
+$$('save').onclick=async()=>{let design='NURI Base RM899 · concept preview\nColor: '+palettes[state.color][0]+'\n'+Object.keys(styles).map((k,i)=>k+': '+styles[k][state.choices[i]]).join('\n')+'\nNameplate: '+(state.plate?state.name+' (+RM25)':'None')+'\nIndicative total: RM'+(899+(state.plate?25:0))+'\nNot an order or production-ready model.';try{await navigator.clipboard.writeText(design);$$('save').textContent='Copied ✓';setTimeout(()=>$$('save').textContent='Copy my NURI design',1800)}catch{window.prompt('Copy your NURI design',design)}};
+updateUI();try{init()}catch(err){console.error('3D preview unavailable',err);$$('fallback').textContent='3D preview unavailable on this device. You can still select wardrobe styles and copy your design.'}
+</script></body></html>
