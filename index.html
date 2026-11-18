@@ -29,7 +29,7 @@
   <a class="brand" href="./" aria-label="Cipta Robo home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/></svg>Cipta Robo</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav class="nav" id="nav" aria-label="Main">
-   <a href="#uses">What it does</a><a href="#in-action">In action</a><a href="#character">Personality</a><a href="#make-it-yours">Make it yours</a><a href="#add-ons">Add-ons</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+   <a href="#uses">What it does</a><a href="#in-action">In action</a><a href="#character">Personality</a><a href="#make-it-yours">Make it yours</a><a href="#add-ons">Add-ons</a><a href="#accessories">Accessories</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
   </nav>
   <div class="lang-toggle" role="group" aria-label="Language / Bahasa"><span class="lang-on" aria-current="true">EN</span><a class="lang-switch" href="ms/" hreflang="ms" lang="ms">BM</a></div>
   <a class="btn btn-primary btn-sm" href="configure.html">Configure</a>
@@ -183,6 +183,24 @@
  </div>
 </section>
 
+<section class="section acc" id="accessories" style="background:var(--surface);border-bottom:1px solid var(--line)">
+ <div class="wrap">
+  <div class="section-head">
+   <div><span class="label">Accessories</span><h2 style="margin-top:12px">Take NURI with you.</h2></div>
+   <p class="lead">Two wearable carriers in development, so you can talk to NURI while you walk. Both hold NURI by its base in a locking cradle, keep it charged from a small battery and leave its head free to turn to you.</p>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Accessories">
+   <button role="tab" id="tab-strap" aria-selected="true" aria-controls="panel-acc">Strap Clip</button>
+   <button role="tab" id="tab-perch" aria-selected="false" aria-controls="panel-acc">Shoulder Perch</button>
+  </div>
+  <div class="addon" id="panel-acc" role="tabpanel" aria-labelledby="tab-strap">
+   <div class="addon-stage" id="accStage"><span class="stage-note" id="accNote">Animated 3D model · drag to turn</span></div>
+   <div id="accText"></div>
+  </div>
+  <p class="note">Out and about, NURI connects through your phone's hotspot. Not for use while driving or cycling. Fit, weight, battery life and safety will be tested before any sale.</p>
+ </div>
+</section>
+
 <section class="section" id="hardware">
  <div class="wrap">
   <div class="section-head">
@@ -262,7 +280,7 @@
 <div class="wrap collab"><span>In collaboration with</span><a href="https://binalab.my" target="_blank" rel="noopener" aria-label="BinaLab (opens in a new tab)">BinaLab<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
  <div class="wrap foot-row">
   <div><b style="color:var(--ink)">Cipta Robo</b> · Made in Malaysia · ciptarobo.com</div>
-  <div class="foot-links"><a href="https://wa.me/60199400004" target="_blank" rel="noopener">WhatsApp</a><a href="configure.html">Configure</a><a href="#add-ons">Add-ons</a><a href="#concept-sheets">Concept sheets</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div>
+  <div class="foot-links"><a href="https://wa.me/60199400004" target="_blank" rel="noopener">WhatsApp</a><a href="configure.html">Configure</a><a href="#add-ons">Add-ons</a><a href="#accessories">Accessories</a><a href="#concept-sheets">Concept sheets</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div>
  </div>
  <div class="wrap" style="margin-top:16px;font-size:12px">NURI is in development and not yet for sale. Images are 3D renders of the planned design. Cipta Robo is not affiliated with M5Stack.</div>
 </footer>

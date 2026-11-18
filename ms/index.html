@@ -31,7 +31,7 @@
   <a class="brand" href="./" aria-label="Laman utama Cipta Robo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/></svg>Cipta Robo</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav class="nav" id="nav" aria-label="Utama">
-   <a href="#uses">Kegunaan</a><a href="#in-action">Lihat NURI</a><a href="#character">Personaliti</a><a href="#make-it-yours">Pilihan</a><a href="#add-ons">Add-on</a><a href="#faq">Soalan</a><a href="#contact">Hubungi</a>
+   <a href="#uses">Kegunaan</a><a href="#in-action">Lihat NURI</a><a href="#character">Personaliti</a><a href="#make-it-yours">Pilihan</a><a href="#add-ons">Add-on</a><a href="#accessories">Aksesori</a><a href="#faq">Soalan</a><a href="#contact">Hubungi</a>
   </nav>
   <div class="lang-toggle" role="group" aria-label="Language / Bahasa"><a class="lang-switch" href="../" hreflang="en" lang="en">EN</a><span class="lang-on" aria-current="true">BM</span></div>
   <a class="btn btn-primary btn-sm" href="configure.html">Reka NURI</a>
@@ -185,6 +185,24 @@
  </div>
 </section>
 
+<section class="section acc" id="accessories" style="background:var(--surface);border-bottom:1px solid var(--line)">
+ <div class="wrap">
+  <div class="section-head">
+   <div><span class="label">Aksesori</span><h2 style="margin-top:12px">Bawa NURI ke mana-mana.</h2></div>
+   <p class="lead">Dua pembawa boleh pakai dalam pembangunan, supaya anda boleh berbual dengan NURI sambil berjalan. Kedua-duanya memegang NURI pada tapaknya dalam cradle berkunci, mengecasnya dari bateri kecil dan membiarkan kepalanya bebas berpusing ke arah anda.</p>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Aksesori">
+   <button role="tab" id="tab-strap" aria-selected="true" aria-controls="panel-acc">Strap Clip</button>
+   <button role="tab" id="tab-perch" aria-selected="false" aria-controls="panel-acc">Shoulder Perch</button>
+  </div>
+  <div class="addon" id="panel-acc" role="tabpanel" aria-labelledby="tab-strap">
+   <div class="addon-stage" id="accStage"><span class="stage-note" id="accNote">Model 3D beranimasi · seret untuk pusing</span></div>
+   <div id="accText"></div>
+  </div>
+  <p class="note">Di luar, NURI bersambung melalui hotspot telefon anda. Bukan untuk digunakan semasa memandu atau berbasikal. Kesesuaian, berat, hayat bateri dan keselamatan akan diuji sebelum dijual.</p>
+ </div>
+</section>
+
 <section class="section" id="hardware">
  <div class="wrap">
   <div class="section-head">
@@ -264,7 +282,7 @@
 <div class="wrap collab"><span>Dengan kerjasama</span><a href="https://binalab.my" target="_blank" rel="noopener" aria-label="BinaLab (dibuka dalam tab baru)">BinaLab<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
  <div class="wrap foot-row">
   <div><b style="color:var(--ink)">Cipta Robo</b> · Buatan Malaysia · ciptarobo.com</div>
-  <div class="foot-links"><a href="https://wa.me/60199400004" target="_blank" rel="noopener">WhatsApp</a><a href="configure.html">Reka NURI</a><a href="#add-ons">Add-on</a><a href="#concept-sheets">Helaian konsep</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Panduan reka bentuk</a></div>
+  <div class="foot-links"><a href="https://wa.me/60199400004" target="_blank" rel="noopener">WhatsApp</a><a href="configure.html">Reka NURI</a><a href="#add-ons">Add-on</a><a href="#accessories">Aksesori</a><a href="#concept-sheets">Helaian konsep</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Panduan reka bentuk</a></div>
  </div>
  <div class="wrap" style="margin-top:16px;font-size:12px">NURI masih dalam pembangunan dan belum dijual. Imej ialah render 3D reka bentuk yang dirancang. Cipta Robo tiada kaitan dengan M5Stack.</div>
 </footer>

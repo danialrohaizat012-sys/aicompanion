@@ -253,10 +253,13 @@ section{scroll-margin-top:72px}
   .specs{grid-template-columns:1fr}
   .cfg-view{position:relative;top:0}.cfg-view .stage{height:min(62vh,520px)}
 }
-@media (max-width:760px){
+@media (max-width:1180px){
   .nav{display:none;position:absolute;left:0;right:0;top:68px;background:var(--paper);flex-direction:column;gap:0;padding:8px var(--gutter) 16px;border-bottom:1px solid var(--line)}
   .nav.open{display:flex}.nav a{padding:12px 0;font-size:16px;border-bottom:1px solid var(--line)}
   .menu-btn{display:block}
+}
+.nav a{white-space:nowrap}
+@media (max-width:760px){
   .head-row .btn{display:none}
   .facts,.cards,.cards-2,.sheets{grid-template-columns:1fr}
   .sheet-card figcaption{grid-template-columns:1fr}.sheet-card figcaption .link-arrow{grid-column:1;grid-row:auto;justify-self:start;margin-top:8px}
@@ -282,3 +285,8 @@ section{scroll-margin-top:72px}
 .lang-toggle>*{padding:5px 9px;border-radius:999px;line-height:1;text-decoration:none;color:var(--muted)}
 .lang-toggle .lang-on{background:var(--ink);color:#fff}
 .lang-toggle a:hover{color:var(--ink)}
+/* accessories (light version of the add-on panel) */
+.acc .tabs{border-color:var(--line-2)}.acc .tabs button{color:var(--muted)}.acc .tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+.acc .addon-stage{background:radial-gradient(110% 90% at 50% 30%,#ffffff 0,#eeede8 60%,#e4e2dc 100%);border-color:var(--line)}
+.acc .addon-stage .stage-note{color:var(--muted)}
+.acc .spec{border-color:var(--line)}.acc .spec li{border-color:var(--line)}.acc .spec li span:first-child{color:var(--muted)}

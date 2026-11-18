@@ -27,8 +27,8 @@ INDEX = [
     ('content="One NURI. Endless possibilities. A desktop AI companion in development in Malaysia."', 'content="Satu NURI. Pelbagai kegunaan. Teman AI di atas meja yang sedang dibangunkan di Malaysia."'),
     ('<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>', '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>'),
     ('<nav class="nav" id="nav" aria-label="Main">', '<nav class="nav" id="nav" aria-label="Utama">'),
-    ('<a href="#uses">What it does</a><a href="#in-action">In action</a><a href="#character">Personality</a><a href="#make-it-yours">Make it yours</a><a href="#add-ons">Add-ons</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>',
-     '<a href="#uses">Kegunaan</a><a href="#in-action">Lihat NURI</a><a href="#character">Personaliti</a><a href="#make-it-yours">Pilihan</a><a href="#add-ons">Add-on</a><a href="#faq">Soalan</a><a href="#contact">Hubungi</a>'),
+    ('<a href="#uses">What it does</a><a href="#in-action">In action</a><a href="#character">Personality</a><a href="#make-it-yours">Make it yours</a><a href="#add-ons">Add-ons</a><a href="#accessories">Accessories</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>',
+     '<a href="#uses">Kegunaan</a><a href="#in-action">Lihat NURI</a><a href="#character">Personaliti</a><a href="#make-it-yours">Pilihan</a><a href="#add-ons">Add-on</a><a href="#accessories">Aksesori</a><a href="#faq">Soalan</a><a href="#contact">Hubungi</a>'),
     ('<a class="btn btn-primary btn-sm" href="configure.html">Configure</a>', '<a class="btn btn-primary btn-sm" href="configure.html">Reka NURI</a>'),
     # hero
     ('<span class="status">NURI V1 · in development</span>', '<span class="status">NURI V1 · dalam pembangunan</span>'),
@@ -123,6 +123,14 @@ INDEX = [
     ('<p class="lead">Two accessories in development. Neither is needed to use NURI. Prices will be announced once they have been prototyped.</p>', '<p class="lead">Dua aksesori dalam pembangunan. Kedua-duanya tidak wajib untuk guna NURI. Harga akan diumumkan selepas prototaip siap.</p>'),
     ('<div class="tabs" role="tablist" aria-label="Add-ons">', '<div class="tabs" role="tablist" aria-label="Add-on">'),
     ('<span class="stage-note" id="addonNote">Animated 3D model · drag to turn</span>', '<span class="stage-note" id="addonNote">Model 3D beranimasi · seret untuk pusing</span>'),
+    # accessories
+    ('<span class="label">Accessories</span><h2 style="margin-top:12px">Take NURI with you.</h2>', '<span class="label">Aksesori</span><h2 style="margin-top:12px">Bawa NURI ke mana-mana.</h2>'),
+    ('<p class="lead">Two wearable carriers in development, so you can talk to NURI while you walk. Both hold NURI by its base in a locking cradle, keep it charged from a small battery and leave its head free to turn to you.</p>',
+     '<p class="lead">Dua pembawa boleh pakai dalam pembangunan, supaya anda boleh berbual dengan NURI sambil berjalan. Kedua-duanya memegang NURI pada tapaknya dalam cradle berkunci, mengecasnya dari bateri kecil dan membiarkan kepalanya bebas berpusing ke arah anda.</p>'),
+    ('<div class="tabs" role="tablist" aria-label="Accessories">', '<div class="tabs" role="tablist" aria-label="Aksesori">'),
+    ('<span class="stage-note" id="accNote">Animated 3D model · drag to turn</span>', '<span class="stage-note" id="accNote">Model 3D beranimasi · seret untuk pusing</span>'),
+    ('<p class="note">Out and about, NURI connects through your phone\'s hotspot. Not for use while driving or cycling. Fit, weight, battery life and safety will be tested before any sale.</p>',
+     '<p class="note">Di luar, NURI bersambung melalui hotspot telefon anda. Bukan untuk digunakan semasa memandu atau berbasikal. Kesesuaian, berat, hayat bateri dan keselamatan akan diuji sebelum dijual.</p>'),
     # hardware
     ('<span class="label">Designed around the real robot</span><h2 style="margin-top:12px">Measured, not imagined.</h2>', '<span class="label">Direka ikut robot sebenar</span><h2 style="margin-top:12px">Diukur, bukan diagak.</h2>'),
     ('<p class="lead">Every suit part and dock is modelled on M5Stack\'s published K151 structure files, then checked against the robot\'s touch zones, display, ports, vents and full movement.</p>',
@@ -172,7 +180,7 @@ INDEX = [
     ('<summary>Is Cipta Robo part of M5Stack?</summary><p>No. Cipta Robo is an independent Malaysian studio. NURI is built on the M5Stack StackChan K151; reseller and branding terms are being confirmed with the supplier.</p>',
      '<summary>Adakah Cipta Robo sebahagian daripada M5Stack?</summary><p>Tidak. Cipta Robo ialah studio bebas dari Malaysia. NURI dibina atas M5Stack StackChan K151; terma penjualan semula dan penjenamaan sedang disahkan dengan pembekal.</p>'),
     # footer
-    ('<a href="configure.html">Configure</a><a href="#add-ons">Add-ons</a><a href="#concept-sheets">Concept sheets</a>', '<a href="configure.html">Reka NURI</a><a href="#add-ons">Add-on</a><a href="#concept-sheets">Helaian konsep</a>'),
+    ('<a href="configure.html">Configure</a><a href="#add-ons">Add-ons</a><a href="#accessories">Accessories</a><a href="#concept-sheets">Concept sheets</a>', '<a href="configure.html">Reka NURI</a><a href="#add-ons">Add-on</a><a href="#accessories">Aksesori</a><a href="#concept-sheets">Helaian konsep</a>'),
     ('NURI is in development and not yet for sale. Images are 3D renders of the planned design. Cipta Robo is not affiliated with M5Stack.', 'NURI masih dalam pembangunan dan belum dijual. Imej ialah render 3D reka bentuk yang dirancang. Cipta Robo tiada kaitan dengan M5Stack.'),
     (WA_EN, WA_MS),
 ]

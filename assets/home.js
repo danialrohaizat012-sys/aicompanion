@@ -82,16 +82,16 @@ function buildBoard() {
 function show(id) {
   addonTab = id;
   renderText(id);
-  document.querySelectorAll('.tabs [role=tab]').forEach(b => b.setAttribute('aria-selected', b.id === 'tab-' + id));
+  document.querySelectorAll('#add-ons .tabs [role=tab]').forEach(b => b.setAttribute('aria-selected', b.id === 'tab-' + id));
   document.getElementById('panel-addon').setAttribute('aria-labelledby', 'tab-' + id);
   if (!addonStage) return;
   clearScene(); current = id === 'rover' ? buildRover() : buildBoard();
   addonStage.controls.update();
 }
-document.querySelectorAll('.tabs [role=tab]').forEach(b => b.addEventListener('click', () => show(b.id.replace('tab-', ''))));
-document.querySelector('.tabs').addEventListener('keydown', e => {
+document.querySelectorAll('#add-ons .tabs [role=tab]').forEach(b => b.addEventListener('click', () => show(b.id.replace('tab-', ''))));
+document.querySelector('#add-ons .tabs').addEventListener('keydown', e => {
   if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
-  const tabs = [...document.querySelectorAll('.tabs [role=tab]')], i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+  const tabs = [...document.querySelectorAll('#add-ons .tabs [role=tab]')], i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
   const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); n.click();
 });
 // the add-on scene is only created when the section comes near the screen
@@ -137,4 +137,74 @@ show('rover');
   chips.forEach((c, i) => c.addEventListener('click', () => { if (player) { player.go(i); sync(); } }));
   btn.addEventListener('click', () => { if (!player) return; player.toggle(); sync(); });
   snd.addEventListener('click', () => { if (!player) return; player.setSound(!player.sound); sync(); });
+})();
+
+/* Accessories: Strap Clip and Shoulder Perch, created when the section comes near the screen */
+(() => {
+  const stageEl = document.getElementById('accStage'); if (!stageEl) return;
+  const ACC = {
+    strap: {
+      title: 'NURI Strap Clip',
+      text: T('Clip NURI to the shoulder strap of your bag and talk on the move. A locking cradle holds NURI by its base, a battery in the cradle keeps it charged through the same USB-C port as the dock, and NURI can turn round to face you when you speak.',
+        'Klip NURI pada tali beg sandang dan berbual sambil berjalan. Cradle berkunci memegang NURI pada tapaknya, bateri dalam cradle terus mengecas melalui port USB-C yang sama seperti dock, dan NURI boleh berpusing menghadap anda bila anda bercakap.'),
+      spec: T([['Fits', 'Padded bag straps up to 60 mm wide and 15 mm thick'], ['Holds', 'Locking cradle with a front tab; quick-release button'], ['Power', 'Battery in the cradle, charges NURI through its base (planned)'], ['Travel mode', 'Gentle movement while you walk; turns to you when you talk'], ['Safety', 'Tether loop; strap sits 50 mm behind the head, outside its turning circle']],
+        [['Sesuai', 'Tali beg berpad sehingga 60 mm lebar dan 15 mm tebal'], ['Pegangan', 'Cradle berkunci dengan tab depan; butang lepas pantas'], ['Kuasa', 'Bateri dalam cradle, mengecas NURI melalui tapaknya (dirancang)'], ['Mod perjalanan', 'Gerakan lembut semasa berjalan; berpusing ke arah anda bila bercakap'], ['Keselamatan', 'Gelung tali keselamatan; tali beg 50 mm di belakang kepala, di luar ruang pusingannya']])
+    },
+    perch: {
+      title: 'NURI Shoulder Perch',
+      text: T('NURI rides on your shoulder, close to your ear. A padded saddle sits on the shoulder and two soft straps loop under the arm, so NURI stays level while you walk and can turn to talk to you face to face.',
+        'NURI duduk di bahu anda, dekat dengan telinga. Pelapik berpad duduk di atas bahu dan dua tali lembut melingkar di bawah lengan, jadi NURI kekal stabil semasa anda berjalan dan boleh berpaling untuk bercakap bersemuka.'),
+      spec: T([['Wear', 'Padded saddle and two adjustable under-arm straps'], ['Position', 'On the outer shoulder, about 15 cm from the neck'], ['Power', 'Battery in the cradle, charges NURI through its base (planned)'], ['Travel mode', 'Holds steady while you walk; turns to you when you talk'], ['Safety', 'Locking cradle and tether loop; head turns clear of your head and neck in the 3D model']],
+        [['Cara pakai', 'Pelapik berpad dan dua tali bawah lengan boleh laras'], ['Kedudukan', 'Di bahu luar, lebih kurang 15 cm dari leher'], ['Kuasa', 'Bateri dalam cradle, mengecas NURI melalui tapaknya (dirancang)'], ['Mod perjalanan', 'Kekal stabil semasa berjalan; berpusing ke arah anda bila bercakap'], ['Keselamatan', 'Cradle berkunci dan gelung tali keselamatan; dalam model 3D kepala NURI berpusing tanpa kena kepala dan leher anda']])
+    }
+  };
+  const textEl = document.getElementById('accText'), noteEl = document.getElementById('accNote');
+  const tabs = [...document.querySelectorAll('#accessories [role=tab]')];
+  let stage = null, cur = null, which = 'strap';
+  function render(id) {
+    const a = ACC[id];
+    textEl.innerHTML = `<span class="status">${T('Concept · accessory · price to be announced', 'Konsep · aksesori · harga akan diumumkan')}</span><h3 style="font-size:28px;margin:12px 0 14px;letter-spacing:-.02em">${a.title}</h3><p class="lead">${a.text}</p><ul class="spec">${a.spec.map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('')}</ul>`;
+  }
+  function build(id) {
+    if (cur) { stage.scene.remove(cur.root); cur.dispose(); cur = null; }
+    const nuri = N.createNuri({look: id === 'strap' ? 'buddy' : 'signature', colour: id === 'strap' ? 'coral' : 'pearl', showDock: false});
+    const acc = id === 'strap' ? N.createStrapClip('coral', 'Kront') : N.createShoulderPerch('pearl', 'Reka');
+    const root = new stage.THREE.Group(), body = new stage.THREE.Group(); root.add(body); body.add(acc.group, nuri.root); nuri.root.position.y = acc.mountY;
+    stage.scene.add(root);
+    if (id === 'strap') { root.rotation.y = -.55; stage.fit({center: [0, -.3, -.6], radius: 4.7}, [.5, .25, 1], 1); }
+    else { root.rotation.y = -.35; stage.fit({center: [-2.6, -.4, 0], radius: 6.4}, [.35, .32, 1], 1); }
+    stage.controls.update();
+    let pose = [0, 0];
+    cur = {root, dispose() { acc.dispose(); nuri.dispose(); }, frame(t, dt) {
+      // walking: a light bounce and sway; NURI turns to the wearer every few seconds, then looks ahead
+      if (!still) { body.position.y = Math.abs(Math.sin(t * PI * 1.8)) * N.MM * 3; body.rotation.z = Math.sin(t * PI * .9) * .025; }
+      const u = t % 8, toYou = u > 4.4 && u < 7;
+      const goal = toYou ? (id === 'strap' ? [2.05, -38 * PI / 180] : [-1.45, -22 * PI / 180]) : [Math.sin(t * .7) * .18, -6 * PI / 180];
+      const k = still ? 1 : 1 - Math.exp(-dt * 3.5); pose[0] += (goal[0] - pose[0]) * k; pose[1] += (goal[1] - pose[1]) * k;
+      nuri.setPose(pose[0], pose[1]);
+    }};
+  }
+  const PI = Math.PI;
+  function show(id) {
+    which = id; render(id);
+    tabs.forEach(b => b.setAttribute('aria-selected', b.id === 'tab-' + id));
+    document.getElementById('panel-acc').setAttribute('aria-labelledby', 'tab-' + id);
+    if (stage) build(id);
+  }
+  tabs.forEach(b => b.addEventListener('click', () => show(b.id.replace('tab-', ''))));
+  tabs[0].parentElement.addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'), n = tabs[(i + 1) % tabs.length]; n.focus(); n.click();
+  });
+  render(which);
+  if (!gl) { noteEl.textContent = T('3D preview needs WebGL.', 'Pratonton 3D memerlukan WebGL.'); return; }
+  const io = new IntersectionObserver(es => {
+    if (!es.some(e => e.isIntersecting) || stage) return; io.disconnect();
+    try {
+      stage = N.createStage(stageEl, {target: [0, 0, 0], camera: [5, 3, 8], floor: false, minDist: 4, maxDist: 30});
+      stage.onFrame((t, dt) => cur && cur.frame(t, dt));
+      stage.autoPause(); build(which);
+    } catch (e) { console.warn('3D unavailable', e); stage = null; noteEl.textContent = T('3D preview unavailable on this device.', 'Pratonton 3D tidak tersedia pada peranti ini.'); }
+  }, {rootMargin: '400px 0px'});
+  io.observe(stageEl);
 })();
