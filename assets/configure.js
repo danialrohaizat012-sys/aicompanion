@@ -42,6 +42,8 @@ function renderText() {
   $('total').textContent = 'RM' + total.toLocaleString('en-MY');
   $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], ['Look', look], ['Colour', colour], ['Dock', !dock ? 'Slim Dock (included, not chosen yet)' : dock + (dockPrice ? ' (+RM' + dockPrice + ')' : ' (included)')], ['Engraving', eng + ' (free)'], ['Add-ons', addons.join(', ') || 'None']].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
   $('addonNote').textContent = addons.length ? 'Add-on prices will be announced after prototyping and are not included above.' : '';
+  const lines = ['Hi Cipta Robo, I would like to register interest in NURI:', 'Look: ' + look, 'Colour: ' + colour, 'Dock: ' + (dock || 'Slim Dock') + (dockPrice ? ' (+RM' + dockPrice + ')' : ' (included)'), 'Engraving: ' + eng, 'Add-ons: ' + (addons.join(', ') || 'None'), 'Target price: RM' + total.toLocaleString('en-MY') + (addons.length ? ' + add-ons (TBA)' : '')];
+  $('waSend').href = 'https://wa.me/60199400004?text=' + encodeURIComponent(lines.join('\n'));
   const url = new URL(location.href); url.search = new URLSearchParams({look: state.look, colour: state.colour, ...(state.dock ? {dock: state.dock} : {}), ...(state.name ? {name: state.name} : {})}).toString();
   history.replaceState(null, '', url);
 }

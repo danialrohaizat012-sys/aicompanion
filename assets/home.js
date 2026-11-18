@@ -1,4 +1,5 @@
 import * as N from './nuri3d.js';
+import {createPlayer} from './scenes.js';
 
 /* header: border on scroll, mobile menu */
 const head = document.querySelector('.site-head');
@@ -51,8 +52,8 @@ function buildRover() {
   const rover = N.createRover('graphite');
   const carrier = new addonStage.THREE.Group(); carrier.add(rover.group, nuri.root); nuri.root.position.y = rover.deckY;
   addonStage.scene.add(carrier);
-  addonStage.fit({center: [0, 1.3, 0], radius: 4.3}, [.55, .5, 1], 1);
-  const R = 2.3, speed = .55;
+  addonStage.fit({center: [0, 1.3, 0], radius: 4.4}, [.55, .5, 1], 1);
+  const R = 1.8, speed = .5;
   let ang = 0;
   return {objs: [{root: carrier, dispose: () => { rover.dispose(); nuri.dispose(); }}], frame(t, dt) {
     if (!still) ang += dt * speed / R;
@@ -78,6 +79,7 @@ function buildBoard() {
   }};
 }
 function show(id) {
+  addonTab = id;
   renderText(id);
   document.querySelectorAll('.tabs [role=tab]').forEach(b => b.setAttribute('aria-selected', b.id === 'tab-' + id));
   document.getElementById('panel-addon').setAttribute('aria-labelledby', 'tab-' + id);
@@ -91,11 +93,40 @@ document.querySelector('.tabs').addEventListener('keydown', e => {
   const tabs = [...document.querySelectorAll('.tabs [role=tab]')], i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
   const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); n.click();
 });
-if (gl) {
+// the add-on scene is only created when the section comes near the screen
+let addonTab = 'rover';
+function initAddons() {
   try {
     addonStage = N.createStage(document.getElementById('addonStage'), {target: [0, 1.2, 0], camera: [6.5, 5.2, 9.5]});
     addonStage.onFrame((t, dt) => { if (current) current.frame(t, dt); });
     addonStage.autoPause();
+    show(addonTab);
   } catch (e) { console.warn('3D unavailable', e); addonStage = null; noteEl.textContent = '3D preview unavailable on this device.'; }
+}
+if (gl) {
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); initAddons(); } }, {rootMargin: '400px 0px'});
+  io.observe(document.getElementById('addonStage'));
 } else noteEl.textContent = '3D preview needs WebGL.';
 show('rover');
+
+/* NURI in action: created when the section comes near the screen */
+(() => {
+  const el = document.getElementById('sceneStage'); if (!el) return;
+  const chips = [...document.querySelectorAll('.chips [data-scene]')], btn = document.getElementById('playBtn');
+  const who = document.getElementById('capWho'), text = document.getElementById('capText');
+  if (!gl) { text.textContent = 'The animations need WebGL.'; btn.hidden = true; return; }
+  let player = null;
+  const ui = {
+    onScene(i) { chips.forEach((c, k) => { c.setAttribute('aria-selected', k === i); c.querySelector('em').style.width = k < i ? '100%' : '0'; }); },
+    onCaption(w, s) { who.textContent = w + ':'; text.textContent = s; },
+    onProgress(i, p) { const em = chips[i].querySelector('em'); em.style.width = (p * 100).toFixed(1) + '%'; }
+  };
+  const io = new IntersectionObserver(es => {
+    if (!es.some(e => e.isIntersecting) || player) return; io.disconnect();
+    try { player = createPlayer(el, ui); if (!player.playing) { btn.textContent = 'Play'; btn.setAttribute('aria-pressed', 'false'); } }
+    catch (e) { console.warn('3D unavailable', e); text.textContent = 'Animations are unavailable on this device.'; }
+  }, {rootMargin: '300px 0px'});
+  io.observe(el);
+  chips.forEach((c, i) => c.addEventListener('click', () => player && player.go(i)));
+  btn.addEventListener('click', () => { if (!player) return; const on = player.toggle(); btn.textContent = on ? 'Pause' : 'Play'; btn.setAttribute('aria-pressed', on); });
+})();

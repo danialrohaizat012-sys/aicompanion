@@ -6,9 +6,16 @@
 <title>Configure NURI · Cipta Robo</title>
 <meta name="description" content="Choose NURI's look, colour and charging dock, engrave its name, and preview the optional Rover and Board in 3D. Target price RM999.">
 <meta name="theme-color" content="#f4f3ef">
-<link rel="icon" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://ciptarobo.com/configure.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cipta Robo">
+<meta property="og:url" content="https://ciptarobo.com/configure.html">
+<meta property="og:title" content="Configure your NURI · Cipta Robo">
+<meta property="og:description" content="Pick a look, colour and charging dock, engrave its name and preview NURI in 3D. Target price RM999.">
+<meta property="og:image" content="https://ciptarobo.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
 </head>
@@ -59,8 +66,9 @@
      <dl id="summary"></dl>
      <div class="total"><span class="muted">Target price</span><strong id="total">RM999</strong></div>
      <p class="small muted" id="addonNote" style="margin-top:6px"></p>
-     <button class="btn btn-primary" type="button" id="copy">Copy my configuration</button>
-     <p class="small muted" style="margin-top:12px">Orders are not open yet. Your configuration is not sent anywhere; copy it and keep it for when NURI launches.</p>
+     <a class="btn btn-wa" id="waSend" href="https://wa.me/60199400004" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.1 8.3c.3-.5.6-.5.9-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.5.9 1.3 1.7 2.3 2.3.2.1.4.1.5 0l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .6-.3 1.4-.9 1.7-.6.3-1.4.4-2.6-.1a9.6 9.6 0 0 1-4.6-4.5c-.5-1-.5-2.1.6-3Z" fill="currentColor"/></svg>Register interest on WhatsApp</a>
+     <button class="btn btn-ghost" type="button" id="copy" style="margin-top:10px">Copy my configuration</button>
+     <p class="small muted" style="margin-top:12px">Orders are not open yet and no payment is taken. The WhatsApp button opens a chat with your configuration filled in; nothing is sent until you press send.</p>
     </div>
    </section>
   </div>
@@ -69,7 +77,7 @@
 
 <footer class="site-foot">
 <div class="wrap collab"><span>In collaboration with</span><a href="https://binalab.my" target="_blank" rel="noopener" aria-label="BinaLab (opens in a new tab)">BinaLab<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
- <div class="wrap foot-row"><div><b style="color:var(--ink)">Cipta Robo</b> · Made in Malaysia</div><div class="foot-links"><a href="./">NURI</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div></div>
+ <div class="wrap foot-row"><div><b style="color:var(--ink)">Cipta Robo</b> · Made in Malaysia</div><div class="foot-links"><a href="https://wa.me/60199400004" target="_blank" rel="noopener">WhatsApp</a><a href="./">NURI</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div></div>
  <div class="wrap" style="margin-top:16px;font-size:12px">3D preview of the planned design, proportioned from M5Stack's published K151 structure files. Not affiliated with M5Stack.</div>
 </footer>
 <script type="module" src="assets/configure.js"></script>

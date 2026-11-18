@@ -6,12 +6,18 @@
 <title>NURI by Cipta Robo · A desktop AI companion</title>
 <meta name="description" content="NURI is a desktop AI companion built on the M5Stack StackChan K151, with a suit you choose, a charging dock and its name engraved. Target price RM999. In development.">
 <meta name="theme-color" content="#f4f3ef">
+<link rel="canonical" href="https://ciptarobo.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cipta Robo">
+<meta property="og:url" content="https://ciptarobo.com/">
 <meta property="og:title" content="NURI by Cipta Robo">
 <meta property="og:description" content="One NURI. Endless possibilities. A desktop AI companion in development in Malaysia.">
 <meta property="og:image" content="https://ciptarobo.com/assets/img/og.png">
-<link rel="icon" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Cipta Robo","url":"https://ciptarobo.com/","logo":"https://ciptarobo.com/assets/logo/icon-512.png","areaServed":"MY","contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+60199400004","availableLanguage":["ms","en"]}}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
 </head>
@@ -22,7 +28,7 @@
   <a class="brand" href="./" aria-label="Cipta Robo home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/></svg>Cipta Robo</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav class="nav" id="nav" aria-label="Main">
-   <a href="#uses">What it does</a><a href="#character">Personality</a><a href="#make-it-yours">Make it yours</a><a href="#add-ons">Add-ons</a><a href="#hardware">Hardware</a><a href="#faq">FAQ</a>
+   <a href="#uses">What it does</a><a href="#in-action">In action</a><a href="#character">Personality</a><a href="#make-it-yours">Make it yours</a><a href="#add-ons">Add-ons</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
   </nav>
   <a class="btn btn-primary btn-sm" href="configure.html">Configure</a>
  </div>
@@ -34,7 +40,7 @@
   <div>
    <span class="status">NURI V1 · in development</span>
    <h1>One NURI.<br>Endless possibilities.</h1>
-   <p class="lead">A small AI companion for your desk. It helps you learn, greets your customers, keeps your day on track and checks in on the people you care about. Built on the M5Stack StackChan K151, dressed in a suit you choose, with its name engraved on its dock.</p>
+   <p class="lead">A small AI companion for your desk, designed to help you learn, greet your customers, keep your day on track and check in on the people you care about. Built on the M5Stack StackChan K151, dressed in a suit you choose, with its name engraved on its dock.</p>
    <div class="price-line"><strong>RM999</strong><span class="muted">target price · charging dock and engraving included</span></div>
    <div class="cta-row"><a class="btn btn-primary" href="configure.html">Configure your NURI</a><a class="link-arrow" href="#uses">See what it can do</a></div>
   </div>
@@ -59,7 +65,7 @@
    <p class="lead">These are not four models or four plans. Every NURI shares the same hardware and software, so you can use it for all of them in the same day. Nothing to unlock.</p>
   </div>
   <div class="uses">
-   <article class="use"><span class="label">Learn</span><h3>A patient study partner</h3><q>Show me where I went wrong.</q><ul><li>Step-by-step hints, not just answers</li><li>Speaking practice in English, Japanese, Mandarin</li><li>Quizzes and study timers</li></ul><span class="status">Concept</span></article>
+   <article class="use"><span class="label">Learn</span><h3>A patient study partner</h3><q>Show me where I went wrong.</q><ul><li>Step-by-step hints, not just answers</li><li>Speaking practice in Bahasa Melayu, English, Mandarin, Japanese</li><li>Quizzes and study timers</li></ul><span class="status">Concept</span></article>
    <article class="use"><span class="label">Reception</span><h3>A friendly face at the counter</h3><q>Welcome! Check our services or take a number?</q><ul><li>Answers FAQs you approve</li><li>Digital queue numbers</li><li>Calls a staff member when unsure</li></ul><span class="status">Concept</span></article>
    <article class="use"><span class="label">Assist</span><h3>Your desk command centre</h3><q>What matters most today?</q><ul><li>Daily brief from apps you connect</li><li>Drafts and summaries on your laptop</li><li>Asks before it changes anything</li></ul><span class="status">Concept</span></article>
    <article class="use"><span class="label">Companion</span><h3>A little presence, every day</h3><q>Good morning. Shall we call your daughter?</q><ul><li>Conversation, reminders and check-ins</li><li>Simple family contact</li><li>A manual help button, not a medical device</li></ul><span class="status">Concept</span></article>
@@ -69,7 +75,29 @@
  </div>
 </section>
 
-<section class="section" id="character" style="padding-top:0">
+<section class="section dark" id="in-action">
+ <div class="wrap">
+  <div class="section-head">
+   <div><span class="label">NURI in action</span><h2 style="margin-top:12px">See where NURI fits in your day.</h2></div>
+   <p class="lead">Short concept animations made with the same 3D model as this site. They show how NURI is designed to help; the features themselves are still in development.</p>
+  </div>
+  <div class="player">
+   <div class="player-stage" id="sceneStage" aria-label="Animated scenes of NURI in use">
+    <span class="scene-tag">Concept animation</span>
+    <button type="button" class="play-btn" id="playBtn" aria-pressed="true">Pause</button>
+    <div class="caption" aria-live="polite"><b id="capWho"></b><span id="capText"></span></div>
+   </div>
+   <div class="chips" role="tablist" aria-label="Scenes">
+    <button role="tab" type="button" data-scene="0" aria-selected="true"><b>Learn</b><span>Homework at the desk</span><i><em></em></i></button>
+    <button role="tab" type="button" data-scene="1" aria-selected="false"><b>Reception</b><span>Greeting customers at the counter</span><i><em></em></i></button>
+    <button role="tab" type="button" data-scene="2" aria-selected="false"><b>Assist</b><span>Morning brief before work</span><i><em></em></i></button>
+    <button role="tab" type="button" data-scene="3" aria-selected="false"><b>Companion</b><span>An evening check-in</span><i><em></em></i></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="character">
  <div class="wrap">
   <div class="character">
    <div>
@@ -94,7 +122,7 @@
  <div class="wrap">
   <div class="section-head">
    <div><span class="label">Make it yours</span><h2 style="margin-top:12px">Three looks. Three colours. Two docks.</h2></div>
-   <p class="lead">A short list on purpose. Every part clips onto the K151's existing mounting holes, leaves the sensors, ports and vents open, and has been checked against the robot's full range of movement.</p>
+   <p class="lead">A short list on purpose. Every part is designed to clip onto the K151's existing mounting holes, leave the sensors, ports and vents open, and clear the robot's full range of movement. All of it is checked in our 3D model; physical fit testing is next.</p>
   </div>
   <div class="subhead"><h3>Looks</h3><span class="muted small">Snap-on suit · no tools, no glue</span></div>
   <div class="cards">
@@ -194,15 +222,32 @@
  </div>
 </section>
 
+<section class="section" id="contact">
+ <div class="wrap">
+  <div class="contact">
+   <div>
+    <span class="label">Register your interest</span>
+    <h2 style="margin:12px 0 14px">Want a NURI? Let's talk.</h2>
+    <p class="lead">Orders aren't open yet. Message us on WhatsApp to join the first batch list, ask a question or request a demo. No payment needed.</p>
+   </div>
+   <div class="contact-actions">
+    <a class="btn btn-wa" href="https://wa.me/60199400004?text=Hi%20Cipta%20Robo%2C%20I%27m%20interested%20in%20NURI.%20Please%20keep%20me%20posted." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.1 8.3c.3-.5.6-.5.9-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.5.9 1.3 1.7 2.3 2.3.2.1.4.1.5 0l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .6-.3 1.4-.9 1.7-.6.3-1.4.4-2.6-.1a9.6 9.6 0 0 1-4.6-4.5c-.5-1-.5-2.1.6-3Z" fill="currentColor"/></svg>Chat on WhatsApp</a>
+    <span class="muted small">+60 19-940 0004 · replies in Bahasa Melayu or English</span>
+    <a class="link-arrow small" href="configure.html">Configure first, then send your choice</a>
+   </div>
+  </div>
+ </div>
+</section>
+
 <section class="section" id="faq">
  <div class="wrap">
   <div class="section-head"><div><span class="label">Questions</span><h2 style="margin-top:12px">Straight answers.</h2></div></div>
   <div class="faq">
-   <details><summary>Can I order NURI now?</summary><p>Not yet. NURI is in development. The first units will be a small batch after the suit and docks have been fit-tested on real K151 robots. RM999 is the target price.</p></details>
+   <details><summary>Can I order NURI now?</summary><p>Not yet. NURI is in development. The first units will be a small batch after the suit and docks have been fit-tested on real K151 robots. RM999 is the target price. <a href="https://wa.me/60199400004?text=Hi%20Cipta%20Robo%2C%20I%27m%20interested%20in%20NURI.%20Please%20keep%20me%20posted." target="_blank" rel="noopener">Message us on WhatsApp</a> to join the first batch list.</p></details>
    <details><summary>What do Learn, Reception, Assist and Companion mean?</summary><p>They are four ways to use the same NURI, not four products. Every NURI gets the same features as they are released. You never pay to unlock a use.</p></details>
    <details><summary>Can NURI charge while it is working?</summary><p>Yes. The K151 charges through the USB-C port on its base. Both docks have a fixed USB-C plug that lines up with that port, so NURI can keep running on your desk while it charges.</p></details>
-   <details><summary>What is the difference between the two docks?</summary><p>They charge the same way. The Slim Dock is a low, plain tray and comes with every NURI. The Nest Dock is a shallow bowl wrapped in woven rings, for RM50 more. Both carry the free NURI + name engraving.</p></details>
-   <details><summary>Does the suit block anything?</summary><p>No. Suit parts mount on the K151's existing side holes. They leave the top touch zones, LED light bars, screen, camera, side USB-C port and power button open, and they clear the base through the robot's full range of movement.</p></details>
+   <details><summary>What is the difference between the two docks?</summary><p>They charge the same way. The Slim Dock is a low, rounded tray and comes with every NURI. The Nest Dock is a shallow bowl wrapped in woven rings, for RM50 more. Both carry the free NURI + name engraving.</p></details>
+   <details><summary>Does the suit block anything?</summary><p>It is designed not to. Suit parts mount on the K151's existing side holes and leave the top touch zones, LED light bars, screen, camera, side USB-C port and power button open. Every part is checked in our 3D model against the robot's full range of movement, and will be tested on real K151 robots before any sale.</p></details>
    <details><summary>Will I need a subscription?</summary><p>NURI's voice and AI features use cloud services that cost money to run. Whether that is included, a small subscription or bring-your-own key will be decided and stated clearly before any sale.</p></details>
    <details><summary>Is NURI suitable for children or older people?</summary><p>Both are in mind, with extra care. Child use will need guardian controls and strict privacy. The Companion help button is a convenience, not a medical or emergency device.</p></details>
    <details><summary>Is Cipta Robo part of M5Stack?</summary><p>No. Cipta Robo is an independent Malaysian studio. NURI is built on the M5Stack StackChan K151; reseller and branding terms are being confirmed with the supplier.</p></details>
@@ -215,7 +260,7 @@
 <div class="wrap collab"><span>In collaboration with</span><a href="https://binalab.my" target="_blank" rel="noopener" aria-label="BinaLab (opens in a new tab)">BinaLab<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
  <div class="wrap foot-row">
   <div><b style="color:var(--ink)">Cipta Robo</b> · Made in Malaysia · ciptarobo.com</div>
-  <div class="foot-links"><a href="configure.html">Configure</a><a href="#add-ons">Add-ons</a><a href="#concept-sheets">Concept sheets</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div>
+  <div class="foot-links"><a href="https://wa.me/60199400004" target="_blank" rel="noopener">WhatsApp</a><a href="configure.html">Configure</a><a href="#add-ons">Add-ons</a><a href="#concept-sheets">Concept sheets</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div>
  </div>
  <div class="wrap" style="margin-top:16px;font-size:12px">NURI is in development and not yet for sale. Images are 3D renders of the planned design. Cipta Robo is not affiliated with M5Stack.</div>
 </footer>
