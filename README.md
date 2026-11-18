@@ -15,7 +15,9 @@ Static website for **NURI**, a customizable AI desktop companion concept by Cipt
 ## 3D studio notes
 
 - Built with [Three.js](https://threejs.org) r160, **vendored** in `vendor/three/` (MIT, see `vendor/three/LICENSE`), so the studio works without a third-party CDN.
-- The model is procedural concept geometry, **not** the official K151 CAD. Each of the 50 styles has its own shape, but none is production-validated. Replace with STL-derived geometry once the K151 sample and CAD are measured.
+- The K151 is proportioned from M5Stack's published structure files: head 54 × 54 × 46.7 mm, base 48 × 56 × 11.1 mm, ~5 mm gap, side holes and the rear servo chamfer. The tilt pivot is estimated.
+- **Motion & clearance check:** every design is tested in the browser against the K151 pan (±130°) and tilt (6° down to 74° up) range, the top touch zones and LED bars, the display and the rear servo space. *Test K151 movement* animates the real range; *Show keep-out zones* overlays the protected areas.
+- Design rules and measurements: [`docs/k151-design-rules.md`](docs/k151-design-rules.md).
 - Respects `prefers-reduced-motion` (no auto-rotate, idle head motion or blinking).
 
 ## Local preview
