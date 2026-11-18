@@ -1,0 +1,48 @@
+"""Scene dialogue for NURI in action, shared by the voice build scripts."""
+# (speaker, caption text, spoken text or None, pause before in s)
+VOICE = {
+ 'en': {'NURI': ('af_heart', 1.0, 'en-us'), 'Student': ('af_sky', 1.02, 'en-us'), 'Customer': ('am_michael', 1.0, 'en-us'),
+        'You': ('am_eric', 1.0, 'en-us'), 'Mak Su': ('bf_emma', .92, 'en-gb')},
+ # Bahasa Melayu: Kokoro voices driven by espeak-ng Malay phonemes (lang 'ms')
+ 'ms': {'NURI': ('if_sara', 1.0, 'ms'), 'Pelajar': ('ef_dora', 1.04, 'ms'), 'Pelanggan': ('im_nicola', 1.0, 'ms'),
+        'Anda': ('pm_alex', 1.0, 'ms'), 'Mak Su': ('pf_dora', .92, 'ms')},
+}
+SCRIPT = {'en': {
+ 'learn': [('NURI', "Let's solve it together. What should we do with the +3?", "Let's solve it together. What should we do with the plus three?", .6),
+           ('Student', 'Move it to the other side?', None, .45),
+           ('NURI', 'Exactly. 11 − 3 gives us 2x = 8.', 'Exactly. Eleven minus three gives us, two x equals eight.', .35),
+           ('NURI', 'Now divide both sides by 2. So x = 4. Well done!', 'Now divide both sides by two. So x equals four. Well done!', .5)],
+ 'reception': [('NURI', 'Hi, welcome in! Would you like to take a number?', None, .6),
+               ('Customer', 'Yes, please.', None, .4),
+               ('NURI', "You're A012. It's about five minutes.", "You're A, zero twelve. It's about five minutes.", .35),
+               ('NURI', "I've let the staff know you're here. Have a seat!", None, .45)],
+ 'assist': [('You', 'NURI, what matters most today?', 'Nuri, what matters most today?', .6),
+            ('NURI', 'Three things. Your 9:30 client call comes first.', 'Three things. Your nine thirty client call comes first.', .4),
+            ('NURI', 'Then quotation #24. The draft is ready on your laptop.', 'Then quotation twenty four. The draft is ready on your laptop.', .3),
+            ('You', 'Great, show me.', None, .4),
+            ('NURI', "It's open. I won't send anything until you say so.", None, .35)],
+ 'companion': [('NURI', 'Good evening, Mak Su. Have you taken your 9 pm medicine?', 'Good evening, Mak Soo. Have you taken your nine p.m. medicine?', .6),
+               ('Mak Su', 'Yes, just now.', None, .45),
+               ('NURI', 'Great. Shall I call Aisyah to say goodnight?', 'Great. Shall I call Ai-sha to say goodnight?', .35),
+               ('Mak Su', 'Yes, please.', None, .4),
+               ('NURI', 'Calling Aisyah now…', 'Calling Ai-sha now.', .35)],
+}, 'ms': {
+ 'learn': [('NURI', 'Okey, jom kita selesaikan sama-sama. Tambah 3 ni, kita nak alih ke mana?', 'Okey, jom kita selesaikan sama-sama. Tambah tiga ni, kita nak alih ke mana?', .6),
+           ('Pelajar', 'Hmm, pindah ke sebelah sana ke?', None, .45),
+           ('NURI', 'Betul! 11 − 3, jadi 2x = 8.', 'Betul! Sebelas tolak tiga, jadi dua eks sama dengan lapan.', .35),
+           ('NURI', 'Sekarang bahagi 2 kedua-dua belah. Jadi x = 4. Pandai!', 'Sekarang bahagi dua kedua-dua belah. Jadi eks sama dengan empat. Pandai!', .5)],
+ 'reception': [('NURI', 'Hai, selamat datang! Nak ambil nombor giliran?', None, .6),
+               ('Pelanggan', 'Boleh, boleh. Terima kasih.', None, .4),
+               ('NURI', 'Nombor anda A012. Tunggu lebih kurang lima minit ya.', 'Nombor anda, A kosong satu dua. Tunggu lebih kurang lima minit ya.', .35),
+               ('NURI', 'Saya dah bagitahu staf. Jemput duduk dulu!', None, .45)],
+ 'assist': [('Anda', 'NURI, hari ni apa yang paling penting?', 'Nuri, hari ni apa yang paling penting?', .6),
+            ('NURI', 'Ada tiga. Yang paling utama, call dengan klien pukul 9:30.', 'Ada tiga. Yang paling utama, call dengan klien pukul sembilan setengah.', .4),
+            ('NURI', 'Lepas tu, sebut harga #24. Draf dah siap dalam laptop.', 'Lepas tu, sebut harga nombor dua puluh empat. Draf dah siap dalam laptop.', .3),
+            ('Anda', 'Okey, tunjuk kat saya.', None, .4),
+            ('NURI', 'Dah buka. Saya tak hantar apa-apa selagi awak tak setuju.', None, .35)],
+ 'companion': [('NURI', 'Selamat malam, Mak Su. Ubat pukul 9 tadi dah makan?', 'Selamat malam, Mak Su. Ubat pukul sembilan tadi dah makan?', .6),
+               ('Mak Su', 'Dah, baru tadi.', None, .45),
+               ('NURI', 'Bagus. Nak saya telefon Aisyah, ucap selamat malam?', None, .35),
+               ('Mak Su', 'Boleh juga. Terima kasih, NURI.', 'Boleh juga. Terima kasih, Nuri.', .4),
+               ('NURI', 'Okey, saya telefon Aisyah sekarang…', 'Okey, saya telefon Aisyah sekarang.', .35)],
+}}

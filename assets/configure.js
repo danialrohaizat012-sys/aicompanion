@@ -31,7 +31,7 @@ $('name').addEventListener('input', e => { e.target.value = e.target.value.repla
 $('addRover').addEventListener('change', e => { state.rover = e.target.checked; if (e.target.checked) state.scene = 'rover'; update(); });
 $('addBoard').addEventListener('change', e => { state.board = e.target.checked; if (e.target.checked) state.scene = 'board'; update(); });
 document.querySelectorAll('[data-scene]').forEach(b => b.addEventListener('click', () => { state.scene = b.dataset.scene; update(); }));
-$('moveBtn').addEventListener('click', () => { state.moving = !state.moving; $('moveBtn').setAttribute('aria-pressed', state.moving); $('moveBtn').textContent = state.moving ? T('Stop movement', 'Hentikan gerakan') : T('Test movement', 'Uji gerakan'); moveT0 = stage ? stage.clock.elapsedTime : 0; });
+$('moveBtn').addEventListener('click', () => { state.moving = !state.moving; $('moveBtn').setAttribute('aria-pressed', state.moving); $('moveBtn').textContent = state.moving ? T('Stop movement', 'Berhenti') : T('Test movement', 'Uji pergerakan'); moveT0 = stage ? stage.clock.elapsedTime : 0; });
 
 const name = id => (list => list.find(o => o.id === id).name);
 function renderText() {
@@ -39,11 +39,11 @@ function renderText() {
   $('lookName').textContent = look; $('colourName').textContent = colour; $('engravePreview').textContent = eng;
   const addons = [state.rover && 'NURI Rover', state.board && 'NURI Board'].filter(Boolean);
   const dockPrice = state.dock ? N.DOCKS.find(d => d.id === state.dock).price : 0, total = N.BASE_PRICE + dockPrice;
-  $('dockPrice').textContent = !state.dock ? T('Slim included · pick one to see it', 'Slim termasuk · pilih untuk lihat') : dockPrice ? '+RM' + dockPrice : T('Included', 'Termasuk');
+  $('dockPrice').textContent = !state.dock ? T('Slim included · pick one to see it', 'Slim dah termasuk · pilih untuk tengok') : dockPrice ? '+RM' + dockPrice : T('Included', 'Termasuk');
   $('total').textContent = 'RM' + total.toLocaleString('en-MY');
-  $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], [T('Look', 'Rupa'), look], [T('Colour', 'Warna'), colour], ['Dock', !dock ? T('Slim Dock (included, not chosen yet)', 'Slim Dock (termasuk, belum dipilih)') : dock + (dockPrice ? ' (+RM' + dockPrice + ')' : T(' (included)', ' (termasuk)'))], [T('Engraving', 'Ukiran'), eng + T(' (free)', ' (percuma)')], ['Add-ons', addons.join(', ') || T('None', 'Tiada')]].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
-  $('addonNote').textContent = addons.length ? T('Add-on prices will be announced after prototyping and are not included above.', 'Harga add-on akan diumumkan selepas prototaip dan belum termasuk dalam jumlah di atas.') : '';
-  const lines = [T('Hi Cipta Robo, I would like to register interest in NURI:', 'Hai Cipta Robo, saya berminat dengan NURI:'), T('Look: ', 'Rupa: ') + look, T('Colour: ', 'Warna: ') + colour, 'Dock: ' + (dock || 'Slim Dock') + (dockPrice ? ' (+RM' + dockPrice + ')' : T(' (included)', ' (termasuk)')), T('Engraving: ', 'Ukiran: ') + eng, 'Add-ons: ' + (addons.join(', ') || T('None', 'Tiada')), T('Target price: RM', 'Harga sasaran: RM') + total.toLocaleString('en-MY') + (addons.length ? T(' + add-ons (TBA)', ' + add-on (harga belum diumumkan)') : '')];
+  $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], [T('Look', 'Rupa'), look], [T('Colour', 'Warna'), colour], ['Dock', !dock ? T('Slim Dock (included, not chosen yet)', 'Slim Dock (dah termasuk, belum dipilih)') : dock + (dockPrice ? ' (+RM' + dockPrice + ')' : T(' (included)', ' (termasuk)'))], [T('Engraving', 'Ukiran'), eng + T(' (free)', ' (percuma)')], ['Add-ons', addons.join(', ') || T('None', 'Tiada')]].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('addonNote').textContent = addons.length ? T('Add-on prices will be announced after prototyping and are not included above.', 'Harga add-on akan diumumkan bila prototaip siap, dan belum dikira dalam jumlah di atas.') : '';
+  const lines = [T('Hi Cipta Robo, I would like to register interest in NURI:', 'Hai Cipta Robo, saya berminat nak dapatkan NURI. Ini pilihan saya:'), T('Look: ', 'Rupa: ') + look, T('Colour: ', 'Warna: ') + colour, 'Dock: ' + (dock || 'Slim Dock') + (dockPrice ? ' (+RM' + dockPrice + ')' : T(' (included)', ' (termasuk)')), T('Engraving: ', 'Ukiran: ') + eng, 'Add-ons: ' + (addons.join(', ') || T('None', 'Tiada')), T('Target price: RM', 'Harga sasaran: RM') + total.toLocaleString('en-MY') + (addons.length ? T(' + add-ons (TBA)', ' + add-on (harga belum diumumkan)') : '')];
   $('waSend').href = 'https://wa.me/60199400004?text=' + encodeURIComponent(lines.join('\n'));
   const url = new URL(location.href); url.search = new URLSearchParams({look: state.look, colour: state.colour, ...(state.dock ? {dock: state.dock} : {}), ...(state.name ? {name: state.name} : {})}).toString();
   history.replaceState(null, '', url);
@@ -57,9 +57,9 @@ function update() {
   renderText(); rebuild();
 }
 $('copy').addEventListener('click', async () => {
-  const txt = [T('NURI configuration (pre-order not open)', 'Konfigurasi NURI (tempahan belum dibuka)'), ...[...$('summary').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent), T('Target price: ', 'Harga sasaran: ') + $('total').textContent + T(' (add-on prices TBA)', ' (harga add-on belum diumumkan)'), location.href].join('\n');
+  const txt = [T('NURI configuration (pre-order not open)', 'Pilihan NURI saya (tempahan belum dibuka)'), ...[...$('summary').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent), T('Target price: ', 'Harga sasaran: ') + $('total').textContent + T(' (add-on prices TBA)', ' (harga add-on belum diumumkan)'), location.href].join('\n');
   const label = $('copy').textContent;
-  try { await navigator.clipboard.writeText(txt); $('copy').textContent = T('Copied', 'Disalin'); setTimeout(() => $('copy').textContent = label, 1600); } catch { window.prompt(T('Copy your configuration', 'Salin konfigurasi anda'), txt); }
+  try { await navigator.clipboard.writeText(txt); $('copy').textContent = T('Copied', 'Disalin'); setTimeout(() => $('copy').textContent = label, 1600); } catch { window.prompt(T('Copy your configuration', 'Salin pilihan anda'), txt); }
 });
 
 /* 3D */
@@ -86,7 +86,7 @@ function rebuild() {
   }
   const issues = N.checkClearance(nuri);
   $('check').className = 'check-line' + (issues.length ? ' warn' : '');
-  $('check').innerHTML = issues.length ? `<b>${T('Check', 'Semak')}:</b> ${issues.join('; ')}` : T('<b>Clearance checked:</b> touch zones, screen, side port and full movement stay clear.', '<b>Ruang disemak:</b> zon sentuh, skrin, port sisi dan pergerakan penuh kekal bebas.');
+  $('check').innerHTML = issues.length ? `<b>${T('Check', 'Semak')}:</b> ${issues.join('; ')}` : T('<b>Clearance checked:</b> touch zones, screen, side port and full movement stay clear.', '<b>Dah disemak:</b> zon sentuh, skrin, port sisi dan pergerakan penuh semuanya tak terhalang.');
 }
 let lastScene = null;
 if (N.webglAvailable()) {

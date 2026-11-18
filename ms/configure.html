@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Reka NURI · Cipta Robo</title>
-<meta name="description" content="Pilih rupa, warna dan dock pengecas NURI, ukir namanya, dan pratonton Rover dan Board pilihan dalam 3D. Harga sasaran RM999.">
+<title>Reka NURI anda · Cipta Robo</title>
+<meta name="description" content="Pilih rupa, warna dan dock pengecas NURI, ukir namanya, dan tengok Rover dan Board dalam 3D. Harga sasaran RM999.">
 <meta name="theme-color" content="#f4f3ef">
 <link rel="canonical" href="https://ciptarobo.com/ms/configure.html">
 <link rel="alternate" hreflang="en" href="https://ciptarobo.com/configure.html"><link rel="alternate" hreflang="ms" href="https://ciptarobo.com/ms/configure.html"><link rel="alternate" hreflang="x-default" href="https://ciptarobo.com/configure.html">
@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Cipta Robo">
 <meta property="og:url" content="https://ciptarobo.com/ms/configure.html">
 <meta property="og:title" content="Reka NURI anda · Cipta Robo">
-<meta property="og:description" content="Pilih rupa, warna dan dock pengecas, ukir namanya dan lihat NURI dalam 3D. Harga sasaran RM999.">
+<meta property="og:description" content="Pilih rupa, warna dan dock, ukir nama, dan tengok NURI anda dalam 3D. Harga sasaran RM999.">
 <meta property="og:image" content="https://ciptarobo.com/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -23,7 +23,7 @@
 <script type="importmap">{"imports":{"three":"../vendor/three/three.module.min.js","three/addons/":"../vendor/three/addons/"}}</script>
 </head>
 <body>
-<a class="skip" href="#steps">Langkau ke pilihan</a>
+<a class="skip" href="#steps">Terus ke pilihan</a>
 <header class="site-head scrolled">
  <div class="wrap head-row">
   <a class="brand" href="./" aria-label="Laman utama Cipta Robo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/></svg>Cipta Robo</a>
@@ -38,7 +38,7 @@
   <div class="cfg-view">
    <div class="stage" id="stage" aria-label="Pratonton 3D interaktif NURI anda">
     <div class="fallback" id="fallback"><p class="muted small">Memuatkan pratonton 3D…</p></div>
-    <span class="stage-note">Seret untuk pusing · skrol atau cubit untuk zum</span>
+    <span class="stage-note">Seret untuk pusingkan · skrol atau cubit untuk zum</span>
    </div>
    <div class="view-bar">
     <div class="seg" role="group" aria-label="Pratonton">
@@ -46,7 +46,7 @@
      <button type="button" data-scene="rover" aria-pressed="false">Atas Rover</button>
      <button type="button" data-scene="board" aria-pressed="false">Dengan Board</button>
     </div>
-    <button type="button" class="btn btn-ghost btn-sm" id="moveBtn" aria-pressed="false">Uji gerakan</button>
+    <button type="button" class="btn btn-ghost btn-sm" id="moveBtn" aria-pressed="false">Uji pergerakan</button>
    </div>
    <p class="check-line" id="check" aria-live="polite"></p>
   </div>
@@ -56,13 +56,13 @@
    <section class="step" aria-labelledby="s2"><div class="step-head"><h2 id="s2">2. Warna</h2><span id="colourName"></span></div><div class="colours" role="radiogroup" aria-labelledby="s2" id="colours"></div></section>
    <section class="step" aria-labelledby="s3"><div class="step-head"><h2 id="s3">3. Dock pengecas</h2><span id="dockPrice">Termasuk</span></div><div class="opts opts-2" role="radiogroup" aria-labelledby="s3" id="docks"></div></section>
    <section class="step" aria-labelledby="s4"><div class="step-head"><h2 id="s4">4. Ukiran</h2><span>Percuma</span></div>
-    <div class="field"><label for="name" class="small">Nama teman anda</label><input id="name" maxlength="10" autocomplete="off" spellcheck="false" placeholder="cth. Kront" aria-describedby="nameHelp"><span id="nameHelp" class="small muted">Sehingga 10 huruf atau nombor. Diukir pada dock selepas perkataan NURI; pilih dock di atas untuk lihat dalam 3D.</span></div>
+    <div class="field"><label for="name" class="small">Nama teman anda</label><input id="name" maxlength="10" autocomplete="off" spellcheck="false" placeholder="contoh: Kront" aria-describedby="nameHelp"><span id="nameHelp" class="small muted">Maksimum 10 huruf atau nombor. Akan diukir pada dock selepas perkataan NURI. Pilih dock di atas untuk tengok dalam 3D.</span></div>
     <div class="engrave" id="engravePreview" style="margin-top:12px" aria-label="Pratonton ukiran">NURI</div>
    </section>
    <section class="step" aria-labelledby="s5"><div class="step-head"><h2 id="s5">5. Add-on</h2><span>Pilihan</span></div>
     <div class="addons">
-     <label class="addon-opt"><input type="checkbox" id="addRover"><span><b>NURI Rover</b><small>Tapak berantai supaya NURI boleh bergerak</small></span><span class="tbc">Harga akan diumumkan</span></label>
-     <label class="addon-opt"><input type="checkbox" id="addBoard"><span><b>NURI Board</b><small>Skrin pengajaran 10" atas stand</small></span><span class="tbc">Harga akan diumumkan</span></label>
+     <label class="addon-opt"><input type="checkbox" id="addRover"><span><b>NURI Rover</b><small>Tapak berantai supaya NURI boleh bergerak</small></span><span class="tbc">Harga belum diumumkan</span></label>
+     <label class="addon-opt"><input type="checkbox" id="addBoard"><span><b>NURI Board</b><small>Skrin mengajar 10 inci atas stand</small></span><span class="tbc">Harga belum diumumkan</span></label>
     </div>
    </section>
    <section class="step" aria-labelledby="s6"><h2 id="s6" style="font-size:20px;margin-bottom:14px">Ringkasan</h2>
@@ -72,7 +72,7 @@
      <p class="small muted" id="addonNote" style="margin-top:6px"></p>
      <a class="btn btn-wa" id="waSend" href="https://wa.me/60199400004" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.1 8.3c.3-.5.6-.5.9-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.5.9 1.3 1.7 2.3 2.3.2.1.4.1.5 0l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .6-.3 1.4-.9 1.7-.6.3-1.4.4-2.6-.1a9.6 9.6 0 0 1-4.6-4.5c-.5-1-.5-2.1.6-3Z" fill="currentColor"/></svg>Daftar minat di WhatsApp</a>
      <button class="btn btn-ghost" type="button" id="copy" style="margin-top:10px">Salin konfigurasi saya</button>
-     <p class="small muted" style="margin-top:12px">Tempahan belum dibuka dan tiada bayaran diambil. Butang WhatsApp membuka chat dengan konfigurasi anda sudah diisi; tiada apa dihantar sehingga anda tekan hantar.</p>
+     <p class="small muted" style="margin-top:12px">Tempahan belum dibuka dan tiada bayaran diambil. Butang WhatsApp akan buka chat dengan pilihan anda siap diisi; tiada apa dihantar selagi anda tak tekan hantar.</p>
     </div>
    </section>
   </div>
@@ -82,7 +82,7 @@
 <footer class="site-foot">
 <div class="wrap collab"><span>Dengan kerjasama</span><a href="https://binalab.my" target="_blank" rel="noopener" aria-label="BinaLab (dibuka dalam tab baru)">BinaLab<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
  <div class="wrap foot-row"><div><b style="color:var(--ink)">Cipta Robo</b> · Buatan Malaysia</div><div class="foot-links"><a href="https://wa.me/60199400004" target="_blank" rel="noopener">WhatsApp</a><a href="./">NURI</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Panduan reka bentuk</a></div></div>
- <div class="wrap" style="margin-top:16px;font-size:12px">Pratonton 3D reka bentuk yang dirancang, berkadar dengan fail struktur K151 yang diterbitkan M5Stack. Tiada kaitan dengan M5Stack.</div>
+ <div class="wrap" style="margin-top:16px;font-size:12px">Pratonton 3D reka bentuk yang dirancang, ikut kadar fail struktur K151 dari M5Stack. Tiada kaitan dengan M5Stack.</div>
 </footer>
 <script type="module" src="../assets/configure.js"></script>
 </body>

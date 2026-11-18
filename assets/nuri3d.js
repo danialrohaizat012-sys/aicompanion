@@ -44,9 +44,9 @@ K.sweepR = Math.hypot(K.HX, K.HZ) + mm(2);      // radius the head sweeps while 
 /* Product options                                                     */
 /* ------------------------------------------------------------------ */
 export const LOOKS = [
-  {id: 'signature', name: 'Signature', blurb: tr('Slim face frame and soft side panels. The everyday NURI.', 'Bingkai muka nipis dan panel sisi lembut. NURI untuk setiap hari.')},
-  {id: 'focus', name: 'Focus', blurb: tr('Headphone-style side cups with a high, open band. Made for study and work.', 'Cawan sisi gaya fon kepala dengan lengkung atas yang terbuka. Untuk belajar dan bekerja.')},
-  {id: 'buddy', name: 'Buddy', blurb: tr('Rounded frame and small side ears. Friendly at home and at the counter.', 'Bingkai bulat dan telinga sisi kecil. Mesra di rumah dan di kaunter.')}
+  {id: 'signature', name: 'Signature', blurb: tr('Slim face frame and soft side panels. The everyday NURI.', 'Bingkai muka yang nipis dan panel sisi yang lembut. NURI untuk hari-hari.')},
+  {id: 'focus', name: 'Focus', blurb: tr('Headphone-style side cups with a high, open band. Made for study and work.', 'Cawan sisi gaya headphone dengan lengkung atas yang terbuka. Sesuai untuk belajar dan bekerja.')},
+  {id: 'buddy', name: 'Buddy', blurb: tr('Rounded frame and small side ears. Friendly at home and at the counter.', 'Bingkai bulat dan telinga kecil di sisi. Mesra di rumah, mesra di kaunter.')}
 ];
 export const COLOURS = [
   {id: 'pearl', name: 'Pearl', suit: '#eef1f0', accent: '#4fbf9f'},
@@ -55,8 +55,8 @@ export const COLOURS = [
 ];
 export const BASE_PRICE = 999;
 export const DOCKS = [
-  {id: 'slim', name: 'Slim Dock', price: 0, blurb: tr('Low tray that disappears on a desk. Slide NURI in to charge. Included.', 'Dulang rendah yang tak menonjol di atas meja. Letak NURI untuk mengecas. Termasuk.')},
-  {id: 'nest', name: 'Nest Dock', price: 50, blurb: tr('A shallow bowl wrapped in woven rings, like a small nest. +RM50.', 'Mangkuk cetek dililit cincin anyaman, macam sarang kecil. +RM50.')}
+  {id: 'slim', name: 'Slim Dock', price: 0, blurb: tr('Low tray that disappears on a desk. Slide NURI in to charge. Included.', 'Dulang rendah yang tak semak atas meja. Letak NURI, terus mengecas. Termasuk.')},
+  {id: 'nest', name: 'Nest Dock', price: 50, blurb: tr('A shallow bowl wrapped in woven rings, like a small nest. +RM50.', 'Mangkuk cetek berlilit cincin anyaman, macam sarang kecil. +RM50.')}
 ];
 export const engraving = name => ('NURI ' + (name || '').trim()).trim().toUpperCase().slice(0, 15);
 
@@ -488,7 +488,7 @@ export function createBoard() {
   screen.position.set(0, H / 2, mm(.7)); panel.add(screen);
   add(panel, cyl(mm(1.2), mm(1.2), mm(.4), 16), m.core, [0, H - bez / 2, mm(.7)], [PI / 2, 0, 0]);
   const steps = ['2x + 3 = 11', '2x = 11 − 3', '2x = 8', 'x = 8 ÷ 2', 'x = 4'];
-  const notes = tr(['Start with the equation', 'Move +3 to the right side', 'Simplify', 'Divide both sides by 2', 'Check: 2(4) + 3 = 11 ✓'], ['Mula dengan persamaan', 'Pindahkan +3 ke sebelah kanan', 'Permudahkan', 'Bahagi kedua-dua belah dengan 2', 'Semak: 2(4) + 3 = 11 ✓']);
+  const notes = tr(['Start with the equation', 'Move +3 to the right side', 'Simplify', 'Divide both sides by 2', 'Check: 2(4) + 3 = 11 ✓'], ['Mula dengan persamaan', 'Alihkan +3 ke sebelah kanan', 'Ringkaskan', 'Bahagi kedua-dua belah dengan 2', 'Semak: 2(4) + 3 = 11 ✓']);
   function draw(t) {
     const cycle = 15, u = t % cycle, shown = Math.min(steps.length, Math.floor(u / 2.4) + 1), part = (u % 2.4) / 1.2;
     ctx.fillStyle = '#fbfbf8'; ctx.fillRect(0, 0, 1280, 860);

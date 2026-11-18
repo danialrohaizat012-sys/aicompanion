@@ -97,7 +97,7 @@ function drawQueue(ctx, W, H, t) {
   txt(ctx, T('Your number', 'Nombor anda'), W / 2 + 30, 175, 30, '#6a7178');
   if (num) { ctx.globalAlpha = ease((t - c[2]) / .4); txt(ctx, 'A012', W / 2 + 30, 262, 96, '#1f7a62', 700); ctx.globalAlpha = 1; }
   else { rr(ctx, W / 2 + 30, 222, 300, 76, 38, t > c[1] ? '#1f7a62' : '#15191d'); txt(ctx, T('Take a number', 'Ambil nombor'), W / 2 + 180, 260, 30, '#fff', 600, 'center'); }
-  txt(ctx, num ? T('About 5 minutes', 'Lebih kurang 5 minit') : T('Tap or just ask NURI', 'Tekan atau tanya NURI'), 40, H - 74, 30, '#3a4047');
+  txt(ctx, num ? T('About 5 minutes', 'Lebih kurang 5 minit') : T('Tap or just ask NURI', 'Tekan, atau tanya saja NURI'), 40, H - 74, 30, '#3a4047');
   if (staff) { rr(ctx, W / 2, H - 108, W / 2 - 40, 68, 34, '#15191d'); txt(ctx, T('✓  Staff notified', '✓  Staf dimaklumkan'), W / 2 + 30, H - 74, 28, '#8ff0c4', 600); }
   else txt(ctx, T('Concept demo', 'Demo konsep'), W - 40, H - 74, 22, '#9aa2aa', 400, 'right');
 }
@@ -112,7 +112,7 @@ function drawBrief(ctx, W, H, t) {
     });
     txt(ctx, T('Total', 'Jumlah'), 48, 450, 36, '#15191d', 700); txt(ctx, 'RM 2,398', W - 48, 450, 36, '#1f7a62', 700, 'right');
     rr(ctx, 48, H - 128, 300, 76, 14, '#15191d'); txt(ctx, T('Approve & send', 'Lulus & hantar'), 198, H - 90, 30, '#fff', 600, 'center');
-    txt(ctx, T('NURI waits for you', 'NURI tunggu kelulusan anda'), 380, H - 90, 28, '#6a7178');
+    txt(ctx, T('NURI waits for you', 'NURI tunggu anda setuju dulu'), 380, H - 90, 28, '#6a7178');
     return;
   }
   txt(ctx, T('Today · NURI brief', 'Hari ini · Taklimat NURI'), 48, 56, 40, '#15191d', 600);
