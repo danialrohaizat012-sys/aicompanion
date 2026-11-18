@@ -40,4 +40,4 @@ GitHub Pages deploys from `main`, folder `/` (root).
 
 - No checkout, backend or data collection. The configurator runs in the browser.
 - The four uses are positioning for one NURI, not separate products. Features are marked Concept until built and tested.
-- Cipta Robo is not affiliated with M5Stack. This venture is independent of BinaLab.
+- Cipta Robo is not affiliated with M5Stack. NURI is built in collaboration with BinaLab (https://binalab.my).
