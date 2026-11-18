@@ -1,5 +1,6 @@
 import * as N from './nuri3d.js';
 import {createPlayer} from './scenes.js';
+import {T} from './i18n.js';
 
 /* header: border on scroll, mobile menu */
 const head = document.querySelector('.site-head');
@@ -30,19 +31,19 @@ if (gl) {
 const ADDONS = {
   rover: {
     title: 'NURI Rover',
-    text: 'A tracked base that lets NURI move around a desk, a counter or a classroom table. NURI slides into its cradle like a dock, and the Rover\'s battery keeps it charged through the same USB-C port.',
-    spec: [['Drive', 'Twin rubber tracks, four road wheels a side'], ['Size', 'About 130 × 108 × 42 mm (planned)'], ['Power', 'Own battery; charges NURI through its base'], ['Sensing', 'Front depth sensor and headlights'], ['Control', 'Commanded by NURI over a wired link (planned)']]
+    text: T('A tracked base that lets NURI move around a desk, a counter or a classroom table. NURI slides into its cradle like a dock, and the Rover\'s battery keeps it charged through the same USB-C port.', 'Tapak berantai yang membolehkan NURI bergerak di atas meja, kaunter atau meja kelas. NURI diletak dalam buaiannya macam dock, dan bateri Rover terus mengecas NURI melalui port USB-C yang sama.'),
+    spec: T([['Drive', 'Twin rubber tracks, four road wheels a side'], ['Size', 'About 130 × 108 × 42 mm (planned)'], ['Power', 'Own battery; charges NURI through its base'], ['Sensing', 'Front depth sensor and headlights'], ['Control', 'Commanded by NURI over a wired link (planned)']], [['Pemacu', 'Dua rantai getah, empat roda setiap sisi'], ['Saiz', 'Lebih kurang 130 × 108 × 42 mm (dirancang)'], ['Kuasa', 'Bateri sendiri; mengecas NURI melalui tapaknya'], ['Sensor', 'Sensor jarak depan dan lampu hadapan'], ['Kawalan', 'Dikawal oleh NURI melalui sambungan wayar (dirancang)']])
   },
   board: {
     title: 'NURI Board',
-    text: 'A 10-inch screen that becomes NURI\'s whiteboard. NURI talks the student through a problem while the Board shows each step, so the lesson is easy to follow.',
-    spec: [['Screen', '10.1" display on an adjustable stand'], ['Link', 'Wi-Fi to the NURI app'], ['Power', 'Its own USB-C supply'], ['Uses', 'Lessons, shop menus and queues, daily briefs'], ['Or', 'Use a tablet you already own (planned)']]
+    text: T('A 10-inch screen that becomes NURI\'s whiteboard. NURI talks the student through a problem while the Board shows each step, so the lesson is easy to follow.', 'Skrin 10 inci yang jadi papan putih NURI. NURI terangkan soalan kepada pelajar sambil Board tunjuk setiap langkah, jadi pelajaran senang diikuti.'),
+    spec: T([['Screen', '10.1" display on an adjustable stand'], ['Link', 'Wi-Fi to the NURI app'], ['Power', 'Its own USB-C supply'], ['Uses', 'Lessons, shop menus and queues, daily briefs'], ['Or', 'Use a tablet you already own (planned)']], [['Skrin', 'Paparan 10.1" atas stand boleh laras'], ['Sambungan', 'Wi-Fi ke aplikasi NURI'], ['Kuasa', 'Bekalan USB-C sendiri'], ['Kegunaan', 'Pelajaran, menu kedai dan giliran, taklimat harian'], ['Atau', 'Guna tablet yang anda sudah ada (dirancang)']])
   }
 };
 const textEl = document.getElementById('addonText'), noteEl = document.getElementById('addonNote');
 function renderText(id) {
   const a = ADDONS[id];
-  textEl.innerHTML = `<span class="status">Concept · optional · price to be announced</span><h3 style="font-size:28px;margin:12px 0 14px;letter-spacing:-.02em">${a.title}</h3><p class="lead">${a.text}</p><ul class="spec">${a.spec.map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('')}</ul>`;
+  textEl.innerHTML = `<span class="status">${T('Concept · optional · price to be announced', 'Konsep · pilihan · harga akan diumumkan')}</span><h3 style="font-size:28px;margin:12px 0 14px;letter-spacing:-.02em">${a.title}</h3><p class="lead">${a.text}</p><ul class="spec">${a.spec.map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('')}</ul>`;
 }
 
 let addonStage = null, scene = null, current = null;
@@ -101,12 +102,12 @@ function initAddons() {
     addonStage.onFrame((t, dt) => { if (current) current.frame(t, dt); });
     addonStage.autoPause();
     show(addonTab);
-  } catch (e) { console.warn('3D unavailable', e); addonStage = null; noteEl.textContent = '3D preview unavailable on this device.'; }
+  } catch (e) { console.warn('3D unavailable', e); addonStage = null; noteEl.textContent = T('3D preview unavailable on this device.', 'Pratonton 3D tidak tersedia pada peranti ini.'); }
 }
 if (gl) {
   const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); initAddons(); } }, {rootMargin: '400px 0px'});
   io.observe(document.getElementById('addonStage'));
-} else noteEl.textContent = '3D preview needs WebGL.';
+} else noteEl.textContent = T('3D preview needs WebGL.', 'Pratonton 3D memerlukan WebGL.');
 show('rover');
 
 /* NURI in action: created when the section comes near the screen */
@@ -114,12 +115,12 @@ show('rover');
   const el = document.getElementById('sceneStage'); if (!el) return;
   const chips = [...document.querySelectorAll('.chips [data-scene]')], btn = document.getElementById('playBtn'), snd = document.getElementById('soundBtn');
   const who = document.getElementById('capWho'), text = document.getElementById('capText');
-  if (!gl) { text.textContent = 'The animations need WebGL.'; btn.hidden = snd.hidden = true; return; }
+  if (!gl) { text.textContent = T('The animations need WebGL.', 'Animasi memerlukan WebGL.'); btn.hidden = snd.hidden = true; return; }
   let player = null;
   const sync = () => {
     if (!player) return;
-    btn.textContent = player.playing ? 'Pause' : 'Play'; btn.setAttribute('aria-pressed', player.playing);
-    snd.setAttribute('aria-pressed', player.sound); snd.querySelector('span').textContent = player.sound ? 'Sound on' : 'Sound off';
+    btn.textContent = player.playing ? T('Pause', 'Jeda') : T('Play', 'Main'); btn.setAttribute('aria-pressed', player.playing);
+    snd.setAttribute('aria-pressed', player.sound); snd.querySelector('span').textContent = player.sound ? T('Sound on', 'Bunyi hidup') : T('Sound off', 'Bunyi tutup');
   };
   const ui = {
     onScene(i) { chips.forEach((c, k) => { c.setAttribute('aria-selected', k === i); c.querySelector('em').style.width = k < i ? '100%' : '0'; }); },
@@ -130,7 +131,7 @@ show('rover');
   const io = new IntersectionObserver(es => {
     if (!es.some(e => e.isIntersecting) || player) return; io.disconnect();
     try { player = createPlayer(el, ui); sync(); }
-    catch (e) { console.warn('3D unavailable', e); text.textContent = 'Animations are unavailable on this device.'; }
+    catch (e) { console.warn('3D unavailable', e); text.textContent = T('Animations are unavailable on this device.', 'Animasi tidak tersedia pada peranti ini.'); }
   }, {rootMargin: '300px 0px'});
   io.observe(el);
   chips.forEach((c, i) => c.addEventListener('click', () => { if (player) { player.go(i); sync(); } }));

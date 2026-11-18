@@ -1,4 +1,5 @@
 import * as N from './nuri3d.js';
+import {T, asset} from './i18n.js';
 
 const $ = id => document.getElementById(id);
 const state = {look: 'signature', colour: 'pearl', dock: '', name: '', rover: false, board: false, scene: 'dock', moving: false};
@@ -19,8 +20,8 @@ function radioGroup(el, items, key, img) {
     const n = btns[(i + (['ArrowRight', 'ArrowDown'].includes(e.key) ? 1 : btns.length - 1)) % btns.length]; state[key] = n.dataset.id; update(); n.focus();
   });
 }
-radioGroup($('looks'), N.LOOKS, 'look', it => `assets/img/look-${it.id}.webp`);
-radioGroup($('docks'), N.DOCKS, 'dock', it => `assets/img/dock-${it.id}.webp`);
+radioGroup($('looks'), N.LOOKS, 'look', it => asset(`img/look-${it.id}.webp`));
+radioGroup($('docks'), N.DOCKS, 'dock', it => asset(`img/dock-${it.id}.webp`));
 $('colours').innerHTML = N.COLOURS.map(c => `<button type="button" class="colour" role="radio" data-id="${c.id}" aria-checked="false"><i style="background:linear-gradient(135deg,${c.suit} 50%,${c.accent} 50%)"></i>${c.name}</button>`).join('');
 $('colours').querySelectorAll('[role=radio]').forEach(b => b.addEventListener('click', () => { state.colour = b.dataset.id; update(); }));
 
@@ -30,7 +31,7 @@ $('name').addEventListener('input', e => { e.target.value = e.target.value.repla
 $('addRover').addEventListener('change', e => { state.rover = e.target.checked; if (e.target.checked) state.scene = 'rover'; update(); });
 $('addBoard').addEventListener('change', e => { state.board = e.target.checked; if (e.target.checked) state.scene = 'board'; update(); });
 document.querySelectorAll('[data-scene]').forEach(b => b.addEventListener('click', () => { state.scene = b.dataset.scene; update(); }));
-$('moveBtn').addEventListener('click', () => { state.moving = !state.moving; $('moveBtn').setAttribute('aria-pressed', state.moving); $('moveBtn').textContent = state.moving ? 'Stop movement' : 'Test movement'; moveT0 = stage ? stage.clock.elapsedTime : 0; });
+$('moveBtn').addEventListener('click', () => { state.moving = !state.moving; $('moveBtn').setAttribute('aria-pressed', state.moving); $('moveBtn').textContent = state.moving ? T('Stop movement', 'Hentikan gerakan') : T('Test movement', 'Uji gerakan'); moveT0 = stage ? stage.clock.elapsedTime : 0; });
 
 const name = id => (list => list.find(o => o.id === id).name);
 function renderText() {
@@ -38,11 +39,11 @@ function renderText() {
   $('lookName').textContent = look; $('colourName').textContent = colour; $('engravePreview').textContent = eng;
   const addons = [state.rover && 'NURI Rover', state.board && 'NURI Board'].filter(Boolean);
   const dockPrice = state.dock ? N.DOCKS.find(d => d.id === state.dock).price : 0, total = N.BASE_PRICE + dockPrice;
-  $('dockPrice').textContent = !state.dock ? 'Slim included · pick one to see it' : dockPrice ? '+RM' + dockPrice : 'Included';
+  $('dockPrice').textContent = !state.dock ? T('Slim included · pick one to see it', 'Slim termasuk · pilih untuk lihat') : dockPrice ? '+RM' + dockPrice : T('Included', 'Termasuk');
   $('total').textContent = 'RM' + total.toLocaleString('en-MY');
-  $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], ['Look', look], ['Colour', colour], ['Dock', !dock ? 'Slim Dock (included, not chosen yet)' : dock + (dockPrice ? ' (+RM' + dockPrice + ')' : ' (included)')], ['Engraving', eng + ' (free)'], ['Add-ons', addons.join(', ') || 'None']].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
-  $('addonNote').textContent = addons.length ? 'Add-on prices will be announced after prototyping and are not included above.' : '';
-  const lines = ['Hi Cipta Robo, I would like to register interest in NURI:', 'Look: ' + look, 'Colour: ' + colour, 'Dock: ' + (dock || 'Slim Dock') + (dockPrice ? ' (+RM' + dockPrice + ')' : ' (included)'), 'Engraving: ' + eng, 'Add-ons: ' + (addons.join(', ') || 'None'), 'Target price: RM' + total.toLocaleString('en-MY') + (addons.length ? ' + add-ons (TBA)' : '')];
+  $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], [T('Look', 'Rupa'), look], [T('Colour', 'Warna'), colour], ['Dock', !dock ? T('Slim Dock (included, not chosen yet)', 'Slim Dock (termasuk, belum dipilih)') : dock + (dockPrice ? ' (+RM' + dockPrice + ')' : T(' (included)', ' (termasuk)'))], [T('Engraving', 'Ukiran'), eng + T(' (free)', ' (percuma)')], ['Add-ons', addons.join(', ') || T('None', 'Tiada')]].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('addonNote').textContent = addons.length ? T('Add-on prices will be announced after prototyping and are not included above.', 'Harga add-on akan diumumkan selepas prototaip dan belum termasuk dalam jumlah di atas.') : '';
+  const lines = [T('Hi Cipta Robo, I would like to register interest in NURI:', 'Hai Cipta Robo, saya berminat dengan NURI:'), T('Look: ', 'Rupa: ') + look, T('Colour: ', 'Warna: ') + colour, 'Dock: ' + (dock || 'Slim Dock') + (dockPrice ? ' (+RM' + dockPrice + ')' : T(' (included)', ' (termasuk)')), T('Engraving: ', 'Ukiran: ') + eng, 'Add-ons: ' + (addons.join(', ') || T('None', 'Tiada')), T('Target price: RM', 'Harga sasaran: RM') + total.toLocaleString('en-MY') + (addons.length ? T(' + add-ons (TBA)', ' + add-on (harga belum diumumkan)') : '')];
   $('waSend').href = 'https://wa.me/60199400004?text=' + encodeURIComponent(lines.join('\n'));
   const url = new URL(location.href); url.search = new URLSearchParams({look: state.look, colour: state.colour, ...(state.dock ? {dock: state.dock} : {}), ...(state.name ? {name: state.name} : {})}).toString();
   history.replaceState(null, '', url);
@@ -56,8 +57,9 @@ function update() {
   renderText(); rebuild();
 }
 $('copy').addEventListener('click', async () => {
-  const txt = ['NURI configuration (pre-order not open)', ...[...$('summary').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent), 'Target price: ' + $('total').textContent + ' (add-on prices TBA)', location.href].join('\n');
-  try { await navigator.clipboard.writeText(txt); $('copy').textContent = 'Copied'; setTimeout(() => $('copy').textContent = 'Copy my configuration', 1600); } catch { window.prompt('Copy your configuration', txt); }
+  const txt = [T('NURI configuration (pre-order not open)', 'Konfigurasi NURI (tempahan belum dibuka)'), ...[...$('summary').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent), T('Target price: ', 'Harga sasaran: ') + $('total').textContent + T(' (add-on prices TBA)', ' (harga add-on belum diumumkan)'), location.href].join('\n');
+  const label = $('copy').textContent;
+  try { await navigator.clipboard.writeText(txt); $('copy').textContent = T('Copied', 'Disalin'); setTimeout(() => $('copy').textContent = label, 1600); } catch { window.prompt(T('Copy your configuration', 'Salin konfigurasi anda'), txt); }
 });
 
 /* 3D */
@@ -84,7 +86,7 @@ function rebuild() {
   }
   const issues = N.checkClearance(nuri);
   $('check').className = 'check-line' + (issues.length ? ' warn' : '');
-  $('check').innerHTML = issues.length ? `<b>Check:</b> ${issues.join('; ')}` : '<b>Clearance checked:</b> touch zones, screen, side port and full movement stay clear.';
+  $('check').innerHTML = issues.length ? `<b>${T('Check', 'Semak')}:</b> ${issues.join('; ')}` : T('<b>Clearance checked:</b> touch zones, screen, side port and full movement stay clear.', '<b>Ruang disemak:</b> zon sentuh, skrin, port sisi dan pergerakan penuh kekal bebas.');
 }
 let lastScene = null;
 if (N.webglAvailable()) {
@@ -102,6 +104,6 @@ if (N.webglAvailable()) {
       if (rover && carrier) { rover.update(still ? 0 : .35, dt); if (!still) carrier.rotation.y += dt * .25; }
     });
     stage.start();
-  } catch (e) { console.warn('3D unavailable', e); stage = null; $('fallback').innerHTML = '<p class="muted small">3D preview is unavailable on this device.</p>'; }
-} else $('fallback').innerHTML = '<p class="muted small">3D preview needs WebGL.</p>';
+  } catch (e) { console.warn('3D unavailable', e); stage = null; $('fallback').innerHTML = `<p class="muted small">${T('3D preview is unavailable on this device.', 'Pratonton 3D tidak tersedia pada peranti ini.')}</p>`; }
+} else $('fallback').innerHTML = `<p class="muted small">${T('3D preview needs WebGL.', 'Pratonton 3D memerlukan WebGL.')}</p>`;
 update();

@@ -44,3 +44,13 @@ GitHub Pages deploys from `main`, folder `/` (root).
 - No checkout, backend or data collection. The configurator runs in the browser.
 - The four uses are positioning for one NURI, not separate products. Features are marked Concept until built and tested.
 - Cipta Robo is not affiliated with M5Stack. NURI is built in collaboration with BinaLab (https://binalab.my).
+
+## Bahasa Melayu pages
+
+`ms/index.html` and `ms/configure.html` are generated from the English pages:
+
+```bash
+python3 tools/build-ms.py
+```
+
+Run it after any change to `index.html` or `configure.html`; it stops with a list of sentences whose translation needs updating. Text set from JavaScript uses `T(en, ms)` from `assets/i18n.js`. Scene voices for both languages come from `tools/make-voice.py`.

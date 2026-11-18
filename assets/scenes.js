@@ -7,7 +7,9 @@
 import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/RoundedBoxGeometry.js';
 import * as N from './nuri3d.js';
-import {VOICE, VOICE_FPS} from './scene-voice.js';
+import {VOICE as VOICES, VOICE_FPS} from './scene-voice.js';
+import {T, LANG, asset} from './i18n.js';
+const VOICE = VOICES[LANG];
 
 const PI = Math.PI, D2R = PI / 180, mm = v => v * N.MM;
 const rbox = (w, h, d, r = .03) => new RoundedBoxGeometry(w, h, d, 4, Math.min(r, w / 2, h / 2, d / 2) * .999);
@@ -89,48 +91,48 @@ const cueOf = id => VOICE[id].cues.map(c => c.start);
 function drawQueue(ctx, W, H, t) {
   const c = cueOf('reception'), num = t > c[2], staff = t > c[3] + .6;
   ctx.fillStyle = '#f7f6f2'; ctx.fillRect(0, 0, W, H);
-  ctx.fillStyle = '#1f7a62'; ctx.fillRect(0, 0, W, 96); txt(ctx, 'Welcome!', 40, 48, 44, '#fff', 600);
-  txt(ctx, 'Now serving', 40, 170, 30, '#6a7178'); txt(ctx, 'A010', 40, 240, 86, '#15191d', 700);
+  ctx.fillStyle = '#1f7a62'; ctx.fillRect(0, 0, W, 96); txt(ctx, T('Welcome!', 'Selamat datang!'), 40, 48, 44, '#fff', 600);
+  txt(ctx, T('Now serving', 'Sedang dilayan'), 40, 170, 30, '#6a7178'); txt(ctx, 'A010', 40, 240, 86, '#15191d', 700);
   rr(ctx, W / 2, 130, W / 2 - 40, 230, 18, num ? '#e4f1ec' : '#eef0ef');
-  txt(ctx, 'Your number', W / 2 + 30, 175, 30, '#6a7178');
+  txt(ctx, T('Your number', 'Nombor anda'), W / 2 + 30, 175, 30, '#6a7178');
   if (num) { ctx.globalAlpha = ease((t - c[2]) / .4); txt(ctx, 'A012', W / 2 + 30, 262, 96, '#1f7a62', 700); ctx.globalAlpha = 1; }
-  else { rr(ctx, W / 2 + 30, 222, 300, 76, 38, t > c[1] ? '#1f7a62' : '#15191d'); txt(ctx, 'Take a number', W / 2 + 180, 260, 30, '#fff', 600, 'center'); }
-  txt(ctx, num ? 'About 5 minutes' : 'Tap or just ask NURI', 40, H - 74, 30, '#3a4047');
-  if (staff) { rr(ctx, W / 2, H - 108, W / 2 - 40, 68, 34, '#15191d'); txt(ctx, '✓  Staff notified', W / 2 + 30, H - 74, 28, '#8ff0c4', 600); }
-  else txt(ctx, 'Concept demo', W - 40, H - 74, 22, '#9aa2aa', 400, 'right');
+  else { rr(ctx, W / 2 + 30, 222, 300, 76, 38, t > c[1] ? '#1f7a62' : '#15191d'); txt(ctx, T('Take a number', 'Ambil nombor'), W / 2 + 180, 260, 30, '#fff', 600, 'center'); }
+  txt(ctx, num ? T('About 5 minutes', 'Lebih kurang 5 minit') : T('Tap or just ask NURI', 'Tekan atau tanya NURI'), 40, H - 74, 30, '#3a4047');
+  if (staff) { rr(ctx, W / 2, H - 108, W / 2 - 40, 68, 34, '#15191d'); txt(ctx, T('✓  Staff notified', '✓  Staf dimaklumkan'), W / 2 + 30, H - 74, 28, '#8ff0c4', 600); }
+  else txt(ctx, T('Concept demo', 'Demo konsep'), W - 40, H - 74, 22, '#9aa2aa', 400, 'right');
 }
 function drawBrief(ctx, W, H, t) {
   const c = cueOf('assist');
   ctx.fillStyle = '#fbfbf9'; ctx.fillRect(0, 0, W, H);
   if (t > c[4]) { // the quotation draft, opened for review
-    txt(ctx, 'Quotation #24 · Draft', 48, 56, 38, '#15191d', 600);
-    rr(ctx, W - 260, 28, 212, 56, 28, '#fdf1d8'); txt(ctx, 'Not sent', W - 154, 56, 26, '#8a5a00', 600, 'center');
-    [['NURI × 2', 'RM 1,998'], ['Nest Dock × 2', 'RM 100'], ['Setup & training', 'RM 300']].forEach(([a, b], i) => {
+    txt(ctx, T('Quotation #24 · Draft', 'Sebut Harga #24 · Draf'), 48, 56, 38, '#15191d', 600);
+    rr(ctx, W - 260, 28, 212, 56, 28, '#fdf1d8'); txt(ctx, T('Not sent', 'Belum dihantar'), W - 154, 56, 24, '#8a5a00', 600, 'center');
+    [['NURI × 2', 'RM 1,998'], ['Nest Dock × 2', 'RM 100'], [T('Setup & training', 'Pemasangan & latihan'), 'RM 300']].forEach(([a, b], i) => {
       const y = 160 + i * 86; ctx.fillStyle = '#eceae4'; ctx.fillRect(48, y + 40, W - 96, 2); txt(ctx, a, 48, y, 34, '#1d2430'); txt(ctx, b, W - 48, y, 34, '#1d2430', 600, 'right');
     });
-    txt(ctx, 'Total', 48, 450, 36, '#15191d', 700); txt(ctx, 'RM 2,398', W - 48, 450, 36, '#1f7a62', 700, 'right');
-    rr(ctx, 48, H - 128, 300, 76, 14, '#15191d'); txt(ctx, 'Approve & send', 198, H - 90, 30, '#fff', 600, 'center');
-    txt(ctx, 'NURI waits for you', 380, H - 90, 28, '#6a7178');
+    txt(ctx, T('Total', 'Jumlah'), 48, 450, 36, '#15191d', 700); txt(ctx, 'RM 2,398', W - 48, 450, 36, '#1f7a62', 700, 'right');
+    rr(ctx, 48, H - 128, 300, 76, 14, '#15191d'); txt(ctx, T('Approve & send', 'Lulus & hantar'), 198, H - 90, 30, '#fff', 600, 'center');
+    txt(ctx, T('NURI waits for you', 'NURI tunggu kelulusan anda'), 380, H - 90, 28, '#6a7178');
     return;
   }
-  txt(ctx, 'Today · NURI brief', 48, 56, 40, '#15191d', 600);
-  const rows = [['09:30', 'Client call', 'Top priority', c[1] + .6], ['11:00', 'Quotation #24', 'Draft ready', c[2] + .8], ['15:00', 'Stock check', 'Reminder set', c[2] + 2.4]];
+  txt(ctx, T('Today · NURI brief', 'Hari ini · Taklimat NURI'), 48, 56, 40, '#15191d', 600);
+  const rows = [['09:30', T('Client call', 'Panggilan klien'), T('Top priority', 'Paling utama'), c[1] + .6], ['11:00', T('Quotation #24', 'Sebut harga #24'), T('Draft ready', 'Draf siap'), c[2] + .8], ['15:00', T('Stock check', 'Semak stok'), T('Reminder set', 'Peringatan'), c[2] + 2.4]];
   rows.forEach(([a, b, d, at], i) => {
     const y = 160 + i * 120, k = ease((t - at) / .5);
     ctx.globalAlpha = .2 + .8 * k; rr(ctx, 40, y - 46, W - 80, 92, 14, i === 0 ? '#e4f1ec' : '#f1f1ee');
     txt(ctx, a, 70, y, 34, '#1f7a62', 600); txt(ctx, b, 210, y, 36, '#15191d', 600); txt(ctx, d, W - 70, y, 28, '#6a7178', 400, 'right'); ctx.globalAlpha = 1;
   });
-  if (t > c[3]) { rr(ctx, 40, H - 128, 300, 76, 14, '#1f7a62'); txt(ctx, 'Opening draft…', 190, H - 90, 30, '#fff', 600, 'center'); }
+  if (t > c[3]) { rr(ctx, 40, H - 128, 300, 76, 14, '#1f7a62'); txt(ctx, T('Opening draft…', 'Membuka draf…'), 190, H - 90, 30, '#fff', 600, 'center'); }
 }
 function drawCall(ctx, W, H, t) {
   const c = cueOf('companion'), calling = t > c[4];
   ctx.fillStyle = calling ? '#10261f' : '#14171b'; ctx.fillRect(0, 0, W, H);
-  if (!calling) { txt(ctx, '9:02', W / 2, H * .26, 110, '#eef1f3', 300, 'center'); txt(ctx, 'Wednesday', W / 2, H * .36, 30, '#9aa2aa', 400, 'center'); return; }
+  if (!calling) { txt(ctx, '9:02', W / 2, H * .26, 110, '#eef1f3', 300, 'center'); txt(ctx, T('Wednesday', 'Rabu'), W / 2, H * .36, 30, '#9aa2aa', 400, 'center'); return; }
   const p = (t - c[4]) % 1.4 / 1.4;
   ctx.strokeStyle = `rgba(143,240,196,${1 - p})`; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(W / 2, H * .36, 92 + p * 70, 0, 2 * PI); ctx.stroke();
   ctx.fillStyle = '#e7a76f'; ctx.beginPath(); ctx.arc(W / 2, H * .36, 92, 0, 2 * PI); ctx.fill();
   txt(ctx, 'A', W / 2, H * .36 + 4, 92, '#fff', 600, 'center');
-  txt(ctx, 'Aisyah', W / 2, H * .58, 52, '#fff', 600, 'center'); txt(ctx, 'Calling…', W / 2, H * .64, 32, '#8ff0c4', 500, 'center');
+  txt(ctx, 'Aisyah', W / 2, H * .58, 52, '#fff', 600, 'center'); txt(ctx, T('Calling…', 'Memanggil…'), W / 2, H * .64, 32, '#8ff0c4', 500, 'center');
   ctx.fillStyle = '#d8453c'; ctx.beginPath(); ctx.arc(W / 2, H * .84, 56, 0, 2 * PI); ctx.fill();
 }
 
@@ -221,7 +223,7 @@ export const SCENES = [
     }
   }
 ];
-SCENES.forEach(s => { s.voice = VOICE[s.id]; s.duration = s.voice.duration; s.captions = s.voice.cues; s.audio = `assets/audio/scene-${s.id}.mp3`; });
+SCENES.forEach(s => { s.voice = VOICE[s.id]; s.duration = s.voice.duration; s.captions = s.voice.cues; s.audio = asset(`audio/scene-${s.id}${LANG === 'en' ? '' : '-' + LANG}.mp3`); });
 
 /* talking face: a small mouth under the eyes, driven by the voice envelope */
 function addMouth(nuri) {
