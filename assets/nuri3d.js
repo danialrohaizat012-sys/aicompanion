@@ -52,10 +52,10 @@ export const COLOURS = [
   {id: 'graphite', name: 'Graphite', suit: '#3b4149', accent: '#86d9c1'},
   {id: 'coral', name: 'Coral', suit: '#f6e6de', accent: '#e9785a'}
 ];
+export const BASE_PRICE = 999;
 export const DOCKS = [
-  {id: 'slim', name: 'Slim Dock', blurb: 'Low tray that disappears on a desk. Slide NURI in to charge.'},
-  {id: 'plinth', name: 'Plinth Dock', blurb: 'Raised 30 mm stand that lifts NURI closer to eye level.'},
-  {id: 'desk', name: 'Desk Dock', blurb: 'Dock plus an angled slot that holds your phone or tablet as NURI\'s screen.'}
+  {id: 'slim', name: 'Slim Dock', price: 0, blurb: 'Low tray that disappears on a desk. Slide NURI in to charge. Included.'},
+  {id: 'nest', name: 'Nest Dock', price: 50, blurb: 'A shallow bowl wrapped in woven rings, like a small nest. +RM50.'}
 ];
 export const engraving = name => ('NURI ' + (name || '').trim()).trim().toUpperCase().slice(0, 15);
 
@@ -113,6 +113,8 @@ function materials(colour) {
     suit: pla(suit), accent: pla(accent, .5),
     dock: pla(suit.clone().lerp(new THREE.Color('#ffffff'), .1), .6),
     dockDark: pla(suit.clone().lerp(new THREE.Color('#1c2026'), .82), .6),
+    nestA: pla(accent.clone().lerp(new THREE.Color('#cdb894'), .45), .7),
+    nestB: pla(new THREE.Color('#cdb894').lerp(suit, .3), .75),
     rubber: new THREE.MeshStandardMaterial({color: '#25282c', roughness: .95}),
     metal: new THREE.MeshStandardMaterial({color: '#b9bec3', metalness: .9, roughness: .3}),
     cable: new THREE.MeshStandardMaterial({color: '#2a2d31', roughness: .7})
@@ -237,31 +239,27 @@ function buildDock(id, m, g, name) {
     [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => add(g, cyl(mm(3), mm(3), mm(1), 20), m.rubber, [a * (W / 2 - mm(6)), -floor - mm(.5), b * (D / 2 - mm(6))]));
     info = {height: floor + mm(1), footprint: [W, D]};
   }
-  if (id === 'plinth') {
-    const h = mm(30), wall = mm(3.5);
-    const {W, D} = pocketRim(g, m, wall, mm(8.5), mm(4));
-    const top = rbox(W + mm(8), mm(4), D + mm(8), mm(2)); add(g, top, m.dock, [0, -mm(2), 0]);
-    add(g, rbox(W + mm(4), h - mm(4), D + mm(4), mm(5)), m.dock, [0, -mm(4) - (h - mm(4)) / 2, 0]);
-    add(g, rbox(W + mm(10), mm(3), D + mm(10), mm(1.5)), m.dockDark, [0, -h + mm(1.5), 0]);
-    plate(mm(46), mm(9), -mm(14), (D + mm(4)) / 2, false);
-    mirror(s => [0, 1, 2, 3].forEach(i => add(g, rbox(mm(.6), mm(14), mm(3), mm(.3)), m.rubber, [s * ((W + mm(4)) / 2 + mm(.05)), -mm(16), (i - 1.5) * mm(9)])));
-    add(g, rbox(mm(12), mm(5), mm(.8), mm(2)), m.rubber, [0, -mm(20), -(D + mm(4)) / 2 - mm(.1)]);
-    info = {height: h + mm(1), footprint: [W + mm(10), D + mm(10)]};
-  }
-  if (id === 'desk') {
-    const floor = mm(6), wall = mm(3.5);
-    const {W, D} = pocketRim(g, m, wall, mm(8.5), mm(4));
-    const trayW = mm(70), total = W + trayW, cx = (trayW) / 2;
-    add(g, rbox(total, floor, D + mm(6), mm(3)), m.dock, [cx, -floor / 2, 0]);
-    // angled device slot on the right, outside the head's pan sweep
-    const slotX = W / 2 + trayW * .55;
-    add(g, rbox(trayW - mm(10), mm(9), mm(6), mm(2)), m.dock, [slotX, mm(4.5), mm(10)]);
-    add(g, rbox(trayW - mm(10), mm(16), mm(4), mm(1.5)), m.dock, [slotX, mm(8), -mm(2)], [-.32, 0, 0]);
-    add(g, rbox(trayW - mm(14), mm(1.4), mm(4.4), mm(.6)), m.rubber, [slotX, mm(9.2), mm(10)]);
-    add(g, rbox(mm(6), mm(1.2), mm(10), mm(.6)), m.rubber, [slotX, mm(.6), -mm(14)]);
-    plate(mm(40), mm(5.6), -floor / 2 + mm(.5), (D + mm(6)) / 2, false);
-    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => add(g, cyl(mm(3), mm(3), mm(1), 20), m.rubber, [cx + a * (total / 2 - mm(7)), -floor - mm(.5), b * ((D + mm(6)) / 2 - mm(6))]));
-    info = {height: floor + mm(1), footprint: [total, D]};
+  if (id === 'nest') {
+    // shallow bowl with six thin woven rings around the rim; the gaps between rings vent the base.
+    // Every ring sits outside the head's pan sweep, so the head turns freely above it.
+    const floor = mm(5), dish = new THREE.Group(); g.add(dish);
+    pocketRim(g, m, mm(3), mm(7), mm(4));                                   // hidden locating walls + USB-C plug
+    const prof = [[0, -floor], [mm(40), -floor], [mm(47), -floor + mm(.8)], [mm(52), -mm(1)], [mm(54.5), mm(3)], [mm(54), mm(6)], [mm(52.4), mm(6.6)], [mm(50.4), mm(5)], [mm(46.5), mm(.4)], [mm(40), 0], [0, 0]];
+    const bowl = add(dish, new THREE.LatheGeometry(prof.map(([x, y]) => new THREE.Vector2(x, y)), 120), m.dock.clone());
+    bowl.material.side = THREE.DoubleSide;
+    // nine thin strands, each tilted a little differently so they cross like woven twigs
+    for (let i = 0; i < 9; i++) {
+      const r = 48 + (i * 1.7) % 5.5, y = 3 + i * .9, t = .11 + (i % 3) * .03, ph = i * 2.1;
+      add(dish, torus(mm(r), mm(1.05), 2 * PI, 140), i % 3 === 1 ? m.nestA : m.nestB, [0, mm(y), 0], [PI / 2 + t * Math.cos(ph), 0, t * Math.sin(ph)]);
+    }
+    // engraved tag on the front of the rim
+    const tag = new THREE.Group(); tag.position.set(0, mm(4.5), mm(55.6)); tag.rotation.x = -.22; dish.add(tag);
+    add(tag, rbox(mm(38), mm(8), mm(2), mm(1.2)), m.dock);
+    add(tag, new THREE.PlaneGeometry(mm(35), mm(5.2)), new THREE.MeshStandardMaterial({map: engraveTexture(engraving(name), false), roughness: .55}), [0, 0, mm(1.05)]);
+    // dock USB-C input at the back, rubber feet underneath
+    add(dish, rbox(mm(9.2), mm(3.4), mm(1), mm(1.5)), m.port, [0, mm(1.5), -mm(54.3)]);
+    [0, 1, 2].forEach(i => { const a = i * 2 * PI / 3 + PI / 2; add(dish, cyl(mm(3.5), mm(3.5), mm(1), 20), m.rubber, [Math.cos(a) * mm(32), -floor - mm(.5), Math.sin(a) * mm(32)]); });
+    info = {height: floor + mm(1), footprint: [mm(110), mm(110)]};
   }
   return info;
 }
@@ -314,6 +312,17 @@ export function checkClearance(nuri) {
       if (v.z < -K.HZ + K.chamfer + mm(2) && v.y < -K.HY + K.chamfer + mm(2)) issues.add('enters the rear servo clearance');
       const hy = v.y + K.headCY - K.pivot.y, hz = v.z - K.pivot.z;
       for (let a = K.tiltMin; a <= K.tiltMax + 1e-6; a += 3 * D2R) if (K.pivot.y + hy * Math.cos(a) - hz * Math.sin(a) < K.baseH + mm(.5)) { issues.add('touches the base while tilting'); break; }
+    }
+  });
+  // docks: nothing may rise above the base top inside the space the head sweeps while turning
+  const base = nuri.base, binv = new THREE.Matrix4().copy(base.matrixWorld).invert();
+  root.traverse(obj => {
+    if (!obj.isMesh || obj.userData.zone !== 'dock') return;
+    mtx.multiplyMatrices(binv, obj.matrixWorld);
+    const p = obj.geometry.attributes.position, step = Math.max(1, Math.floor(p.count / 800));
+    for (let i = 0; i < p.count; i += step) {
+      v.fromBufferAttribute(p, i).applyMatrix4(mtx);
+      if (v.y > K.baseH - mm(.2) && Math.hypot(v.x, v.z) < K.sweepR + mm(2)) { issues.add('dock rises into the space the head turns through'); break; }
     }
   });
   return [...issues];

@@ -37,7 +37,10 @@ function renderText() {
   const look = name(state.look)(N.LOOKS), colour = name(state.colour)(N.COLOURS), dock = name(state.dock)(N.DOCKS), eng = N.engraving(state.name);
   $('lookName').textContent = look; $('colourName').textContent = colour; $('engravePreview').textContent = eng;
   const addons = [state.rover && 'NURI Rover', state.board && 'NURI Board'].filter(Boolean);
-  $('summary').innerHTML = [['Robot', 'StackChan K151'], ['Look', look], ['Colour', colour], ['Dock', dock + ' (included)'], ['Engraving', eng + ' (free)'], ['Add-ons', addons.join(', ') || 'None']].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  const dockPrice = N.DOCKS.find(d => d.id === state.dock).price, total = N.BASE_PRICE + dockPrice;
+  $('dockPrice').textContent = dockPrice ? '+RM' + dockPrice : 'Included';
+  $('total').textContent = 'RM' + total.toLocaleString('en-MY');
+  $('summary').innerHTML = [['NURI Base', 'RM' + N.BASE_PRICE], ['Look', look], ['Colour', colour], ['Dock', dock + (dockPrice ? ' (+RM' + dockPrice + ')' : ' (included)')], ['Engraving', eng + ' (free)'], ['Add-ons', addons.join(', ') || 'None']].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
   $('addonNote').textContent = addons.length ? 'Add-on prices will be announced after prototyping and are not included above.' : '';
   const url = new URL(location.href); url.search = new URLSearchParams({look: state.look, colour: state.colour, dock: state.dock, ...(state.name ? {name: state.name} : {})}).toString();
   history.replaceState(null, '', url);
@@ -51,7 +54,7 @@ function update() {
   renderText(); rebuild();
 }
 $('copy').addEventListener('click', async () => {
-  const txt = ['NURI configuration (pre-order not open)', ...[...$('summary').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent), 'Target price: RM999 (add-on prices TBA)', location.href].join('\n');
+  const txt = ['NURI configuration (pre-order not open)', ...[...$('summary').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent), 'Target price: ' + $('total').textContent + ' (add-on prices TBA)', location.href].join('\n');
   try { await navigator.clipboard.writeText(txt); $('copy').textContent = 'Copied'; setTimeout(() => $('copy').textContent = 'Copy my configuration', 1600); } catch { window.prompt('Copy your configuration', txt); }
 });
 

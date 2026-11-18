@@ -37,12 +37,14 @@ and the K151 documentation. Every suit part and dock in `assets/nuri3d.js` follo
 
 All parts are snap-on: no glue, no screws into the K151. Keep head-mounted parts light, because the tilt servo carries them.
 
-## Dock rules (3 docks: Slim, Plinth, Desk)
+## Dock rules (2 docks: Slim, included · Nest, +RM50)
 
 - **Charging:** a fixed USB-C plug in the pocket's rear wall lines up with the base USB-C port when NURI slides in from the front. The dock has its own USB-C input for the power adapter. NURI keeps working while it charges.
 - **Pan clearance:** pocket walls stay **below the base top (11.1 mm)**, so the head can turn freely over them. The front wall is lower (4 mm) to slide NURI in and out.
 - **Ventilation:** the base rests on three ribs, leaving a **2 mm air gap** under the battery and power IC. Side walls have vent slots. Nothing seals the base underside.
-- **Stability:** rubber feet on every dock. The Desk Dock's device slot sits outside the head's 41 mm pan sweep.
+- **Slim Dock:** low rectangular tray, 5 mm floor, side vent slots, four rubber feet.
+- **Nest Dock:** shallow round bowl (Ø ≈ 110 mm) wrapped in nine thin woven rings. Every ring sits outside the head's ≈ 41 mm pan sweep, so rings may rise above the base top without touching the head; the gaps between rings act as vents. Engraved tag on the front of the rim, three rubber feet.
+- **Stability:** rubber feet on both docks. The browser clearance check also flags any dock part that rises above the base top inside the pan sweep.
 - **Engraving:** `NURI` + the companion's name (up to 10 characters), engraved on the dock front. Free.
 
 ## Add-ons (optional, concept)
