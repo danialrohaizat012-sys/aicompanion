@@ -1,41 +1,42 @@
-# Cipta Robo · NURI concept website
+# Cipta Robo · NURI website
 
-Static website for **NURI**, a customizable AI desktop companion concept by Cipta Robo, planned around the original M5Stack StackChan K151 with a snap-on NURI Signature Suit and wardrobe. Live at https://ciptarobo.com (GitHub Pages, see `CNAME`).
+Website for **NURI**, a desktop AI companion in development by Cipta Robo, built on the M5Stack StackChan K151. Live at https://ciptarobo.com (GitHub Pages, see `CNAME`).
 
-> **Concept only.** NURI is not for sale. RM899 is a planned target price. Supplier/rights-holder terms, trademark status, hardware fit and timeline are not finalized. No payments or deposits are collected.
+> **In development.** NURI is not for sale yet. RM999 is the target price and includes a charging dock and a free engraving (`NURI` + the companion's name). Add-on prices are to be announced.
 
 ## Pages
 
 | Page | What it is |
 |---|---|
-| `index.html` | Homepage: appearance-first positioning, NURI Identity Studio teaser, three-layer technology, future R&D, roadmap (Phase A/B/C) and FAQ. |
-| `nuri-studio.html` | **NURI Identity Studio**: interactive 3D configurator. Five wardrobe zones × 10 styles, 10 colorways, 7 preset looks, optional nameplate (+RM25 indicative), copy-to-clipboard design summary. |
-| `ai-companion.html` | AI Companion Project R&D page with the 2.5D appearance study. |
+| `index.html` | Homepage: the four uses (Learn, Reception, Assist, Companion), the 3 looks / 3 colours / 3 docks, what RM999 includes, the animated Rover and Board add-ons, hardware facts and FAQ. |
+| `configure.html` | Configurator: pick look, colour and dock, type a name for the engraving, preview the Rover and Board, test the K151's movement and see the live clearance check. The choice is kept in the URL so it can be shared. |
+| `nuri-studio.html`, `ai-companion.html` | Redirects from the old pages. |
 
-## 3D studio notes
+## Code
 
-- Built with [Three.js](https://threejs.org) r160, **vendored** in `vendor/three/` (MIT, see `vendor/three/LICENSE`), so the studio works without a third-party CDN.
-- The K151 is proportioned from M5Stack's published structure files: head 54 × 54 × 46.7 mm, base 48 × 56 × 11.1 mm, ~5 mm gap, side holes and the rear servo chamfer. The tilt pivot is estimated.
-- **Motion & clearance check:** every design is tested in the browser against the K151 pan (±130°) and tilt (6° down to 74° up) range, the top touch zones and LED bars, the display and the rear servo space. *Test K151 movement* animates the real range; *Show keep-out zones* overlays the protected areas.
-- Design rules and measurements: [`docs/k151-design-rules.md`](docs/k151-design-rules.md).
-- Respects `prefers-reduced-motion` (no auto-rotate, idle head motion or blinking).
+- `assets/nuri3d.js` – shared 3D: the K151 proportioned from M5Stack's structure files, the suits, docks, Rover, Board, the clearance check and the stage (renderer, lights, auto-fit camera).
+- `assets/home.js`, `assets/configure.js` – page scripts.
+- `assets/site.css` – site styles.
+- `assets/img/` – pre-rendered product images (WebP) used in the page and as fallbacks.
+- `vendor/three/` – Three.js r160 (MIT), vendored so nothing depends on a CDN.
+- `docs/k151-design-rules.md` – measurements and design rules for suits, docks and add-ons.
 
 ## Local preview
 
-The studio uses ES modules, so serve the folder over HTTP rather than opening the file directly:
+The pages use ES modules, so serve the folder over HTTP:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then visit http://localhost:8000.
+Then open http://localhost:8000.
 
 ## Publishing
 
-GitHub Pages deploys from branch `main`, folder `/` (root). The `CNAME` file points the site at `ciptarobo.com`.
+GitHub Pages deploys from `main`, folder `/` (root).
 
 ## Notes
 
-- No checkout, backend, payment handling or waitlist. Configurators run locally in the browser and send no data anywhere.
-- Drone, rover, dock and other hardware modules are separate long-term R&D, not part of NURI Base.
-- This future robotics venture is **independent of BinaLab**, which focuses on SME digitalization.
+- No checkout, backend or data collection. The configurator runs in the browser.
+- The four uses are positioning for one NURI, not separate products. Features are marked Concept until built and tested.
+- Cipta Robo is not affiliated with M5Stack. This venture is independent of BinaLab.

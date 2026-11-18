@@ -1,51 +1,58 @@
-# NURI Suit design rules for the StackChan K151
+# NURI design rules for the StackChan K151
 
 Measured from M5Stack's published K151 structure files
 ([m5stack/M5_Hardware › Products/K151_StackChan/Structures](https://github.com/m5stack/M5_Hardware/tree/master/Products/K151_StackChan/Structures))
-and the K151 documentation. Every accessory in `nuri-studio.html` is checked against these rules in the browser.
+and the K151 documentation. Every suit part and dock in `assets/nuri3d.js` follows these rules, and `checkClearance()` re-checks the suit parts in the browser.
 
-> The STL files are individual parts, not an assembly. Part sizes, hole positions and the rear chamfer are measured.
-> The head-to-base gap is derived from the official overall size. **The tilt pivot position is estimated** and must be
-> confirmed on a physical K151 before tooling.
+> The STL files are individual parts, not an assembly. Part sizes, hole positions, the rear chamfer and the base USB-C opening are measured.
+> The head-to-base gap and the CoreS3 depth are derived from the official overall size. **The tilt pivot position is estimated.**
+> Confirm all of these on a physical K151 before tooling.
 
 ## Measured geometry
 
-| Part (STL) | Size W × D × H (mm) | Role |
+| Item | Size / position | Notes |
 |---|---|---|
-| `StackChan-MainBody` | 54.0 × 46.7 × 54.0 | Head shell. The CoreS3 forms the front face. Moves with pan **and** tilt. |
-| `StackChan-Base` | 48.0 × 56.0 × 11.1 | Stationary base with the pan turntable (Ø ≈ 42 mm ring). |
-| `StackChan-ServoBody` | 46.5 × 46.0 × 35.8 | Pan/tilt servo housing, round foot Ø ≈ 46 mm. Sits mostly inside the head. |
-| `StackChan-ServoArm` / `BearingFixture` | 24 / 16 mm long | Link the tilt servo to the head on each side. |
-| `StackChan-LightGuideBar-A/B` | 5 × 31 mm | RGB LED light bars, one along each top side edge of the head. |
-
-- Overall K151: **54 × 61.5 × 70.5 mm**. Head (54) + base (11.1) leaves a **≈ 5.4 mm gap** between head and base. There is no visible neck.
-- **Side holes:** 3 per side, **Ø ≈ 4.3 mm, 8 mm pitch** (Technic-style spacing), centres **11.6 mm below the top**, at ≈ 8 / 16 / 24 mm behind the front face.
-- **Rear-bottom chamfer:** ≈ 10 × 10 mm. It clears the servo body when the head tilts.
+| Overall K151 | 54 × 61.5 × 70.5 mm (W × D × H) | Official figure |
+| Base (`StackChan-Base`) | 48 × 56 × 11.1 mm | Stationary. Holds the battery (550–700 mAh is quoted in different sources). |
+| Base USB-C | Opening ≈ 11.7 × 3.6 mm on one short end face, ≈ 5.5 mm up | M5Stack recommends charging and data through this port, because the head moves. Modelled on the rear. |
+| Head shell (`StackChan-MainBody`) | 54 × 46.7 × 54 mm | Pans and tilts. |
+| CoreS3 | 54 × 54 × ≈ 14.8 mm, in front of the shell | Display, camera, mics. Left side: USB-C port and power button. |
+| Head-to-base gap | ≈ 5.4 mm | No visible neck; the servo body (Ø ≈ 46 mm) sits inside the head. |
+| Side holes | 3 per side, Ø ≈ 4.3 mm, 8 mm pitch, 11.6 mm below the top | Centres ≈ 8 / 16 / 24 mm behind the shell front, so they are behind the CoreS3. |
+| Rear chamfer | ≈ 10 × 10 mm, back-bottom of the shell | Clears the servo body when tilting. |
+| Top of shell | 3 capacitive touch zones and two LED light bars (5 × 31 mm) along the side edges | Must stay uncovered. |
 
 ## Motion envelope
 
-- **Pan:** ±130° under firmware control (the servo itself can rotate further). The head and everything attached to it sweep a circle of ≈ 39 mm radius above the base.
-- **Tilt:** M5Stack recommends 5–85° on the vertical axis. In the studio that is modelled as **6° nose-down to 74° nose-up** from the resting pose. Driving past this range can stall and damage the servo.
+- **Pan:** ±130° under firmware control. The head sweeps a circle of ≈ 41 mm radius above the base.
+- **Tilt:** M5Stack recommends 5–85°. Modelled as 6° nose-down to 74° nose-up from rest. Driving past this can stall the servo.
 
-## Rules per wardrobe zone
+## Suit rules (3 looks: Signature, Focus, Buddy)
 
-| Zone | Mounts on | Must not |
+| Part | Mounts on | Must not |
 |---|---|---|
-| Headwear | Side holes (straps, posts, clips) | Cover the top surface: 3 capacitive touch zones and both LED bars. Anything crossing over the top keeps **≥ 12 mm** clearance. |
-| Facewear | Clip around the outside of the CoreS3 front edge | Overlap the 2.0" display or the camera. Extend **below the head's bottom edge**, because the 5 mm gap would close when NURI looks down. |
-| Sidewear | Side holes | Hang below the head, or reach back into the rear chamfer / servo space. |
-| Outfit | Upper band of the **stationary base** | Rise above the base top (11.1 mm), because the head sweeps over it while panning. |
-| Basewear | Lower base / plinth underneath | Rise above the base top within the head's pan sweep. Block the charging path or the base underside. |
+| Face frame | Clips over the front 3.5 mm of the CoreS3 edge | Cover the display or camera. Extend below the head (the bottom rail stays inside the outline). Reach back over the CoreS3 left-side USB-C or power button. |
+| Side pieces | The 3 side holes, behind the CoreS3 | Hang below the head or reach into the rear chamfer. |
+| Top pieces (Focus band, Buddy ears) | Side holes | Cover the touch zones or LED bars. Anything crossing above keeps **≥ 12 mm** clearance. |
 
-General rules:
+All parts are snap-on: no glue, no screws into the K151. Keep head-mounted parts light, because the tilt servo carries them.
 
-- Snap-on and non-invasive only: no glue or screws into the K151, and keep the USB-C port and CoreS3 side ports reachable (verify their positions on a sample).
-- Keep head-mounted parts light. The tilt servo carries everything attached to the head.
-- Ventilation, microphones and speaker openings stay open. Confirm their exact locations on a physical unit.
+## Dock rules (3 docks: Slim, Plinth, Desk)
+
+- **Charging:** a fixed USB-C plug in the pocket's rear wall lines up with the base USB-C port when NURI slides in from the front. The dock has its own USB-C input for the power adapter. NURI keeps working while it charges.
+- **Pan clearance:** pocket walls stay **below the base top (11.1 mm)**, so the head can turn freely over them. The front wall is lower (4 mm) to slide NURI in and out.
+- **Ventilation:** the base rests on three ribs, leaving a **2 mm air gap** under the battery and power IC. Side walls have vent slots. Nothing seals the base underside.
+- **Stability:** rubber feet on every dock. The Desk Dock's device slot sits outside the head's 41 mm pan sweep.
+- **Engraving:** `NURI` + the companion's name (up to 10 characters), engraved on the dock front. Free.
+
+## Add-ons (optional, concept)
+
+- **NURI Rover:** a tracked base with the same pocket and USB-C plug as the docks, powered by its own battery. NURI sits on it exactly as on a dock.
+- **NURI Board:** a 10.1" display on a stand, linked to the NURI app over Wi-Fi with its own USB-C power. The K151 cannot drive an external display directly, so the Board is not wired to it.
 
 ## Before production
 
-1. Measure a real K151: tilt pivot axis, port and vent positions, and the actual head-to-base gap at full tilt.
-2. Print the Signature, Gamer and Futuristic kits and run the full pan/tilt range with each mounted.
-3. Check servo current and stability with the heaviest headwear and sidewear combination.
-4. Update the constants at the top of the studio script (`BT`, `GAP`, `PIVOT`, `HOLES`, tilt limits) with the measured values.
+1. Measure a real K151: tilt pivot axis, base USB-C position and depth, CoreS3 port positions, and the head-to-base gap at full tilt.
+2. Print one suit per look and one of each dock. Run the full pan/tilt range and a full charge cycle in each dock.
+3. Check servo current with the heaviest suit (Focus) and base temperature while charging in each dock.
+4. Update the constants at the top of `assets/nuri3d.js` (`K`) with the measured values.

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Configure NURI · Cipta Robo</title>
+<meta name="description" content="Choose NURI's look, colour and charging dock, engrave its name, and preview the optional Rover and Board in 3D. Target price RM999.">
+<meta name="theme-color" content="#f4f3ef">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
+</head>
+<body>
+<a class="skip" href="#steps">Skip to options</a>
+<header class="site-head scrolled">
+ <div class="wrap head-row">
+  <a class="brand" href="./" aria-label="Cipta Robo home"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="19" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 12.2a1.8 1.8 0 0 1 3.4 0M13.1 12.2a1.8 1.8 0 0 1 3.4 0" fill="none" stroke="#1f7a62" stroke-width="1.8" stroke-linecap="round"/></svg>Cipta Robo</a>
+  <a class="back-link" href="./">← Back to NURI</a>
+ </div>
+</header>
+
+<main class="wrap">
+ <div style="padding:28px 0 4px"><span class="status">Pre-production · orders not open</span><h1 style="font-size:clamp(32px,4vw,46px);margin-top:10px">Configure your NURI</h1></div>
+ <div class="cfg">
+  <div class="cfg-view">
+   <div class="stage" id="stage" aria-label="Interactive 3D preview of your NURI">
+    <div class="fallback" id="fallback"><p class="muted small">Loading 3D preview…</p></div>
+    <span class="stage-note">Drag to turn · scroll or pinch to zoom</span>
+   </div>
+   <div class="view-bar">
+    <div class="seg" role="group" aria-label="Preview">
+     <button type="button" data-scene="dock" aria-pressed="true">On its dock</button>
+     <button type="button" data-scene="rover" aria-pressed="false">On Rover</button>
+     <button type="button" data-scene="board" aria-pressed="false">With Board</button>
+    </div>
+    <button type="button" class="btn btn-ghost btn-sm" id="moveBtn" aria-pressed="false">Test movement</button>
+   </div>
+   <p class="check-line" id="check" aria-live="polite"></p>
+  </div>
+
+  <div id="steps">
+   <section class="step" aria-labelledby="s1"><div class="step-head"><h2 id="s1">1. Look</h2><span id="lookName"></span></div><div class="opts" role="radiogroup" aria-labelledby="s1" id="looks"></div></section>
+   <section class="step" aria-labelledby="s2"><div class="step-head"><h2 id="s2">2. Colour</h2><span id="colourName"></span></div><div class="colours" role="radiogroup" aria-labelledby="s2" id="colours"></div></section>
+   <section class="step" aria-labelledby="s3"><div class="step-head"><h2 id="s3">3. Charging dock</h2><span>Included</span></div><div class="opts" role="radiogroup" aria-labelledby="s3" id="docks"></div></section>
+   <section class="step" aria-labelledby="s4"><div class="step-head"><h2 id="s4">4. Engraving</h2><span>Free</span></div>
+    <div class="field"><label for="name" class="small">Your companion's name</label><input id="name" maxlength="10" autocomplete="off" spellcheck="false" placeholder="e.g. Kront" aria-describedby="nameHelp"><span id="nameHelp" class="small muted">Up to 10 letters or numbers. Engraved on the front of the dock after the word NURI.</span></div>
+    <div class="engrave" id="engravePreview" style="margin-top:12px" aria-label="Engraving preview">NURI</div>
+   </section>
+   <section class="step" aria-labelledby="s5"><div class="step-head"><h2 id="s5">5. Add-ons</h2><span>Optional</span></div>
+    <div class="addons">
+     <label class="addon-opt"><input type="checkbox" id="addRover"><span><b>NURI Rover</b><small>Tracked base so NURI can move around</small></span><span class="tbc">Price TBA</span></label>
+     <label class="addon-opt"><input type="checkbox" id="addBoard"><span><b>NURI Board</b><small>10" teaching screen on a stand</small></span><span class="tbc">Price TBA</span></label>
+    </div>
+   </section>
+   <section class="step" aria-labelledby="s6"><h2 id="s6" style="font-size:20px;margin-bottom:14px">Summary</h2>
+    <div class="summary">
+     <dl id="summary"></dl>
+     <div class="total"><span class="muted">Target price</span><strong>RM999</strong></div>
+     <p class="small muted" id="addonNote" style="margin-top:6px"></p>
+     <button class="btn btn-primary" type="button" id="copy">Copy my configuration</button>
+     <p class="small muted" style="margin-top:12px">Orders are not open yet. Your configuration is not sent anywhere; copy it and keep it for when NURI launches.</p>
+    </div>
+   </section>
+  </div>
+ </div>
+</main>
+
+<footer class="site-foot">
+ <div class="wrap foot-row"><div><b style="color:var(--ink)">Cipta Robo</b> · Made in Malaysia</div><div class="foot-links"><a href="./">NURI</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div></div>
+ <div class="wrap" style="margin-top:16px;font-size:12px">3D preview of the planned design, proportioned from M5Stack's published K151 structure files. Not affiliated with M5Stack.</div>
+</footer>
+<script type="module" src="assets/configure.js"></script>
+</body>
+</html>

@@ -1,63 +1,197 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d1b"><meta property="og:title" content="NURI by Cipta Robo | Your companion, your way"><meta property="og:description" content="Explore a modular AI companion concept imagined in Malaysia."><meta property="og:type" content="website"><meta name="description" content="Cipta Robo presents NURI, a modular AI companion concept. Personalize its personality, build and adventures."><link rel="icon" type="image/svg+xml" href="./favicon.svg"><link rel="shortcut icon" href="./favicon.svg"><title>NURI | Cipta Robo — Your world, a little closer</title>
-<style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#edf6ff;background:#080d1b;scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}.container{width:min(1160px,calc(100% - 44px));margin:auto}.topbar{background:#c6f6a9;color:#17311d;padding:9px 20px;text-align:center;font-size:12px;font-weight:750;letter-spacing:.02em}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{font-size:21px;font-weight:900;letter-spacing:-.07em}.logo span{color:#a8e9fd}.navlinks{display:flex;gap:30px;align-items:center;color:#bac7d8;font-size:14px}.navlinks a:hover{color:white}.pill{border-radius:100px;background:#c5f69b;padding:13px 22px;color:#182316;font-weight:800;border:0;display:inline-flex;align-items:center;justify-content:center;gap:7px}.pill:hover{filter:brightness(1.08)}.pill.ghost{background:transparent;border:1px solid #586378;color:#fff}.hero{min-height:660px;position:relative;isolation:isolate;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px;padding:70px 0 95px}.hero:before{content:"";position:absolute;inset:0 -20vw;z-index:-1;background:radial-gradient(ellipse at 72% 45%,#286e82 0%,#142c44 26%,transparent 58%),radial-gradient(ellipse at 20% 80%,#293557 0%,transparent 44%)}.eyebrow{color:#bee8a0;font-size:12px;letter-spacing:.18em;font-weight:800;text-transform:uppercase}.hero h1{font-size:clamp(55px,7.3vw,104px);letter-spacing:-.085em;line-height:.98;margin:20px 0 28px}.gradient{background:linear-gradient(120deg,#cbf6a5,#8fcffc);color:transparent;background-clip:text}.lead{color:#c3cfdf;font-size:18px;line-height:1.7;max-width:500px}.cta{display:flex;flex-wrap:wrap;gap:12px;margin:29px 0}.small{font-size:12px;color:#9dabbe}.robot-stage{height:490px;position:relative;display:flex;justify-content:center;align-items:center}.halo{position:absolute;width:420px;height:420px;border:1px solid #88beef36;border-radius:50%;box-shadow:0 0 90px #4bc2ca30}.halo:before,.halo:after{content:"";position:absolute;border:1px dashed #9bc8d655;border-radius:50%;inset:30px}.halo:after{inset:65px}.robot{position:relative;width:240px;height:285px;filter:drop-shadow(0 35px 24px #0008);animation:bob 4s ease-in-out infinite}.robot .head{height:207px;width:240px;border-radius:75px 75px 66px 66px;background:linear-gradient(130deg,#f9fcff,#b3d4df 75%,#7f9ead);padding:19px;box-shadow:inset -12px -12px 18px #516b823d,inset 6px 6px 10px #fff}.face{height:169px;border-radius:59px;background:linear-gradient(145deg,#111e37,#07101e);display:flex;justify-content:center;align-items:center;gap:27px;position:relative;overflow:hidden}.face:after{content:"";position:absolute;width:80%;height:20px;background:#6adcf54a;filter:blur(27px);bottom:-6px}.eye{width:27px;height:46px;border-radius:50%;background:#a9eeff;box-shadow:0 0 23px #76eaff}.mouth{position:absolute;border-bottom:5px solid #baf3fc;width:25px;height:12px;border-radius:50%;bottom:35px}.ear{position:absolute;width:27px;height:63px;border-radius:20px;background:#c1e5e8;top:75px;left:-16px}.ear.right{left:auto;right:-16px}.neck{height:21px;background:#a3cad2;width:78px;border-radius:0 0 20px 20px;margin:0 auto}.base{width:175px;height:55px;background:linear-gradient(135deg,#e7f5ee,#7d9eae);border-radius:27px 27px 38px 38px;margin:auto;box-shadow:inset 0 -11px #71919a}.ring{width:80px;height:7px;border-radius:20px;background:#a3f9d3;margin:12px auto}.stage-label{position:absolute;bottom:20px;color:#b4cad9;font-size:12px;letter-spacing:.2em}.float-chip{position:absolute;border:1px solid #b2d7e04b;background:#12243bc9;padding:12px 18px;border-radius:18px;font-size:13px;color:#d9ecff;backdrop-filter:blur(12px)}.float-chip.one{top:57px;right:-8px}.float-chip.two{bottom:100px;left:0}.section{padding:95px 0}.section.dark{background:#0c1527}.section h2{font-size:clamp(34px,4.5vw,58px);letter-spacing:-.06em;line-height:1.1;margin:14px 0 19px}.intro{font-size:16px;line-height:1.75;color:#aebdd0;max-width:720px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}.card{padding:27px;border:1px solid #324059;border-radius:22px;background:linear-gradient(145deg,#172238,#101a2d);min-height:190px}.card .symbol{font-size:29px}.card h3{margin:18px 0 9px}.card p{color:#afc0d1;line-height:1.65;font-size:14px}.modules{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.module{border-radius:22px;overflow:hidden;background:#172236;border:1px solid #34435a}.module .art{height:140px;display:grid;place-items:center;font-size:66px;background:radial-gradient(circle,#42657c,#19293d 70%)}.module .copy{padding:20px}.module h3{margin:0 0 8px}.module p{color:#b1bdce;font-size:13px;line-height:1.5;margin:0}.tag{font-size:10px;color:#c2f4aa;letter-spacing:.1em;margin-top:12px;display:block;font-weight:800}.builder{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:42px}.panel{background:#152136;border:1px solid #394b61;border-radius:25px;padding:30px}.field{margin-bottom:25px}.field label{display:block;font-size:13px;color:#c7d6e6;margin-bottom:10px;font-weight:700}.field input,.field select{width:100%;background:#0c1527;border:1px solid #4b5870;border-radius:13px;padding:13px 15px;color:white;outline-color:#a4e6b0}.choices{display:flex;gap:8px;flex-wrap:wrap}.choice{padding:10px 13px;background:#111b2c;color:#d7e3ee;border:1px solid #4c5b70;border-radius:12px;font-size:12px}.choice.active{border-color:#bdeea5;background:#34513e;color:#e8ffdf}.check{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #ffffff16;color:#d3e1ee;font-size:14px}.check input{accent-color:#bdeea5;width:18px;height:18px}.check .cost{margin-left:auto;color:#c6f4b1}.receipt{display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(circle at 80% 0%,#234d50 0,#142b38 34%,#132033 65%)}.receipt .preview{display:grid;place-items:center;min-height:200px}.mini-face{height:120px;width:146px;border:12px solid #e5f5ed;background:#0e1930;border-radius:44px;display:grid;place-items:center;font-size:46px;box-shadow:0 19px 30px #0007}.subtotal{border-top:1px solid #496174;padding-top:18px}.price{font-size:45px;letter-spacing:-.055em;font-weight:900;margin:5px 0}.receipt p{color:#afc1d0;line-height:1.6;font-size:13px}.receipt .pill{width:100%;margin-top:17px}.step{display:grid;grid-template-columns:65px 1fr;gap:15px;margin-top:24px}.step-num{border-radius:17px;border:1px solid #71828b;color:#c4f29f;display:grid;place-items:center;height:55px;font-size:22px;font-weight:800}.step h3{margin:0 0 8px}.step p{margin:0;color:#adbfd0;line-height:1.6}.faq{border-bottom:1px solid #3b4960;padding:20px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{color:#adbbcb;line-height:1.7}.footer{padding:45px 0;color:#aebdd1;border-top:1px solid #334158;display:flex;align-items:center;justify-content:space-between;gap:20px}.notice{color:#9eafc2;font-size:12px;line-height:1.6}.kicker{display:inline-flex;padding:7px 12px;border:1px solid #bdf5b455;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:.09em;color:#c9f6b2}.mobile-nav{display:none}@keyframes bob{50%{transform:translateY(-13px)}}@media(max-width:800px){.navlinks{display:none}.hero{grid-template-columns:1fr;min-height:auto;padding:48px 0}.hero h1{font-size:65px}.robot-stage{height:410px}.halo{width:330px;height:330px}.robot{transform:scale(.87);animation:none}.cards{grid-template-columns:1fr}.modules{grid-template-columns:repeat(2,1fr)}.builder{grid-template-columns:1fr}.section{padding:65px 0}.float-chip.one{right:0}.footer{flex-direction:column;align-items:flex-start}}@media(max-width:470px){.container{width:min(100% - 30px,1160px)}.hero h1{font-size:52px}.hero .lead{font-size:16px}.modules{grid-template-columns:1fr 1fr}.module .art{height:105px;font-size:46px}.module .copy{padding:13px}.module h3{font-size:14px}.module p{font-size:12px}.panel{padding:19px}.float-chip{font-size:11px}.robot-stage{height:390px}.pill{padding:12px 16px}} 
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NURI by Cipta Robo · A desktop AI companion</title>
+<meta name="description" content="NURI is a desktop AI companion built on the M5Stack StackChan K151, with a suit you choose, a charging dock and its name engraved. Target price RM999. In development.">
+<meta name="theme-color" content="#f4f3ef">
+<meta property="og:title" content="NURI by Cipta Robo">
+<meta property="og:description" content="One NURI. Endless possibilities. A desktop AI companion in development in Malaysia.">
+<meta property="og:image" content="https://ciptarobo.com/assets/img/og.png">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" id="top">
+ <div class="wrap head-row">
+  <a class="brand" href="./" aria-label="Cipta Robo home"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="19" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 12.2a1.8 1.8 0 0 1 3.4 0M13.1 12.2a1.8 1.8 0 0 1 3.4 0" fill="none" stroke="#1f7a62" stroke-width="1.8" stroke-linecap="round"/></svg>Cipta Robo</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Main">
+   <a href="#uses">What it does</a><a href="#make-it-yours">Make it yours</a><a href="#add-ons">Add-ons</a><a href="#hardware">Hardware</a><a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-primary btn-sm" href="configure.html">Configure</a>
+ </div>
+</header>
 
-/* UI/UX upgrade */
-:root{--accent:#c6f4a6}::selection{background:#b8ef9e;color:#102318}a,button,input,select{ -webkit-tap-highlight-color:transparent }a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #b9f7a6;outline-offset:4px}.topbar{letter-spacing:.075em}.nav{position:relative;z-index:5}.navlinks a{transition:color .2s}.pill,.choice,.card,.module{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}.pill:hover{transform:translateY(-2px)}.card:hover,.module:hover{transform:translateY(-4px);border-color:#88bcb1;box-shadow:0 18px 50px #0003}.feature-strip{border-block:1px solid #39475f;background:#121d30}.feature-strip-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:20px 0;flex-wrap:wrap}.feature-strip span{font-size:11px;color:#b6d6d3;font-weight:800;letter-spacing:.09em}.kicker{gap:8px}.live-dot{width:7px;height:7px;background:#baf5a3;border-radius:50%;box-shadow:0 0 12px #b8f3a2}.preview-caption{font-size:10px;color:#a8c3d3;letter-spacing:.13em;text-align:center;display:block}.menu-button{display:none;background:#1b293e;border:1px solid #506276;border-radius:12px;color:#e8f3ff;font-size:22px;padding:8px 13px}.mobile-menu[hidden]{display:none}.mobile-menu{background:#101e32;border:1px solid #35445d;border-radius:18px;margin:0 15px 12px;padding:8px 18px;position:relative;z-index:10}.mobile-menu a{display:block;padding:13px 8px;border-bottom:1px solid #ffffff18;font-size:14px}.mobile-menu a:last-child{border:0}.domain-note{color:#b3f1a3;text-decoration:underline;text-underline-offset:3px}.mini-face{transition:transform .2s}.mini-face:hover{transform:rotate(-4deg) scale(1.04)}@media(max-width:800px){.menu-button{display:block}.nav>.pill{margin-left:auto}.feature-strip-inner{justify-content:center;gap:12px 23px;text-align:center}.feature-strip span{font-size:10px}}@media(max-width:480px){.nav>.pill{font-size:11px;padding:10px 12px}.nav{gap:8px}.logo{font-size:19px}.menu-button{font-size:18px}.hero{padding-top:35px}.section h2{line-height:1.13}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-/* Industrial-design concept visuals: precise silhouettes rather than emoji */
-.card .symbol{display:inline-flex;width:60px;height:60px;align-items:center;justify-content:center;background:#20354a;border:1px solid #47667c;border-radius:17px;color:#a7e7eb}.card .symbol svg{width:39px;height:39px}.module .art{height:190px;color:#d9f0ee;position:relative;background:radial-gradient(circle at 50% 38%,#416879 0%,#22364b 53%,#111c2c 100%)}.module .art:after{content:"CONCEPT STUDY";position:absolute;bottom:13px;left:15px;font-size:9px;font-weight:800;color:#99baca;letter-spacing:.13em}.module .art svg{width:135px;height:135px;stroke-width:1.6;filter:drop-shadow(0 14px 14px #0510208c)}.robot-stage:after{content:"ILLUSTRATIVE FORM STUDY · NOT A PHYSICAL PROTOTYPE";position:absolute;bottom:-2px;font-size:10px;color:#afbfce;letter-spacing:.08em;text-align:center}.mini-face{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:linear-gradient(140deg,#152944,#061121);border:12px solid #e3eff1}.face-eyes{display:flex;gap:23px}.face-eyes i{display:block;width:15px;height:25px;background:#98e9fa;border-radius:50%;box-shadow:0 0 12px #62cbea}.face-mouth{height:9px;width:18px;border-bottom:3px solid #98e9fa;border-radius:50%}.mini-face[data-persona="Cheerful"] .face-mouth{width:27px;height:13px}.mini-face[data-persona="Calm"] .face-eyes i{height:8px;border-radius:8px}.mini-face[data-persona="Focused"] .face-eyes i{height:17px;width:12px}.menu-button{font-size:13px;font-weight:750}.robot .head{background:linear-gradient(130deg,#fff,#b7d0db 60%,#6f91a3);border:1px solid #e7f6fd;box-shadow:inset -12px -13px 20px #506b824d,inset 7px 7px 10px white,0 7px 24px #09111d77}.module:hover svg{transform:translateY(-4px)}.module svg{transition:transform .25s ease}@media(max-width:470px){.module .art{height:140px}.module .art svg{width:90px;height:90px}}
+<main id="main">
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <span class="status">NURI V1 · in development</span>
+   <h1>One NURI.<br>Endless possibilities.</h1>
+   <p class="lead">A small AI companion for your desk. It helps you learn, greets your customers, keeps your day on track and checks in on the people you care about. Built on the M5Stack StackChan K151, dressed in a suit you choose, with its name engraved on its dock.</p>
+   <div class="price-line"><strong>RM999</strong><span class="muted">target price · charging dock and engraving included</span></div>
+   <div class="cta-row"><a class="btn btn-primary" href="configure.html">Configure your NURI</a><a class="link-arrow" href="#uses">See what it can do</a></div>
+  </div>
+  <div class="stage" id="heroStage" aria-label="Interactive 3D model of NURI on its charging dock">
+   <div class="fallback"><img src="assets/img/hero.webp" alt="NURI in the Signature look on the Slim Dock, engraved NURI KRONT" width="900" height="900"></div>
+   <span class="stage-note">3D model · drag to turn</span>
+  </div>
+ </div>
+ <div class="wrap" style="margin-top:clamp(36px,5vw,56px)">
+  <div class="facts">
+   <div><span class="n">01</span><p><b>Real, proven hardware</b><span>The original M5Stack StackChan K151, with a camera, microphones, touch and two-axis movement.</span></p></div>
+   <div><span class="n">02</span><p><b>Charges while it works</b><span>Slide it onto its dock. The dock's USB-C plug feeds the K151's own charging port.</span></p></div>
+   <div><span class="n">03</span><p><b>Named by you</b><span>Every dock is engraved with NURI and your companion's name. Free.</span></p></div>
+  </div>
+ </div>
+</section>
 
-/* How NURI Works: three-layer architecture */
-.arch-section{background:linear-gradient(150deg,#0b1424,#13273b 58%,#0c1727);border-block:1px solid #ffffff13}
-.arch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px;align-items:stretch}
-.arch-card{position:relative;border:1px solid #55728a70;background:linear-gradient(160deg,#20354b,#101e2f);border-radius:22px;padding:28px 24px;min-height:275px}
-.arch-card.featured{border-color:#b4ecaa;background:linear-gradient(160deg,#243f3a,#122d2f);box-shadow:0 0 44px #9eeeaa12}
-.arch-tag{font-size:11px;font-weight:850;letter-spacing:.16em;color:#b5eec0;text-transform:uppercase}
-.arch-card h3{margin:20px 0 12px;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.045em}
-.arch-card p{color:#c1d0dd;font-size:14px;line-height:1.75;margin:0}
-.arch-mini{display:inline-flex;align-items:center;gap:8px;margin-top:21px;color:#a8dbef;font-size:12px;font-weight:750}
-.arch-card.featured .arch-mini{color:#c7f4ac}
-.arch-note{color:#9cb3c4;font-size:12px;line-height:1.75;margin-top:23px;max-width:900px}
-@media(min-width:961px){.arch-card:not(:last-child):after{content:"";position:absolute;right:-15px;top:50%;height:12px;width:12px;border-top:2px solid #b5eec0;border-right:2px solid #b5eec0;transform:rotate(45deg);z-index:2}}
-@media(max-width:960px){.arch-grid{grid-template-columns:1fr}.arch-card{min-height:0;padding:24px}.arch-card h3{margin-top:12px}}
+<section class="section" id="uses" style="padding-top:clamp(40px,6vw,72px)">
+ <div class="wrap">
+  <div class="section-head">
+   <div><span class="label">Discover what NURI can do</span><h2 style="margin-top:12px">Four ways to use one NURI.</h2></div>
+   <p class="lead">These are not four models or four plans. Every NURI shares the same hardware and software, so you can use it for all of them in the same day. Nothing to unlock.</p>
+  </div>
+  <div class="uses">
+   <article class="use"><span class="label">Learn</span><h3>A patient study partner</h3><q>Show me where I went wrong.</q><ul><li>Step-by-step hints, not just answers</li><li>Speaking practice in English, Japanese, Mandarin</li><li>Quizzes and study timers</li></ul><span class="status">Concept</span></article>
+   <article class="use"><span class="label">Reception</span><h3>A friendly face at the counter</h3><q>Welcome! Check our services or take a number?</q><ul><li>Answers FAQs you approve</li><li>Digital queue numbers</li><li>Calls a staff member when unsure</li></ul><span class="status">Concept</span></article>
+   <article class="use"><span class="label">Assist</span><h3>Your desk command centre</h3><q>What matters most today?</q><ul><li>Daily brief from apps you connect</li><li>Drafts and summaries on your laptop</li><li>Asks before it changes anything</li></ul><span class="status">Concept</span></article>
+   <article class="use"><span class="label">Companion</span><h3>A little presence, every day</h3><q>Good morning. Shall we call your daughter?</q><ul><li>Conversation, reminders and check-ins</li><li>Simple family contact</li><li>A manual help button, not a medical device</li></ul><span class="status">Concept</span></article>
+  </div>
+  <div class="day" aria-label="An example day with one NURI">
+   <div><time>08:00</time>Language practice before school</div>
+   <div><time>12:30</time>Answers customer questions at the shop</div>
+   <div><time>16:00</time>Prepares tomorrow's business brief</div>
+   <div><time>21:00</time>Evening check-in and a reminder</div>
+  </div>
+  <p class="note">All four uses are being developed in stages. Each is marked as Concept until it has been built and tested, and only tested features will be offered.</p>
+ </div>
+</section>
 
-/* NURI V1 hero look: matches Signature Suit concept */
-.robot{width:250px;height:300px}
-.robot .head{width:250px;height:214px;border-radius:64px;padding:22px 26px;background:linear-gradient(140deg,#ffffff,#dfecec 55%,#a9c2c8);border:1px solid #f1fbfb}
-.robot .face{height:170px;border-radius:34px;border:7px solid #8ce3c7;box-shadow:0 0 0 1px #6fcfb2,inset 0 0 30px #000;gap:34px}
-.robot .eye{width:38px;height:38px;background:none;border-radius:50%;border:8px solid #8ff1ff;border-bottom-color:transparent;border-left-color:transparent;transform:rotate(-45deg) translateY(8px);box-shadow:none;filter:drop-shadow(0 0 8px #5fe6ff)}
-.robot .mouth{display:none}
-.robot .ear{width:24px;height:86px;border-radius:14px;background:linear-gradient(180deg,#a6f0d8,#7fd8bd);top:64px;left:-14px;box-shadow:inset -3px -4px 6px #4fae9455}
-.robot .ear.right{left:auto;right:-14px}
-.robot .neck{height:34px;width:70px;border-radius:0 0 14px 14px;background:linear-gradient(90deg,#8fa3ad,#c8d6dc,#8fa3ad)}
-.robot .base{width:190px;height:52px;border-radius:26px 26px 34px 34px;background:linear-gradient(135deg,#ffffff,#cfdfe2 60%,#9db6bd);box-shadow:inset 0 -9px #8ce3c7,0 10px 30px #6ff0ff40}
-.robot .ring{width:120px;height:5px;background:#8ff1ff;box-shadow:0 0 14px #6ff0ff}
-</style></head><body>
-<div class="topbar">CONCEPT SHOWCASE • NURI is an R&D vision, not available for purchase</div>
-<header class="container nav" id="top"><a href="#top" class="logo" aria-label="Cipta Robo home">cipta<span>.</span> <small style="font-size:11px;letter-spacing:.12em;color:#b5c2d0">ROBO</small></a><nav class="navlinks" aria-label="Main navigation"><a href="#story">Our vision</a><a href="ai-companion.html">AI Companion Project</a><a href="#technology">Technology</a><a href="#modules">Future R&amp;D</a><a href="nuri-studio.html">Build your NURI</a><a href="#faq">FAQ</a></nav><button class="menu-button" type="button" id="menuToggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation">Menu</button><a class="pill" href="nuri-studio.html">Explore NURI</a></header><nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" hidden><a href="#story">Our vision</a><a href="ai-companion.html">AI Companion Project</a><a href="#technology">Technology</a><a href="#modules">Future R&amp;D</a><a href="nuri-studio.html">Build your NURI</a><a href="#faq">Questions</a></nav>
-<main><section class="container hero"><div><span class="kicker"><span class="live-dot"></span> YOUR WORLD, YOUR COMPANION</span><h1>One companion.<br><span class="gradient">A thousand looks.</span></h1><p class="lead">Meet <strong>NURI</strong>, a little companion with a big world to explore. Start with our planned RM899 NURI Base and make it yours: customize headwear, facewear, sidewear, outfits and basewear, all through the new NURI Identity Studio.</p><div class="cta"><a class="pill" href="nuri-studio.html">Create your NURI</a><a href="ai-companion.html" class="pill ghost">Explore AI Companion Project</a></div><p class="small">NURI Base concept from RM899 · Interactive 3D preview · No orders or deposits.</p></div><div class="robot-stage" aria-label="Stylized illustration of NURI"><div class="halo"></div><div class="robot"><div class="ear"></div><div class="ear right"></div><div class="head"><div class="face"><div class="eye"></div><div class="eye"></div><div class="mouth"></div></div></div><div class="neck"></div><div class="base"><div class="ring"></div></div></div><span class="float-chip one">FIVE WARDROBE ZONES</span><span class="float-chip two">DESIGNED FOR YOUR STYLE</span><span class="stage-label">NURI / DESIGN STUDY 01</span></div></section><div class="feature-strip"><div class="container feature-strip-inner"><span>APPEARANCE FIRST</span><span>MODULAR BY DESIGN</span><span>IMAGINED IN MALAYSIA</span><span>MADE TO CONNECT</span></div></div>
-<section id="studio" class="section dark"><div class="container"><span class="eyebrow">NURI Identity Studio · Appearance first</span><h2>Build your NURI. Make it yours.</h2><p class="intro">Start with the proposed <strong>RM899 NURI Base</strong> including the original K151 robot and NURI Signature Suit. Pick from five modular wardrobe zones: headwear, facewear, sidewear, outfit and basewear, with ten styles per category and multiple colors. Explore the interactive 3D preview, then copy your design. No checkout or deposits yet.</p><div class="cards"><article class="card"><h3>01 / Your look</h3><p>Human-style and futuristic options: hats, headphone-style accents, collars, face frames and base cuffs. Standard wardrobe choices are included in the proposed base price.</p></article><article class="card"><h3>02 / Your identity</h3><p>Revisit the NURI Wardrobe to explore future collections, with optional removable nameplate personalization.</p></article><article class="card"><h3>03 / Motion-safe preview</h3><p>Rotate a 3D model proportioned from M5Stack's K151 structure files, run the real pan and tilt range, and see every piece checked against the touch zones, display and servo clearance. Physical fit is still to be validated on a real unit.</p></article></div><div class="cta" style="margin-top:28px"><a class="pill" href="nuri-studio.html">Open 3D NURI Studio · RM899</a><a class="pill ghost" href="ai-companion.html">View the R&amp;D Project</a></div><p class="notice">Target price, conceptual model and planned product. Orders are not open. AI memory, autonomous features and mobile hardware modules are future engineering work.</p></div></section>
-<section id="story" class="section"><div class="container"><span class="eyebrow">A companion, not a one-size-fits-all gadget</span><h2>It's your NURI.<br>Make it yours.</h2><p class="intro">A friendly desk buddy, a study partner, a playful toy, or your personal productivity co-pilot. Choose a name, a way of speaking and the experiences you care about. Every NURI starts with the same promise: technology built around a human, not the other way around.</p><div class="cards"><article class="card"><span class="symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="40" cy="40" r="22"/><path d="M30 37h1m18 0h1M30 49q10 9 20 0"/></svg></span><h3>Personality DNA</h3><p>Pick its voice, name, tone, expressions and interests. Save preferences with clear memory controls.</p></article><article class="card"><span class="symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="17" y="18" width="46" height="44" rx="12"/><path d="M27 29h26M27 40h16M27 51h23"/></svg></span><h3>Skills that fit you</h3><p>From conversations and language practice to learning and productivity. Children’s experiences would require separate safety controls.</p></article><article class="card"><span class="symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="15" y="22" width="21" height="36" rx="8"/><rect x="44" y="22" width="21" height="36" rx="8"/><path d="M36 40h8"/></svg></span><h3>One identity, many places</h3><p>Move your companion between compatible docks and vehicles without losing its chosen identity.</p></article></div></div></section>
+<hr class="rule wrap">
 
-<section id="technology" class="section arch-section" aria-labelledby="arch-heading"><div class="container">
-<span class="eyebrow">The technology behind the companion</span>
-<h2 id="arch-heading">Three layers. One NURI.</h2>
-<p class="intro">We don't have to manufacture every component to create a meaningful companion. Our vision combines existing AI models, a proprietary companion software layer in development, and adaptable physical hardware.</p>
-<div class="arch-grid">
-<article class="arch-card"><span class="arch-tag">01 / Intelligence source</span><h3>AI Brain</h3><p>Established AI models, potentially from providers such as OpenAI or Anthropic, power reasoning, language understanding and conversation. Model providers and integrations are subject to compatibility, pricing and terms.</p><span class="arch-mini">Existing AI technology</span></article>
-<article class="arch-card featured"><span class="arch-tag">02 / Cipta Robo's focus</span><h3>NURI Intelligence Layer</h3><p>Our planned companion software coordinates user-approved memory, personality, speech, proactive reminders, safe tool actions and hardware responses, helping each NURI adapt to its owner over time.</p><span class="arch-mini">Our long-term software R&amp;D</span></article>
-<article class="arch-card"><span class="arch-tag">03 / Physical experience</span><h3>Physical Robot</h3><p>NURI V1 is planned around the original M5Stack StackChan K151 desktop robot, dressed in Cipta Robo's snap-on Signature Suit and five-zone wardrobe. Future accessories may extend how it moves and connects.</p><span class="arch-mini">Existing platform + custom design</span></article>
-</div>
-<p class="arch-note">NURI remains an early-stage research and design concept. The intelligence layer, memory, proactive functions and integrations described here are goals, not currently shipped capabilities. Commercial customization and resale are subject to applicable licenses, supplier terms and testing. Any future memory features should be opt-in and user-controllable.</p>
-</div></section>
-<section id="modules" class="section"><div class="container"><span class="eyebrow">Beyond the desk · Future R&amp;D</span><h2>Where NURI could go next.</h2><p class="intro">NURI stays NURI. Its surroundings could change. These hardware ideas are separate long-term research, not part of the planned RM899 NURI Base.</p><div class="modules"><article class="module"><div class="art art-desk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 50h48M24 51v9m32-9v9"/><rect x="23" y="17" width="34" height="30" rx="11"/><rect x="29" y="23" width="22" height="16" rx="7"/><path d="M35 31h1m9 0h1"/></svg></div><div class="copy"><h3>Desk dock</h3><p>Your everyday home base for conversation and charging.</p><span class="tag">CORE CONCEPT</span></div></article><article class="module"><div class="art art-shoulder"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 60q8-20 29-20t29 20"/><rect x="25" y="10" width="30" height="28" rx="10"/><path d="M32 23h2m12 0h2M29 40v12m22-12v12"/></svg></div><div class="copy"><h3>Shoulder dock</h3><p>A secure, wearable perch for hands-free conversations.</p><span class="tag">DESIGN EXPLORATION</span></div></article><article class="module"><div class="art art-roller"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 50h48"/><rect x="22" y="12" width="36" height="30" rx="12"/><path d="M31 25h2m14 0h2"/><rect x="19" y="41" width="42" height="11" rx="5"/><circle cx="29" cy="57" r="6"/><circle cx="51" cy="57" r="6"/></svg></div><div class="copy"><h3>Roller base</h3><p>Optional mobility on suitable indoor surfaces.</p><span class="tag">FUTURE MODULE</span></div></article><article class="module"><div class="art art-flight"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="28" y="24" width="24" height="24" rx="8"/><path d="M40 20v-7M28 30 16 22m36 8 12-8M28 42 16 50m36-8 12 8"/><circle cx="14" cy="20" r="9"/><circle cx="66" cy="20" r="9"/><circle cx="14" cy="53" r="9"/><circle cx="66" cy="53" r="9"/></svg></div><div class="copy"><h3>Flight vehicle</h3><p>A dedicated drone vehicle that carries NURI, rather than turning it into a drone.</p><span class="tag">ADVANCED R&D ONLY</span></div></article></div><p class="notice" style="margin-top:20px">Walking/gesture modules and a universal mechanical docking interface are also being explored. Flight and autonomous following would require substantial safety validation and regulatory compliance.</p></div></section>
-<section class="section"><div class="container"><span class="eyebrow">The journey</span><h2>Dream big.<br>Prototype small.</h2><div class="step"><div class="step-num">A</div><div><h3>Signature look, now</h3><p>Fit the NURI Signature Suit and wardrobe on a real K151, keep every sensor, vent, port and pan/tilt movement clear, and prototype the Signature, Gamer and Futuristic looks.</p></div></div><div class="step"><div class="step-num">B</div><div><h3>Ready to use</h3><p>Design the unboxing, first-time setup, onboarding and after-sales support so a new owner can start in minutes.</p></div></div><div class="step"><div class="step-num">C</div><div><h3>NURI Intelligence Layer</h3><p>Develop opt-in memory, voice and user-approved integrations. This is long-term software R&amp;D, not a promised RM899 feature.</p></div></div><div class="step"><div class="step-num">✓</div><div><h3>Earn a place in the world</h3><p>Confirm the real bill of materials, supplier and rights-holder terms, warranty and certification before any order is accepted.</p></div></div></div></section>
-<section id="faq" class="section dark"><div class="container"><span class="eyebrow">The honest details</span><h2>Questions, answered.</h2><details class="faq"><summary>Can I buy NURI now?</summary><p>No. NURI is an early product concept, not a launched product. There is no checkout, waitlist, reservation or payment collection here.</p></details><details class="faq"><summary>Is RM899 the final price?</summary><p>No. RM899 is the planned target price for NURI Base, not a binding offer. It depends on verified component costs, supplier terms, testing and certification. The optional nameplate (+RM25) is also indicative.</p></details><details class="faq"><summary>What is NURI built on?</summary><p>NURI V1 is planned to build on the original M5Stack StackChan K151 robot, with Cipta Robo's own snap-on Signature Suit and wardrobe. Cipta Robo does not manufacture the K151 itself, and reseller, branding and warranty arrangements are still being confirmed with the supplier.</p></details><details class="faq"><summary>Will the drone follow me automatically?</summary><p>It's a future research scenario, not a promised feature. A drone carrier would need reliable tracking, collision protection, legal approval where relevant and rigorous safety testing.</p></details><details class="faq"><summary>Can NURI be a companion for children?</summary><p>Education and creative play are potential uses. Any child-focused product would need appropriate parental oversight, privacy safeguards and age-specific safety design before release.</p></details><details class="faq"><summary>Is Cipta Robo the registered company and NURI the final trademark?</summary><p>Both names are provisional concept branding. Legal entity, domain, trademark and IP clearance have not been confirmed.</p></details></div></section></main>
-<footer class="container footer"><div><div class="logo">cipta<span>.</span> ROBO</div><p class="small">Imagine. Create. Connect. <br>Independent future robotics venture concept from Malaysia.</p></div><div class="notice">© <span id="year"></span> Cipta Robo concept showcase. <a href="https://ciptarobo.com" class="domain-note" title="Brand domain, subject to DNS setup">ciptarobo.com</a><br>Not affiliated with BinaLab. Not a live commercial offering.</div></footer>
-<script>
-const menuButton=document.getElementById('menuToggle');
-const menu=document.getElementById('mobileMenu');
-if(menuButton&&menu){menuButton.addEventListener('click',()=>{const opening=menu.hasAttribute('hidden');if(opening)menu.removeAttribute('hidden');else menu.setAttribute('hidden','');menuButton.setAttribute('aria-expanded',String(opening));menuButton.setAttribute('aria-label',opening?'Close navigation':'Open navigation')});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.setAttribute('hidden','');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation')}))}
-const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear();
-</script></body></html>
+<section class="section" id="make-it-yours">
+ <div class="wrap">
+  <div class="section-head">
+   <div><span class="label">Make it yours</span><h2 style="margin-top:12px">Three looks. Three colours. Three docks.</h2></div>
+   <p class="lead">A short list on purpose. Every part clips onto the K151's existing mounting holes, leaves the sensors, ports and vents open, and has been checked against the robot's full range of movement.</p>
+  </div>
+  <div class="subhead"><h3>Looks</h3><span class="muted small">Snap-on suit · no tools, no glue</span></div>
+  <div class="cards">
+   <article class="card"><figure><img src="assets/img/look-signature.webp" alt="NURI in the Signature look" width="800" height="800" loading="lazy"></figure><div class="body"><h3>Signature</h3><p>Slim face frame and soft side panels. The everyday NURI.</p></div></article>
+   <article class="card"><figure><img src="assets/img/look-focus.webp" alt="NURI in the Focus look with headphone-style side cups" width="800" height="800" loading="lazy"></figure><div class="body"><h3>Focus</h3><p>Headphone-style side cups with a high, open band. Made for study and work.</p></div></article>
+   <article class="card"><figure><img src="assets/img/look-buddy.webp" alt="NURI in the Buddy look with small side ears" width="800" height="800" loading="lazy"></figure><div class="body"><h3>Buddy</h3><p>Rounded frame and small side ears. Friendly at home and at the counter.</p></div></article>
+  </div>
+  <div class="subhead"><h3>Colours</h3><span class="muted small">The K151 stays white; the suit carries the colour</span></div>
+  <div class="swatches">
+   <span class="swatch"><i style="background:linear-gradient(135deg,#eef1f0 50%,#4fbf9f 50%)"></i>Pearl</span>
+   <span class="swatch"><i style="background:linear-gradient(135deg,#3b4149 50%,#86d9c1 50%)"></i>Graphite</span>
+   <span class="swatch"><i style="background:linear-gradient(135deg,#f6e6de 50%,#e9785a 50%)"></i>Coral</span>
+  </div>
+  <div class="subhead"><h3>Charging docks</h3><span class="muted small">Included · engraved NURI + name</span></div>
+  <div class="cards">
+   <article class="card"><figure><img src="assets/img/dock-slim.webp" alt="Slim Dock engraved NURI KRONT" width="800" height="800" loading="lazy"></figure><div class="body"><h3>Slim Dock</h3><p>Low tray that disappears on a desk. Slide NURI in to charge.</p></div></article>
+   <article class="card"><figure><img src="assets/img/dock-plinth.webp" alt="Plinth Dock engraved NURI REKA" width="800" height="800" loading="lazy"></figure><div class="body"><h3>Plinth Dock</h3><p>Raised 30 mm stand that lifts NURI closer to eye level.</p></div></article>
+   <article class="card"><figure><img src="assets/img/dock-desk.webp" alt="Desk Dock with an angled device slot" width="800" height="800" loading="lazy"></figure><div class="body"><h3>Desk Dock</h3><p>Dock plus an angled slot that holds your phone or tablet as NURI's screen.</p></div></article>
+  </div>
+  <div class="cta-row" style="margin-top:32px"><a class="btn btn-primary" href="configure.html">Build yours in 3D</a></div>
+ </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+ <div class="wrap box">
+  <div>
+   <span class="label">What RM999 includes</span>
+   <h2 style="margin:12px 0 28px">Everything you need on day one.</h2>
+   <ul class="box-list">
+    <li><span>M5Stack StackChan K151 robot</span><span>Original hardware</span></li>
+    <li><span>NURI Suit in your look and colour</span><span>3 looks · 3 colours</span></li>
+    <li><span>Charging dock</span><span>3 designs</span></li>
+    <li><span>Engraved nameplate: NURI + your companion's name</span><span>Free</span></li>
+    <li><span>USB-C cable and quick start guide</span><span></span></li>
+   </ul>
+   <div class="box-total"><span class="muted">Target price</span><strong>RM999</strong></div>
+   <p class="note">Orders are not open yet. Cloud AI services may carry a separate cost; how that works will be confirmed before launch.</p>
+  </div>
+  <figure style="margin:0"><img src="assets/img/inbox.webp" alt="NURI with the Signature look on its Slim Dock, engraved NURI REKA" width="900" height="900" loading="lazy"></figure>
+ </div>
+</section>
+
+<section class="section dark" id="add-ons">
+ <div class="wrap">
+  <div class="section-head">
+   <div><span class="label">Optional add-ons</span><h2 style="margin-top:12px">Take NURI further.</h2></div>
+   <p class="lead">Two accessories in development. Neither is needed to use NURI. Prices will be announced once they have been prototyped.</p>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Add-ons">
+   <button role="tab" id="tab-rover" aria-selected="true" aria-controls="panel-addon">NURI Rover</button>
+   <button role="tab" id="tab-board" aria-selected="false" aria-controls="panel-addon">NURI Board</button>
+  </div>
+  <div class="addon" id="panel-addon" role="tabpanel" aria-labelledby="tab-rover">
+   <div class="addon-stage" id="addonStage"><span class="stage-note" id="addonNote">Animated 3D model · drag to turn</span></div>
+   <div id="addonText"></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="hardware">
+ <div class="wrap">
+  <div class="section-head">
+   <div><span class="label">Designed around the real robot</span><h2 style="margin-top:12px">Measured, not imagined.</h2></div>
+   <p class="lead">Every suit part and dock is modelled on M5Stack's published K151 structure files, then checked against the robot's touch zones, display, ports, vents and full movement.</p>
+  </div>
+  <div class="specs">
+   <dl>
+    <dt>Robot</dt><dd>M5Stack StackChan K151 (CoreS3, ESP32-S3)</dd>
+    <dt>Size</dt><dd>54 × 61.5 × 70.5 mm (W × D × H)</dd>
+    <dt>Movement</dt><dd>Turns ±130°, looks 6° down to 74° up</dd>
+    <dt>Display</dt><dd>2.0" touch screen, front camera</dd>
+    <dt>Charging</dt><dd>USB-C on the base, through the dock</dd>
+   </dl>
+   <dl>
+    <dt>Suit mounting</dt><dd>Three existing side holes per side, 8 mm apart</dd>
+    <dt>Kept open</dt><dd>Top touch zones, LED bars, screen, camera, side USB-C and power button</dd>
+    <dt>Ventilation</dt><dd>Docks lift the base on ribs (2 mm air gap) and have side vents</dd>
+    <dt>Materials</dt><dd>3D-printed PETG suit and docks (planned)</dd>
+    <dt>Status</dt><dd>Pre-production. Physical fit testing next.</dd>
+   </dl>
+  </div>
+  <p class="note">Measurements come from M5Stack's published K151 structure files. The tilt pivot is estimated until it is measured on a physical unit. <a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Read the design rules</a>.</p>
+ </div>
+</section>
+
+<hr class="rule wrap">
+
+<section class="section" id="faq">
+ <div class="wrap">
+  <div class="section-head"><div><span class="label">Questions</span><h2 style="margin-top:12px">Straight answers.</h2></div></div>
+  <div class="faq">
+   <details><summary>Can I order NURI now?</summary><p>Not yet. NURI is in development. The first units will be a small batch after the suit and docks have been fit-tested on real K151 robots. RM999 is the target price.</p></details>
+   <details><summary>What do Learn, Reception, Assist and Companion mean?</summary><p>They are four ways to use the same NURI, not four products. Every NURI gets the same features as they are released. You never pay to unlock a use.</p></details>
+   <details><summary>Can NURI charge while it is working?</summary><p>Yes. The K151 charges through the USB-C port on its base. Each dock has a fixed USB-C plug that lines up with that port, so NURI can keep running on your desk while it charges.</p></details>
+   <details><summary>Does the suit block anything?</summary><p>No. Suit parts mount on the K151's existing side holes. They leave the top touch zones, LED light bars, screen, camera, side USB-C port and power button open, and they clear the base through the robot's full range of movement.</p></details>
+   <details><summary>Will I need a subscription?</summary><p>NURI's voice and AI features use cloud services that cost money to run. Whether that is included, a small subscription or bring-your-own key will be decided and stated clearly before any sale.</p></details>
+   <details><summary>Is NURI suitable for children or older people?</summary><p>Both are in mind, with extra care. Child use will need guardian controls and strict privacy. The Companion help button is a convenience, not a medical or emergency device.</p></details>
+   <details><summary>Is Cipta Robo part of M5Stack?</summary><p>No. Cipta Robo is an independent Malaysian studio. NURI is built on the M5Stack StackChan K151; reseller and branding terms are being confirmed with the supplier.</p></details>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="site-foot">
+ <div class="wrap foot-row">
+  <div><b style="color:var(--ink)">Cipta Robo</b> · Made in Malaysia · ciptarobo.com</div>
+  <div class="foot-links"><a href="configure.html">Configure</a><a href="#add-ons">Add-ons</a><a href="https://github.com/danialrohaizat012-sys/aicompanion/blob/main/docs/k151-design-rules.md">Design rules</a></div>
+ </div>
+ <div class="wrap" style="margin-top:16px;font-size:12px">NURI is in development and not yet for sale. Images are 3D renders of the planned design. Cipta Robo is not affiliated with M5Stack.</div>
+</footer>
+
+<script type="module" src="assets/home.js"></script>
+</body>
+</html>
