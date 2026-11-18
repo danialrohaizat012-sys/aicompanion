@@ -1,4 +1,4 @@
-# Cipta Robotics · NURI concept website
+# Cipta Robo · NURI concept website
 
 Interactive, mobile-friendly concept storefront for **NURI**, a modular AI companion imagined in Malaysia.
 
@@ -6,7 +6,7 @@ Interactive, mobile-friendly concept storefront for **NURI**, a modular AI compa
 
 ## Features
 
-- Responsive premium landing page for Cipta Robotics / NURI
+- Responsive premium landing page for Cipta Robo / NURI
 - Personality customization: Curious, Cheerful, Calm and Focused
 - Editable companion name and use-case selector
 - Optional accessory selections: shoulder dock, roller base, walking kit and drone vehicle
