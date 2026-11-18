@@ -6,9 +6,9 @@
  */
 import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/RoundedBoxGeometry.js';
-import * as N from './nuri3d.js';
-import {VOICE as VOICES, VOICE_FPS} from './scene-voice.js';
-import {T, LANG, asset} from './i18n.js';
+import * as N from './nuri3d.js?v=a05019bc';
+import {VOICE as VOICES, VOICE_FPS} from './scene-voice.js?v=a05019bc';
+import {T, LANG, asset} from './i18n.js?v=a05019bc';
 const VOICE = VOICES[LANG];
 
 const PI = Math.PI, D2R = PI / 180, mm = v => v * N.MM;

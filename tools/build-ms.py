@@ -180,12 +180,12 @@ INDEX = [
      '<span class="stage-note" id="addonNote">Model 3D beranimasi · seret untuk pusingkan</span>'),
     ('<span class="label">Accessories</span><h2 style="margin-top:12px">Take NURI with you.</h2>',
      '<span class="label">Aksesori</span><h2 style="margin-top:12px">Bawa NURI ke mana-mana.</h2>'),
-    ('<p class="lead">Two wearable carriers in development, so you can talk to NURI while you walk. Both hold NURI by its base in a locking cradle, keep it charged from a small battery and leave its head free to turn to you.</p>',
-     '<p class="lead">Dua aksesori boleh pakai yang sedang dibangunkan, supaya anda boleh berbual dengan NURI sambil berjalan. Kedua-duanya pegang NURI pada tapak dalam cradle berkunci, cas guna bateri kecil, dan biar kepalanya bebas berpaling ke arah anda.</p>'),
+    ('<p class="lead">One cradle, two ways to wear it. NURI rides in the Go Cradle, which holds it by the base, keeps it charged from its own battery and slides onto either mount with one click. Both mounts fit the backpack you already have.</p>',
+     '<p class="lead">Satu cradle, dua cara pakai. NURI duduk dalam Go Cradle yang memegang tapaknya, mengecas dari bateri sendiri dan boleh disorong ke mana-mana mount dengan satu klik. Kedua-dua mount boleh dipasang pada beg sandang yang anda dah ada.</p>'),
     ('<div class="tabs" role="tablist" aria-label="Accessories">',
      '<div class="tabs" role="tablist" aria-label="Aksesori">'),
-    ('<span class="stage-note" id="accNote">Animated 3D model · drag to turn</span>',
-     '<span class="stage-note" id="accNote">Model 3D beranimasi · seret untuk pusingkan</span>'),
+    ('<button type="button" class="stage-btn" id="accExplode" aria-pressed="false">See the parts</button><span class="stage-note" id="accNote">Animated 3D model · drag to turn</span>',
+     '<button type="button" class="stage-btn" id="accExplode" aria-pressed="false">Lihat komponen</button><span class="stage-note" id="accNote">Model 3D beranimasi · seret untuk pusingkan</span>'),
     ('<p class="note">Out and about, NURI connects through your phone\'s hotspot. Not for use while driving or cycling. Fit, weight, battery life and safety will be tested before any sale.</p>',
      '<p class="note">Di luar rumah, NURI bersambung melalui hotspot telefon. Jangan guna semasa memandu atau berbasikal. Kesesuaian, berat, hayat bateri dan keselamatan akan diuji dulu sebelum dijual.</p>'),
     ('<span class="label">Designed around the real robot</span><h2 style="margin-top:12px">Measured, not imagined.</h2>',
@@ -364,6 +364,7 @@ def localise(html, page, pairs):
     return html
 
 
+import runpy; runpy.run_path(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stamp-version.py'))
 os.makedirs(os.path.join(ROOT, 'ms'), exist_ok=True)
 for page, pairs in (('index.html', INDEX), ('configure.html', CONFIGURE)):
     src = open(os.path.join(ROOT, page), encoding='utf-8').read()

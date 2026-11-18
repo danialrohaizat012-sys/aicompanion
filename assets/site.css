@@ -290,3 +290,5 @@ section{scroll-margin-top:72px}
 .acc .addon-stage{background:radial-gradient(110% 90% at 50% 30%,#ffffff 0,#eeede8 60%,#e4e2dc 100%);border-color:var(--line)}
 .acc .addon-stage .stage-note{color:var(--muted)}
 .acc .spec{border-color:var(--line)}.acc .spec li{border-color:var(--line)}.acc .spec li span:first-child{color:var(--muted)}
+.stage-btn{position:absolute;right:14px;top:12px;z-index:2;background:#fffffff0;color:var(--ink);border:1px solid var(--line-2);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer}.stage-btn[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.acc .addon-stage{background:radial-gradient(110% 90% at 50% 25%,#fbfaf7 0,#e9e6df 55%,#d8d4cb 100%)}

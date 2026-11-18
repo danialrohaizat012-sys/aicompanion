@@ -1,6 +1,6 @@
-import * as N from './nuri3d.js';
-import {createPlayer} from './scenes.js';
-import {T} from './i18n.js';
+import * as N from './nuri3d.js?v=a05019bc';
+import {createPlayer} from './scenes.js?v=a05019bc';
+import {T} from './i18n.js?v=a05019bc';
 
 /* header: border on scroll, mobile menu */
 const head = document.querySelector('.site-head');
@@ -139,52 +139,53 @@ show('rover');
   snd.addEventListener('click', () => { if (!player) return; player.setSound(!player.sound); sync(); });
 })();
 
-/* Accessories: Strap Clip and Shoulder Perch, created when the section comes near the screen */
+/* Accessories: one Go Cradle, two mounts (Strap Clip, Shoulder Perch), shown on a dress form wearing a backpack */
 (() => {
   const stageEl = document.getElementById('accStage'); if (!stageEl) return;
   const ACC = {
     strap: {
       title: 'NURI Strap Clip',
-      text: T('Clip NURI to the shoulder strap of your bag and talk on the move. A locking cradle holds NURI by its base, a battery in the cradle keeps it charged through the same USB-C port as the dock, and NURI can turn round to face you when you speak.',
-        'Klip NURI pada tali beg sandang, dan berbuallah sambil berjalan. Cradle berkunci pegang NURI pada tapaknya, bateri dalam cradle cas NURI melalui port USB-C yang sama macam dock, dan NURI boleh berpaling menghadap anda bila anda bercakap.'),
-      spec: T([['Fits', 'Padded bag straps up to 60 mm wide and 15 mm thick'], ['Holds', 'Locking cradle with a front tab; quick-release button'], ['Power', 'Battery in the cradle, charges NURI through its base (planned)'], ['Travel mode', 'Gentle movement while you walk; turns to you when you talk'], ['Safety', 'Tether loop; strap sits 50 mm behind the head, outside its turning circle']],
-        [['Sesuai', 'Tali beg berpad, lebar sampai 60 mm dan tebal 15 mm'], ['Pegangan', 'Cradle berkunci dengan tab depan; butang lepas pantas'], ['Kuasa', 'Bateri dalam cradle, cas NURI melalui tapaknya (dirancang)'], ['Mod jalan', 'Bergerak perlahan masa berjalan; berpaling ke arah anda bila bercakap'], ['Keselamatan', 'Ada gelung tali keselamatan; tali beg 50 mm di belakang kepala, jauh dari laluan pusingannya']])
+      text: T('A camera-style clip for the shoulder strap of your backpack. Two plates clamp the strap with two thumbscrews, a hinged shelf keeps NURI level whatever the strap angle, and NURI rides in the Go Cradle, which slides on and locks with one click.',
+        'Klip gaya klip kamera untuk tali beg sandang anda. Dua plat mengapit tali dengan dua skru tombol, rak berengsel pastikan NURI sentiasa rata walaupun tali senget, dan NURI duduk dalam Go Cradle yang disorong masuk dan berkunci dengan satu klik.'),
+      spec: T([['Fits', 'Backpack straps up to 70 mm wide and 18 mm thick'], ['Grip', 'Two plates and two stainless thumbscrews; no tools'], ['Level', 'Hinged shelf with detents follows the strap angle'], ['Go Cradle', 'Spring latches over the base edge, 2,000 mAh battery, USB-C input, charge lights'], ['Clearance', 'NURI\'s turning circle stays 11 mm in front of the strap, so it can turn round to face you'], ['Build', 'PETG/ASA prints for the prototype, PC-ABS moulding later; target under 120 g with battery (planned)']],
+        [['Sesuai', 'Tali beg sampai 70 mm lebar dan 18 mm tebal'], ['Cengkaman', 'Dua plat dan dua skru tombol keluli tahan karat; tak perlu alat'], ['Rata', 'Rak berengsel dengan detent, ikut sudut tali'], ['Go Cradle', 'Latch spring atas tepi tapak, bateri 2,000 mAh, input USB-C, lampu cas'], ['Ruang', 'Laluan pusingan kepala NURI kekal 11 mm di depan tali, jadi ia boleh berpaling menghadap anda'], ['Pembuatan', 'Cetakan PETG/ASA untuk prototaip, acuan PC-ABS kemudian; sasaran bawah 120 g termasuk bateri (dirancang)']])
     },
     perch: {
       title: 'NURI Shoulder Perch',
-      text: T('NURI rides on your shoulder, close to your ear. A padded saddle sits on the shoulder and two soft straps loop under the arm, so NURI stays level while you walk and can turn to talk to you face to face.',
-        'NURI duduk atas bahu, dekat dengan telinga anda. Pelapik berpad duduk atas bahu dan dua tali lembut lilit bawah lengan, jadi NURI kekal stabil masa berjalan dan boleh berpaling untuk sembang bersemuka.'),
-      spec: T([['Wear', 'Padded saddle and two adjustable under-arm straps'], ['Position', 'On the outer shoulder, about 15 cm from the neck'], ['Power', 'Battery in the cradle, charges NURI through its base (planned)'], ['Travel mode', 'Holds steady while you walk; turns to you when you talk'], ['Safety', 'Locking cradle and tether loop; head turns clear of your head and neck in the 3D model']],
-        [['Cara pakai', 'Pelapik berpad dan dua tali bawah lengan yang boleh dilaras'], ['Kedudukan', 'Di hujung bahu, lebih kurang 15 cm dari leher'], ['Kuasa', 'Bateri dalam cradle, cas NURI melalui tapaknya (dirancang)'], ['Mod jalan', 'Kekal stabil masa berjalan; berpaling ke arah anda bila bercakap'], ['Keselamatan', 'Cradle berkunci dan gelung tali keselamatan; dalam model 3D, kepala NURI berpusing tanpa kena kepala atau leher anda']])
+      text: T('A soft perch that sits on your backpack strap where it crosses your shoulder. An EVA foam saddle wraps the strap, two hook-and-loop straps hold it in place, and a rigid top plate with an outrigger puts NURI over the tip of your shoulder, clear of your head.',
+        'Tempat duduk lembut untuk NURI di atas tali beg, betul-betul di bahu. Pelapik span EVA membalut tali, dua tali velcro memegangnya, dan plat atas yang tegar dengan lengan sisi letakkan NURI di hujung bahu, jauh dari kepala anda.'),
+      spec: T([['Fits', 'Backpack straps up to 70 mm wide; no harness needed'], ['Grip', 'EVA foam saddle and two hook-and-loop straps'], ['Position', 'NURI sits about 35 mm outboard of the strap, over the tip of your shoulder'], ['Go Cradle', 'The same cradle as the Strap Clip; swap mounts in one click'], ['Safety', 'In perch mode the head turns at most 60° towards you, so it never swings at your face'], ['Build', 'Moulded EVA pad and a PETG/ASA plate for the prototype (planned)']],
+        [['Sesuai', 'Tali beg sampai 70 mm lebar; tak perlu harness'], ['Cengkaman', 'Pelapik span EVA dan dua tali velcro'], ['Kedudukan', 'NURI duduk lebih kurang 35 mm ke luar dari tali, di hujung bahu'], ['Go Cradle', 'Cradle yang sama dengan Strap Clip; tukar mount dengan satu klik'], ['Keselamatan', 'Dalam mod perch, kepala hanya berpusing paling banyak 60° ke arah anda, jadi tak terayun ke muka'], ['Pembuatan', 'Pelapik EVA acuan dan plat PETG/ASA untuk prototaip (dirancang)']])
     }
   };
-  const textEl = document.getElementById('accText'), noteEl = document.getElementById('accNote');
+  const textEl = document.getElementById('accText'), noteEl = document.getElementById('accNote'), exBtn = document.getElementById('accExplode');
   const tabs = [...document.querySelectorAll('#accessories [role=tab]')];
-  let stage = null, cur = null, which = 'strap';
+  const PI = Math.PI, D = PI / 180;
+  let stage = null, cur = null, which = 'strap', exploded = false, ek = 0;
+  const exLabel = () => { exBtn.textContent = exploded ? T('Put it together', 'Pasang semula') : T('See the parts', 'Lihat komponen'); exBtn.setAttribute('aria-pressed', exploded); };
   function render(id) {
     const a = ACC[id];
     textEl.innerHTML = `<span class="status">${T('Concept · accessory · price to be announced', 'Konsep · aksesori · harga akan diumumkan')}</span><h3 style="font-size:28px;margin:12px 0 14px;letter-spacing:-.02em">${a.title}</h3><p class="lead">${a.text}</p><ul class="spec">${a.spec.map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('')}</ul>`;
   }
   function build(id) {
-    if (cur) { stage.scene.remove(cur.root); cur.dispose(); cur = null; }
-    const nuri = N.createNuri({look: id === 'strap' ? 'buddy' : 'signature', colour: id === 'strap' ? 'coral' : 'pearl', showDock: false});
-    const acc = id === 'strap' ? N.createStrapClip('coral', 'Kront') : N.createShoulderPerch('pearl', 'Reka');
-    const root = new stage.THREE.Group(), body = new stage.THREE.Group(); root.add(body); body.add(acc.group, nuri.root); nuri.root.position.y = acc.mountY;
-    stage.scene.add(root);
-    if (id === 'strap') { root.rotation.y = -.55; stage.fit({center: [0, -.3, -.6], radius: 4.7}, [.5, .25, 1], 1); }
-    else { root.rotation.y = -.35; stage.fit({center: [-2.6, -.4, 0], radius: 6.4}, [.35, .32, 1], 1); }
+    if (cur) { stage.scene.remove(cur.w.root); cur.w.dispose(); cur = null; }
+    const w = N.createWearable(id, id === 'strap' ? 'coral' : 'pearl', id === 'strap' ? 'Kront' : 'Reka');
+    stage.scene.add(w.root);
+    const f = w.focus;
+    if (id === 'strap') stage.fit({center: [f.x - .4, f.y + .6, f.z - 1], radius: 5.2}, [.55, .2, 1], 1);
+    else stage.fit({center: [f.x - 1.6, f.y - .6, f.z], radius: 6.6}, [.75, .45, 1], 1);
     stage.controls.update();
     let pose = [0, 0];
-    cur = {root, dispose() { acc.dispose(); nuri.dispose(); }, frame(t, dt) {
+    cur = {w, frame(t, dt) {
       // walking: a light bounce and sway; NURI turns to the wearer every few seconds, then looks ahead
-      if (!still) { body.position.y = Math.abs(Math.sin(t * PI * 1.8)) * N.MM * 3; body.rotation.z = Math.sin(t * PI * .9) * .025; }
-      const u = t % 8, toYou = u > 4.4 && u < 7;
-      const goal = toYou ? (id === 'strap' ? [2.05, -38 * PI / 180] : [-1.45, -22 * PI / 180]) : [Math.sin(t * .7) * .18, -6 * PI / 180];
+      if (!still) { w.body.position.y = Math.abs(Math.sin(t * PI * 1.8)) * N.MM * 2.5; w.body.rotation.z = Math.sin(t * PI * .9) * .012; }
+      ek += ((exploded ? 1 : 0) - ek) * (still ? 1 : Math.min(1, dt * 4)); w.explode(ek);
+      const u = t % 8, toYou = !exploded && u > 4.4 && u < 7;
+      const goal = toYou ? (id === 'strap' ? [-w.maxPanToWearer * .95, -42 * D] : [-w.maxPanToWearer, -18 * D]) : [Math.sin(t * .7) * .18, -6 * D];
       const k = still ? 1 : 1 - Math.exp(-dt * 3.5); pose[0] += (goal[0] - pose[0]) * k; pose[1] += (goal[1] - pose[1]) * k;
-      nuri.setPose(pose[0], pose[1]);
+      w.nuri.setPose(pose[0], pose[1]);
     }};
   }
-  const PI = Math.PI;
   function show(id) {
     which = id; render(id);
     tabs.forEach(b => b.setAttribute('aria-selected', b.id === 'tab-' + id));
@@ -196,15 +197,16 @@ show('rover');
     if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
     const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'), n = tabs[(i + 1) % tabs.length]; n.focus(); n.click();
   });
-  render(which);
-  if (!gl) { noteEl.textContent = T('3D preview needs WebGL.', 'Pratonton 3D memerlukan WebGL.'); return; }
+  exBtn.addEventListener('click', () => { exploded = !exploded; exLabel(); });
+  render(which); exLabel();
+  if (!gl) { noteEl.textContent = T('3D preview needs WebGL.', 'Pratonton 3D memerlukan WebGL.'); exBtn.hidden = true; return; }
   const io = new IntersectionObserver(es => {
     if (!es.some(e => e.isIntersecting) || stage) return; io.disconnect();
     try {
-      stage = N.createStage(stageEl, {target: [0, 0, 0], camera: [5, 3, 8], floor: false, minDist: 4, maxDist: 30});
+      stage = N.createStage(stageEl, {target: [0, 0, 0], camera: [5, 3, 8], floor: false, minDist: 3, maxDist: 40});
       stage.onFrame((t, dt) => cur && cur.frame(t, dt));
       stage.autoPause(); build(which);
-    } catch (e) { console.warn('3D unavailable', e); stage = null; noteEl.textContent = T('3D preview unavailable on this device.', 'Pratonton 3D tidak tersedia pada peranti ini.'); }
+    } catch (e) { console.warn('3D unavailable', e); stage = null; noteEl.textContent = T('3D preview unavailable on this device.', 'Pratonton 3D tidak tersedia pada peranti ini.'); exBtn.hidden = true; }
   }, {rootMargin: '400px 0px'});
   io.observe(stageEl);
 })();

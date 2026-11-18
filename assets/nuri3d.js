@@ -13,7 +13,7 @@
  */
 import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/RoundedBoxGeometry.js';
-import {T as tr} from './i18n.js';
+import {T as tr} from './i18n.js?v=a05019bc';
 import {OrbitControls} from 'three/addons/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/RoomEnvironment.js';
 
@@ -410,60 +410,160 @@ export function createRover(colourId = 'pearl') {
 
 /* ------------------------------------------------------------------ */
 /* Accessories: carry NURI while you walk                              */
+/* One NURI Go Cradle (latches, battery, quick-release plate) fits two  */
+/* mounts: a camera-style Strap Clip and a Shoulder Perch. Shown on a   */
+/* dress form wearing a backpack, at real size.                         */
 /* ------------------------------------------------------------------ */
-// shared travel cradle: locating walls below the base top (head pans freely), USB-C plug into the
-// base, support ribs with a 2 mm air gap, a front lock tab and a battery shelf underneath
-function travelCradle(g, m, shelfH) {
-  const shelf = add(g, rbox(POCKET.w + mm(8), shelfH, POCKET.d + mm(8), mm(4)), m.dock, [0, -shelfH / 2, 0]);
-  const band = add(g, rbox(POCKET.w + mm(8.6), mm(1.2), POCKET.d + mm(8.6), mm(4)), m.accent, [0, -shelfH * .62, 0]);
-  const {W, D} = pocketRim(g, m, mm(3), mm(7), mm(5));
-  add(g, rbox(mm(16), mm(9.5), mm(2.6), mm(1.2)), m.accent, [0, mm(4.75), D / 2 - mm(1.2)]);        // lock tab
-  add(g, rbox(mm(9.2), mm(3.4), mm(.8), mm(1.5)), m.port, [W / 2 + mm(2.4), -shelfH / 2, 0], [0, PI / 2, 0]); // battery input
-  return {W, D, shelf, band};
+function ringGeo(ow, oh, iw, ih, r, ri, depth) {
+  const sh = rr(ow, oh, r); sh.holes.push(rr(iw, ih, ri, new THREE.Path()));
+  const g = new THREE.ExtrudeGeometry(sh, {depth, bevelEnabled: false, curveSegments: 10}); g.translate(0, 0, -depth / 2); return g;
 }
-export function createStrapClip(colourId = 'pearl', name = '') {
-  const g = new THREE.Group(), m = materials(COLOURS.find(c => c.id === colourId) || COLOURS[0]);
-  const shelfH = mm(14), {D} = travelCradle(g, m, shelfH);
-  // engraving on the front of the battery shelf
-  add(g, new THREE.PlaneGeometry(mm(36), mm(5.4)), new THREE.MeshStandardMaterial({map: engraveTexture(engraving(name), false), roughness: .55}), [0, -shelfH / 2, POCKET.d / 2 + mm(4.05)]);
-  // back plate below the cradle; the strap runs behind it, 50 mm behind the pan axis (head sweep is ~41 mm)
-  const plateZ = -mm(48), strapT = mm(13), strapZ = plateZ - mm(2) - strapT / 2 - mm(.5);
-  add(g, rbox(mm(30), mm(10), -plateZ - D / 2 + mm(4), mm(3)), m.dock, [0, -shelfH + mm(5), (plateZ - D / 2) / 2 + mm(1)]);
-  add(g, rbox(mm(56), mm(86), mm(4), mm(4)), m.dock, [0, -mm(40), plateZ]);
+// The cradle NURI rides in. Origin = top of the support ribs, where the K151 base sits.
+function goCradle(m, name) {
+  const g = new THREE.Group(), W = POCKET.w + mm(6), D = POCKET.d + mm(6);
+  // battery body (2000 mAh cell) and the rim, one rounded shell
+  add(g, rbox(W + mm(2), mm(12), D + mm(2), mm(6)), m.dock, [0, -mm(6), 0]);
+  add(g, ringGeo(W, D, POCKET.w, POCKET.d, mm(6), mm(2), mm(7)), m.dock, [0, mm(3.5), 0], [PI / 2, 0, 0]);
+  add(g, rbox(W + mm(2.4), mm(1.2), D + mm(2.4), mm(6)), m.accent, [0, -mm(8.4), 0]);              // accent seam
+  [-1, 0, 1].forEach(i => add(g, rbox(mm(3), mm(2), POCKET.d - mm(8), mm(.6)), m.rubber, [i * mm(14), -mm(1), 0]));
+  add(g, rbox(mm(8.2), mm(2.4), mm(5), mm(1)), m.metal, [0, mm(5.5), -POCKET.d / 2 + mm(2)]);        // USB-C plug into the base
+  // spring latches: lips clip 1.2 mm over the base's top edge, still 4 mm below the head
   mirror(sd => {
-    add(g, rbox(mm(3), mm(70), strapT + mm(6), mm(1.2)), m.dock, [sd * mm(31), -mm(42), strapZ]);       // C-hooks around the strap
-    add(g, rbox(mm(11), mm(70), mm(3), mm(1.2)), m.dock, [sd * mm(26), -mm(42), strapZ - strapT / 2 - mm(1.5)]);
+    const l = new THREE.Group(); l.position.set(sd * (W / 2 + mm(.6)), 0, 0); g.add(l);
+    add(l, rbox(mm(3), mm(12.3), mm(16), mm(1.2)), m.accent, [0, mm(6.15), 0]);
+    add(l, rbox(mm(4.4), mm(1.4), mm(16), mm(.6)), m.accent, [-sd * mm(3.2), mm(11.8), 0]);
+    add(l, rbox(mm(1), mm(5), mm(10), mm(.4)), m.hole, [sd * mm(1.6), mm(4), 0]);                      // finger grip
   });
-  add(g, cyl(mm(6), mm(6), mm(2.4), 32), m.accent, [0, -mm(60), plateZ + mm(3)], [PI / 2, 0, 0]);       // quick-release button
-  add(g, torus(mm(5), mm(1.3), 2 * PI, 32), m.metal, [0, -mm(86), plateZ], [0, PI / 2, 0]);             // tether loop
-  // padded bag strap with webbing edges
-  const fabric = new THREE.MeshStandardMaterial({color: '#2f343a', roughness: .95}), web = new THREE.MeshStandardMaterial({color: '#1d2125', roughness: .9});
-  add(g, rbox(mm(58), mm(300), strapT, mm(5)), fabric, [0, -mm(20), strapZ]);
-  mirror(sd => add(g, rbox(mm(4), mm(300), strapT + mm(.6), mm(1.5)), web, [sd * mm(28), -mm(20), strapZ]));
-  return {group: g, mountY: mm(2), dispose: () => dispose(g)};
+  // front: engraving, three charge LEDs; side: USB-C input
+  add(g, new THREE.PlaneGeometry(mm(34), mm(5.2)), new THREE.MeshStandardMaterial({map: engraveTexture(engraving(name), false), roughness: .55}), [0, -mm(4.6), D / 2 + mm(1.05)]);
+  [-1, 0, 1].forEach(i => add(g, cyl(mm(.9), mm(.9), mm(.6), 12), i < 1 ? m.led : m.hole, [mm(20) + i * mm(3.2), -mm(9.6), D / 2 + mm(1.1)], [PI / 2, 0, 0]));
+  add(g, rbox(mm(.8), mm(3.4), mm(9.2), mm(1.4)), m.port, [-(W / 2 + mm(1.2)), -mm(6.5), -mm(14)]);
+  // quick-release dovetail underneath (slides into either mount, locks with a spring button)
+  const dt = new THREE.Shape(); dt.moveTo(-mm(15), 0); dt.lineTo(mm(15), 0); dt.lineTo(mm(19), -mm(5)); dt.lineTo(-mm(19), -mm(5)); dt.closePath();
+  const dg = new THREE.ExtrudeGeometry(dt, {depth: D - mm(6), bevelEnabled: false}); dg.translate(0, -mm(12), -(D - mm(6)) / 2);
+  add(g, dg, m.dockDark);
+  return {group: g, bottom: -mm(17), W, D};
 }
-export function createShoulderPerch(colourId = 'pearl', name = '') {
-  const g = new THREE.Group(), m = materials(COLOURS.find(c => c.id === colourId) || COLOURS[0]);
-  const shelfH = mm(18);
-  // dress-form shoulder for scale: neck 150 mm from the perch, so NURI's head sweep stays clear of yours
-  const form = new THREE.MeshStandardMaterial({color: '#d9d6d0', roughness: .85}), Rs = mm(55), pad = mm(6), cy = -shelfH - Rs - pad + mm(4);
-  const shoulder = new THREE.CapsuleGeometry(Rs, mm(140), 12, 40); shoulder.rotateZ(PI / 2);
-  add(g, shoulder, form, [-mm(75), cy, 0]);
-  add(g, new THREE.CapsuleGeometry(mm(46), mm(240), 12, 40), form, [mm(12), cy - mm(150), 0]);          // upper arm hanging down
-  add(g, rbox(mm(340), mm(320), mm(200), mm(80)), form, [-mm(190), cy - mm(150), 0]);
-  add(g, cyl(mm(50), mm(54), mm(150), 48), form, [-mm(185), cy + mm(60), 0]);
-  add(g, new THREE.SphereGeometry(mm(50), 40, 20, 0, 2 * PI, 0, PI / 2), form, [-mm(185), cy + mm(135), 0]);
-  // padded saddle following the shoulder, two soft straps looping under the arm
-  const a0 = PI / 2 - .95, a1 = PI / 2 + .95, sh = new THREE.Shape();
-  sh.absarc(0, 0, Rs + pad, a0, a1, false); sh.absarc(0, 0, Rs - mm(1), a1, a0, true);
-  const saddle = new THREE.ExtrudeGeometry(sh, {depth: mm(84), bevelEnabled: true, bevelThickness: mm(2), bevelSize: mm(2), bevelSegments: 3, curveSegments: 40});
-  saddle.translate(0, 0, -mm(42)); saddle.rotateY(PI / 2);
-  add(g, saddle, m.suit, [0, cy, 0]);
-  mirror(sd => add(g, new THREE.TorusGeometry(Rs + mm(1.5), mm(2.6), 10, 80), m.accent, [sd * mm(30), cy, 0], [0, PI / 2, 0]));
-  travelCradle(g, m, shelfH);
-  add(g, new THREE.PlaneGeometry(mm(36), mm(5.4)), new THREE.MeshStandardMaterial({map: engraveTexture(engraving(name), false), roughness: .55}), [0, -shelfH / 2, POCKET.d / 2 + mm(4.05)]);
-  add(g, torus(mm(5), mm(1.3), 2 * PI, 32), m.metal, [POCKET.w / 2 + mm(5), -shelfH + mm(3), -mm(18)], [PI / 2, 0, 0]);   // tether loop
-  return {group: g, mountY: mm(2), neckX: -mm(185), dispose: () => dispose(g)};
+// a mount's receiver: rails that take the dovetail, plus the release button
+function receiver(m, len) {
+  const g = new THREE.Group();
+  add(g, rbox(mm(56), mm(4), len, mm(2)), m.dockDark, [0, mm(2), 0]);
+  mirror(sd => add(g, rbox(mm(6), mm(5), len, mm(1.2)), m.dockDark, [sd * mm(22), mm(6.5), 0]));
+  add(g, cyl(mm(4), mm(4), mm(3), 24), m.accent, [mm(22) + mm(4.5), mm(5), len / 2 - mm(8)], [0, 0, PI / 2]);
+  return g;
+}
+// dress form wearing a backpack: chest ellipsoid, shoulder bar, neck with a wooden cap
+function dressForm() {
+  const g = new THREE.Group(), linen = new THREE.MeshStandardMaterial({color: '#e8e1d4', roughness: .92}), wood = new THREE.MeshStandardMaterial({color: '#6e5038', roughness: .55});
+  const chest = new THREE.SphereGeometry(1, 72, 48); chest.scale(mm(180), mm(250), mm(118)); add(g, chest, linen, [0, -mm(215), 0]);
+  const sh = new THREE.CapsuleGeometry(mm(62), mm(250), 16, 48); sh.rotateZ(PI / 2); sh.scale(1, 1, .95); add(g, sh, linen, [0, -mm(18), 0]);
+  add(g, cyl(mm(50), mm(54), mm(120), 48), linen, [0, mm(95), 0]);
+  add(g, cyl(mm(56), mm(56), mm(12), 48), wood, [0, mm(160), 0]);
+  add(g, new THREE.SphereGeometry(mm(11), 24, 16), wood, [0, mm(174), 0]);
+  mirror(sd => add(g, cyl(mm(52), mm(52), mm(8), 40), wood, [sd * mm(187), -mm(18), 0], [0, 0, PI / 2]));   // arm caps
+  return g;
+}
+const STRAP_W = mm(62), STRAP_T = mm(14);
+function strapCurve(sd) {
+  const zs = (x, y) => { const e = 1 - (x / mm(180)) ** 2 - ((y + mm(215)) / mm(250)) ** 2; return e > 0 ? mm(118) * Math.sqrt(e) : 0; };
+  const pts = [], R = mm(62) + STRAP_T / 2 + mm(2);
+  const front = [-430, -340, -250, -170, -100].map(y => { const x = sd * mm(96 + (y + 430) * .06); return new THREE.Vector3(x, mm(y), zs(x, mm(y)) + STRAP_T / 2 + mm(2)); });
+  pts.push(...front);
+  [28, 55, 90, 125, 152].forEach(a => { const r = a * D2R; pts.push(new THREE.Vector3(sd * mm(118), -mm(18) + R * Math.sin(r), R * Math.cos(r))); });
+  pts.push(...front.slice().reverse().map(v => new THREE.Vector3(v.x, v.y, -v.z)));
+  return new THREE.CatmullRomCurve3(pts, false, 'centripetal');
+}
+function strapGeo(curve) {
+  const sh = rr(STRAP_W, STRAP_T, mm(5));   // the path normal runs across the body here, so width goes on shape x
+  return new THREE.ExtrudeGeometry(sh, {steps: 220, bevelEnabled: false, extrudePath: curve});
+}
+// local frame on the strap at parameter t: x across, along = tangent, out = away from the body
+function strapFrame(curve, t) {
+  const p = curve.getPointAt(t), T = curve.getTangentAt(t).normalize(), X = new THREE.Vector3(1, 0, 0);
+  const N = new THREE.Vector3().crossVectors(X, T).normalize(), Xo = new THREE.Vector3().crossVectors(T, N).normalize();
+  return {p, T, N, X: Xo};
+}
+function findT(curve, test) { let best = 0, bv = Infinity; for (let i = 0; i <= 400; i++) { const t = i / 400, v = test(curve.getPointAt(t), t); if (v < bv) { bv = v; best = t; } } return best; }
+
+export function createWearable(kind, colourId = 'pearl', name = '') {
+  const m = materials(COLOURS.find(c => c.id === colourId) || COLOURS[0]);
+  const root = new THREE.Group(), body = new THREE.Group(); root.add(body);
+  body.add(dressForm());
+  const webbing = new THREE.MeshStandardMaterial({color: '#33383e', roughness: .95}), webEdge = new THREE.MeshStandardMaterial({color: '#23272b', roughness: .9});
+  const curves = [1, -1].map(strapCurve);
+  curves.forEach(c => add(body, strapGeo(c), webbing));
+  // sternum strap with a buckle, so it reads as a backpack
+  const sy = -mm(205), sz = c => c.getPointAt(findT(c, p => p.z > 0 ? Math.abs(p.y - sy) : 1e9)).z + STRAP_T / 2 + mm(1.5);
+  // follows the chest between the two straps, in short segments
+  const chestZ = x => mm(118) * Math.sqrt(Math.max(0, 1 - (x / mm(180)) ** 2 - ((sy + mm(215)) / mm(250)) ** 2)) + mm(3);
+  const xs = Math.abs(curves[0].getPointAt(findT(curves[0], p => p.z > 0 ? Math.abs(p.y - sy) : 1e9)).x);
+  for (let i = 0; i < 16; i++) {
+    const x0 = -xs + (2 * xs) * i / 16, x1 = -xs + (2 * xs) * (i + 1) / 16, z0 = Math.max(chestZ(x0), sz(curves[0]) * 0), z1 = chestZ(x1);
+    const seg = add(body, rbox(Math.hypot(x1 - x0, z1 - z0) + mm(1), mm(20), mm(2.4), mm(.6)), webEdge, [(x0 + x1) / 2, sy, (z0 + z1) / 2]);
+    seg.rotation.y = -Math.atan2(z1 - z0, x1 - x0);
+  }
+  const bz = chestZ(0);
+  add(body, rbox(mm(46), mm(26), mm(7), mm(3)), m.rubber, [0, sy, bz + mm(3)]);
+  const fem = add(body, rbox(mm(18), mm(18), mm(6), mm(2)), m.accent, [mm(14), sy, bz + mm(5.5)]); fem.castShadow = false;
+  const parts = [];   // [object, explode offset in its parent's frame]
+  const nuri = createNuri({look: kind === 'strap' ? 'buddy' : 'signature', colour: colourId, showDock: false});
+  const cr = goCradle(m, name), carrier = new THREE.Group(); carrier.add(cr.group, nuri.root); nuri.root.position.y = mm(1);
+  let mountWorld, frameMat, maxPanToWearer;
+  if (kind === 'strap') {
+    // Strap Clip: two plates clamp the strap with two thumbscrews (like a camera clip); a hinged shelf keeps NURI level
+    const c = curves[0], t = findT(c, (p, t) => (t < .5 && p.z > 0) ? Math.abs(p.y + mm(165)) : 1e9), f = strapFrame(c, t);
+    const mount = new THREE.Group(); body.add(mount);
+    mount.matrixAutoUpdate = true; const basis = new THREE.Matrix4().makeBasis(f.X, f.T, f.N);
+    mount.quaternion.setFromRotationMatrix(basis); mount.position.copy(f.p).addScaledVector(f.N, STRAP_T / 2);
+    const front = new THREE.Group(); mount.add(front);
+    const plate = extrude(rr(mm(92), mm(60), mm(9)), mm(6), mm(1)); add(front, plate, m.dock, [0, 0, mm(3)]);
+    add(mount, extrude(rr(mm(92), mm(60), mm(9)), mm(4), mm(.8)), m.dockDark, [0, 0, -STRAP_T - mm(2.5)]);
+    const knobs = new THREE.Group(); mount.add(knobs);
+    mirror(sd => {
+      add(mount, cyl(mm(2.5), mm(2.5), STRAP_T + mm(12), 16), m.metal, [sd * mm(39), mm(12), -STRAP_T / 2 + mm(1)], [PI / 2, 0, 0]);
+      const k = add(knobs, cyl(mm(8), mm(8), mm(9), 28), m.metal, [sd * mm(39), mm(12), mm(11)], [PI / 2, 0, 0]);
+      k.material = new THREE.MeshStandardMaterial({color: '#9aa1a8', metalness: .9, roughness: .45, flatShading: true});
+      add(knobs, cyl(mm(4), mm(4), mm(1), 20), m.accent, [sd * mm(39), mm(12), mm(15.7)], [PI / 2, 0, 0]);
+    });
+    // hinge with detents at the bottom of the plate; the shelf pivots so NURI sits level whatever the strap angle
+    const hinge = new THREE.Group(); hinge.position.set(0, -mm(24), mm(9)); front.add(hinge);
+    add(hinge, cyl(mm(5), mm(5), mm(62), 28), m.dockDark, [0, 0, 0], [0, 0, PI / 2]);
+    mirror(sd => add(hinge, cyl(mm(6.5), mm(6.5), mm(3), 12), m.accent, [sd * mm(32.5), 0, 0], [0, 0, PI / 2]));
+    const up = new THREE.Vector3(0, 1, 0); hinge.rotation.x = Math.atan2(f.N.dot(up), f.T.dot(up)) - 0;
+    const shelf = new THREE.Group(); shelf.position.set(0, mm(2), 0); hinge.add(shelf);
+    add(shelf, rbox(mm(62), mm(6), mm(84), mm(3)), m.dock, [0, mm(3), mm(44)]);
+    mirror(sd => { const tri = new THREE.Shape(); tri.moveTo(0, 0); tri.lineTo(mm(40), 0); tri.lineTo(0, -mm(18)); tri.closePath();
+      const tg = new THREE.ExtrudeGeometry(tri, {depth: mm(4), bevelEnabled: false}); tg.rotateY(-PI / 2); add(shelf, tg, m.dock, [sd * mm(24) + mm(2), 0, mm(4)]); });
+    const rec = receiver(m, mm(70)); rec.position.set(0, mm(6), mm(48)); shelf.add(rec);
+    carrier.position.set(0, mm(6) + mm(4) - cr.bottom, mm(48)); shelf.add(carrier);
+    parts.push([front, [0, 0, mm(28)]], [knobs, [0, 0, mm(55)]], [carrier, [0, mm(18), mm(70)]], [nuri.root, [0, mm(40), 0]]);
+    maxPanToWearer = 130 * D2R;
+  } else {
+    // Shoulder Perch: EVA saddle on the backpack strap where it crosses the shoulder, two hook-and-loop straps,
+    // rigid top plate with an outrigger so NURI sits over the shoulder tip, clear of your head
+    const c = curves[0], t = findT(c, p => -p.y), f = strapFrame(c, t);
+    const mount = new THREE.Group(); body.add(mount);
+    const fwd = f.T.clone().negate(); mount.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(f.X, f.N, fwd));
+    mount.position.copy(f.p).addScaledVector(f.N, STRAP_T / 2);
+    const foam = new THREE.MeshStandardMaterial({color: '#2b2f34', roughness: 1});
+    add(mount, rbox(mm(80), mm(16), mm(120), mm(7)), foam, [0, mm(8), 0]);
+    mirror(sd => add(mount, rbox(mm(8), mm(26), mm(120), mm(3.5)), foam, [sd * (STRAP_W / 2 + mm(5)), -mm(5), 0]));
+    const straps = [-1, 1].map(sz => { const r = add(mount, ringGeo(mm(90), mm(44), mm(84), mm(38), mm(8), mm(6), mm(22)), m.accent, [0, -mm(1), sz * mm(40)]); return [r, [0, 0, sz * mm(22)]]; });
+    const top = new THREE.Group(); top.position.set(0, mm(16), 0); mount.add(top);
+    add(top, extrude(rr(mm(112), mm(100), mm(14)), mm(6), mm(1.2)).rotateX(PI / 2), m.dock, [mm(18), mm(6), 0]);
+    const rec = receiver(m, mm(70)); rec.position.set(mm(36), mm(6), 0); top.add(rec);
+    carrier.position.set(mm(36), mm(6) + mm(4) - cr.bottom, 0); top.add(carrier);
+    parts.push(...straps, [top, [0, mm(22), 0]], [carrier, [0, mm(26), 0]], [nuri.root, [0, mm(40), 0]]);
+    maxPanToWearer = 60 * D2R;   // firmware limit on the perch, so the head never swings towards your face
+  }
+  parts.forEach(pt => { pt.push(pt[0].position.clone()); });
+  root.updateMatrixWorld(true);
+  mountWorld = nuri.root.getWorldPosition(new THREE.Vector3());
+  return {
+    root, body, nuri, parts, maxPanToWearer, focus: mountWorld,
+    explode(k) { parts.forEach(([o, off, p0]) => o.position.set(p0.x + off[0] * k, p0.y + off[1] * k, p0.z + off[2] * k)); },
+    dispose() { dispose(root); }
+  };
 }
 
 /* ------------------------------------------------------------------ */
