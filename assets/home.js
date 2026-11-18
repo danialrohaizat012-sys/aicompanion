@@ -1,6 +1,6 @@
-import * as N from './nuri3d.js?v=a05019bc';
-import {createPlayer} from './scenes.js?v=a05019bc';
-import {T} from './i18n.js?v=a05019bc';
+import * as N from './nuri3d.js?v=401659fe';
+import {createPlayer} from './scenes.js?v=401659fe';
+import {T} from './i18n.js?v=401659fe';
 
 /* header: border on scroll, mobile menu */
 const head = document.querySelector('.site-head');
@@ -139,74 +139,81 @@ show('rover');
   snd.addEventListener('click', () => { if (!player) return; player.setSound(!player.sound); sync(); });
 })();
 
-/* Accessories: one Go Cradle, two mounts (Strap Clip, Shoulder Perch), shown on a dress form wearing a backpack */
+/* Accessory: NURI Strap Clip with the Go Cradle, shown on a dress form wearing a backpack.
+   Three views: worn, close-up, and the parts pulled apart with labels. */
 (() => {
   const stageEl = document.getElementById('accStage'); if (!stageEl) return;
-  const ACC = {
-    strap: {
-      title: 'NURI Strap Clip',
-      text: T('A camera-style clip for the shoulder strap of your backpack. Two plates clamp the strap with two thumbscrews, a hinged shelf keeps NURI level whatever the strap angle, and NURI rides in the Go Cradle, which slides on and locks with one click.',
-        'Klip gaya klip kamera untuk tali beg sandang anda. Dua plat mengapit tali dengan dua skru tombol, rak berengsel pastikan NURI sentiasa rata walaupun tali senget, dan NURI duduk dalam Go Cradle yang disorong masuk dan berkunci dengan satu klik.'),
-      spec: T([['Fits', 'Backpack straps up to 70 mm wide and 18 mm thick'], ['Grip', 'Two plates and two stainless thumbscrews; no tools'], ['Level', 'Hinged shelf with detents follows the strap angle'], ['Go Cradle', 'Spring latches over the base edge, 2,000 mAh battery, USB-C input, charge lights'], ['Clearance', 'NURI\'s turning circle stays 11 mm in front of the strap, so it can turn round to face you'], ['Build', 'PETG/ASA prints for the prototype, PC-ABS moulding later; target under 120 g with battery (planned)']],
-        [['Sesuai', 'Tali beg sampai 70 mm lebar dan 18 mm tebal'], ['Cengkaman', 'Dua plat dan dua skru tombol keluli tahan karat; tak perlu alat'], ['Rata', 'Rak berengsel dengan detent, ikut sudut tali'], ['Go Cradle', 'Latch spring atas tepi tapak, bateri 2,000 mAh, input USB-C, lampu cas'], ['Ruang', 'Laluan pusingan kepala NURI kekal 11 mm di depan tali, jadi ia boleh berpaling menghadap anda'], ['Pembuatan', 'Cetakan PETG/ASA untuk prototaip, acuan PC-ABS kemudian; sasaran bawah 120 g termasuk bateri (dirancang)']])
-    },
-    perch: {
-      title: 'NURI Shoulder Perch',
-      text: T('A soft perch that sits on your backpack strap where it crosses your shoulder. An EVA foam saddle wraps the strap, two hook-and-loop straps hold it in place, and a rigid top plate with an outrigger puts NURI over the tip of your shoulder, clear of your head.',
-        'Tempat duduk lembut untuk NURI di atas tali beg, betul-betul di bahu. Pelapik span EVA membalut tali, dua tali velcro memegangnya, dan plat atas yang tegar dengan lengan sisi letakkan NURI di hujung bahu, jauh dari kepala anda.'),
-      spec: T([['Fits', 'Backpack straps up to 70 mm wide; no harness needed'], ['Grip', 'EVA foam saddle and two hook-and-loop straps'], ['Position', 'NURI sits about 35 mm outboard of the strap, over the tip of your shoulder'], ['Go Cradle', 'The same cradle as the Strap Clip; swap mounts in one click'], ['Safety', 'In perch mode the head turns at most 60° towards you, so it never swings at your face'], ['Build', 'Moulded EVA pad and a PETG/ASA plate for the prototype (planned)']],
-        [['Sesuai', 'Tali beg sampai 70 mm lebar; tak perlu harness'], ['Cengkaman', 'Pelapik span EVA dan dua tali velcro'], ['Kedudukan', 'NURI duduk lebih kurang 35 mm ke luar dari tali, di hujung bahu'], ['Go Cradle', 'Cradle yang sama dengan Strap Clip; tukar mount dengan satu klik'], ['Keselamatan', 'Dalam mod perch, kepala hanya berpusing paling banyak 60° ke arah anda, jadi tak terayun ke muka'], ['Pembuatan', 'Pelapik EVA acuan dan plat PETG/ASA untuk prototaip (dirancang)']])
-    }
+  const A = {
+    title: 'NURI Strap Clip',
+    text: T('A camera-style clip for the shoulder strap of your backpack. Two plates clamp the strap with two thumbscrews, a hinged shelf keeps NURI level whatever the strap angle, and NURI rides in the Go Cradle, which slides on and locks with one click.',
+      'Klip gaya klip kamera untuk tali beg sandang anda. Dua plat mengapit tali dengan dua skru tombol, rak berengsel pastikan NURI sentiasa rata walaupun tali senget, dan NURI duduk dalam Go Cradle yang disorong masuk dan berkunci dengan satu klik.'),
+    spec: T([['Fits', 'Backpack straps up to 70 mm wide and 18 mm thick'], ['Grip', 'Two plates and two stainless thumbscrews; no tools'], ['Level', 'Hinged shelf with detents follows the strap angle'], ['Go Cradle', 'Spring latches over the base edge, 2,000 mAh battery, USB-C input, charge lights'], ['Clearance', 'NURI\'s turning circle stays 11 mm in front of the strap, so it can turn round to face you'], ['Build', 'PETG/ASA prints for the prototype, PC-ABS moulding later; target under 120 g with battery (planned)']],
+      [['Sesuai', 'Tali beg sampai 70 mm lebar dan 18 mm tebal'], ['Cengkaman', 'Dua plat dan dua skru tombol keluli tahan karat; tak perlu alat'], ['Rata', 'Rak berengsel dengan detent, ikut sudut tali'], ['Go Cradle', 'Latch spring atas tepi tapak, bateri 2,000 mAh, input USB-C, lampu cas'], ['Ruang', 'Laluan pusingan kepala NURI kekal 11 mm di depan tali, jadi ia boleh berpaling menghadap anda'], ['Pembuatan', 'Cetakan PETG/ASA untuk prototaip, acuan PC-ABS kemudian; sasaran bawah 120 g termasuk bateri (dirancang)']])
   };
-  const textEl = document.getElementById('accText'), noteEl = document.getElementById('accNote'), exBtn = document.getElementById('accExplode');
-  const tabs = [...document.querySelectorAll('#accessories [role=tab]')];
+  const LABELS = {
+    cradle: T('Go Cradle · spring latches', 'Go Cradle · latch spring'), battery: T('2,000 mAh battery', 'Bateri 2,000 mAh'),
+    shelf: T('Hinged shelf', 'Rak berengsel'), plate: T('Front clamp plate', 'Plat pengapit depan'),
+    knob: T('Thumbscrews', 'Skru tombol'), strap: T('Your backpack strap', 'Tali beg anda')
+  };
+  const textEl = document.getElementById('accText'), noteEl = document.getElementById('accNote');
+  const viewBtns = [...document.querySelectorAll('#accessories [data-view]')];
+  textEl.innerHTML = `<span class="status">${T('Concept · accessory · price to be announced', 'Konsep · aksesori · harga akan diumumkan')}</span><h3 style="font-size:28px;margin:12px 0 14px;letter-spacing:-.02em">${A.title}</h3><p class="lead">${A.text}</p><ul class="spec">${A.spec.map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('')}</ul>`;
   const PI = Math.PI, D = PI / 180;
-  let stage = null, cur = null, which = 'strap', exploded = false, ek = 0;
-  const exLabel = () => { exBtn.textContent = exploded ? T('Put it together', 'Pasang semula') : T('See the parts', 'Lihat komponen'); exBtn.setAttribute('aria-pressed', exploded); };
-  function render(id) {
-    const a = ACC[id];
-    textEl.innerHTML = `<span class="status">${T('Concept · accessory · price to be announced', 'Konsep · aksesori · harga akan diumumkan')}</span><h3 style="font-size:28px;margin:12px 0 14px;letter-spacing:-.02em">${a.title}</h3><p class="lead">${a.text}</p><ul class="spec">${a.spec.map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('')}</ul>`;
-  }
-  function build(id) {
-    if (cur) { stage.scene.remove(cur.w.root); cur.w.dispose(); cur = null; }
-    const w = N.createWearable(id, id === 'strap' ? 'coral' : 'pearl', id === 'strap' ? 'Kront' : 'Reka');
-    stage.scene.add(w.root);
-    const f = w.focus;
-    if (id === 'strap') stage.fit({center: [f.x - .4, f.y + .6, f.z - 1], radius: 5.2}, [.55, .2, 1], 1);
-    else stage.fit({center: [f.x - 1.6, f.y - .6, f.z], radius: 6.6}, [.75, .45, 1], 1);
+  let stage = null, w = null, view = 'worn', ek = 0, pose = [0, 0], labels = [];
+  const VIEWS = {
+    worn: f => ({center: [f.x - .9, f.y + .2, f.z - 1.6], radius: 6.4, dir: [.5, .18, 1]}),
+    close: f => ({center: [f.x - .1, f.y + .9, f.z - .2], radius: 3.1, dir: [.7, .32, 1]})
+  };
+  function setView(v) {
+    view = v; viewBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.view === v));
+    if (!stage || !w) return;
+    if (v === 'parts') {
+      // frame the pulled-apart parts themselves, seen from the side so the stack reads top to bottom
+      w.explode(1); w.root.updateMatrixWorld(true);
+      const box = new stage.THREE.Box3(); w.parts.forEach(([o]) => box.expandByObject(o));
+      const sph = box.getBoundingSphere(new stage.THREE.Sphere()); w.explode(ek);
+      stage.fit({center: sph.center.toArray(), radius: sph.radius * 1.08}, [1, .22, .42], 1);
+    } else { const c = VIEWS[v](w.focus); stage.fit({center: c.center, radius: c.radius}, c.dir, 1); }
     stage.controls.update();
-    let pose = [0, 0];
-    cur = {w, frame(t, dt) {
-      // walking: a light bounce and sway; NURI turns to the wearer every few seconds, then looks ahead
-      if (!still) { w.body.position.y = Math.abs(Math.sin(t * PI * 1.8)) * N.MM * 2.5; w.body.rotation.z = Math.sin(t * PI * .9) * .012; }
-      ek += ((exploded ? 1 : 0) - ek) * (still ? 1 : Math.min(1, dt * 4)); w.explode(ek);
-      const u = t % 8, toYou = !exploded && u > 4.4 && u < 7;
-      const goal = toYou ? (id === 'strap' ? [-w.maxPanToWearer * .95, -42 * D] : [-w.maxPanToWearer, -18 * D]) : [Math.sin(t * .7) * .18, -6 * D];
-      const k = still ? 1 : 1 - Math.exp(-dt * 3.5); pose[0] += (goal[0] - pose[0]) * k; pose[1] += (goal[1] - pose[1]) * k;
-      w.nuri.setPose(pose[0], pose[1]);
-    }};
   }
-  function show(id) {
-    which = id; render(id);
-    tabs.forEach(b => b.setAttribute('aria-selected', b.id === 'tab-' + id));
-    document.getElementById('panel-acc').setAttribute('aria-labelledby', 'tab-' + id);
-    if (stage) build(id);
+  function build() {
+    w = N.createWearable('coral', 'Kront'); stage.scene.add(w.root);
+    const layer = document.createElement('div'); layer.className = 'acc-labels'; layer.setAttribute('aria-hidden', 'true'); stageEl.appendChild(layer);
+    labels = w.anchors.map(a => { const el = document.createElement('span'); el.className = 'acc-label'; a.left = ['cradle', 'battery', 'shelf'].includes(a.key); el.textContent = LABELS[a.key]; layer.appendChild(el); return {a, el}; });
+    setView(view);
   }
-  tabs.forEach(b => b.addEventListener('click', () => show(b.id.replace('tab-', ''))));
-  tabs[0].parentElement.addEventListener('keydown', e => {
-    if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
-    const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'), n = tabs[(i + 1) % tabs.length]; n.focus(); n.click();
-  });
-  exBtn.addEventListener('click', () => { exploded = !exploded; exLabel(); });
-  render(which); exLabel();
-  if (!gl) { noteEl.textContent = T('3D preview needs WebGL.', 'Pratonton 3D memerlukan WebGL.'); exBtn.hidden = true; return; }
+  let v3 = null;
+  function frame(t, dt) {
+    if (!w) return;
+    const parts = view === 'parts';
+    if (!still && !parts) { w.body.position.y = Math.abs(Math.sin(t * PI * 1.8)) * N.MM * 2.5; w.body.rotation.z = Math.sin(t * PI * .9) * .012; }
+    else { w.body.position.y = 0; w.body.rotation.z = 0; }
+    ek += ((parts ? 1 : 0) - ek) * (still ? 1 : Math.min(1, dt * 4)); w.explode(ek);
+    // NURI looks ahead, and every few seconds turns round to the wearer
+    const u = t % 8, toYou = !parts && u > 4.4 && u < 7;
+    const goal = toYou ? [-w.maxPanToWearer * .95, -42 * D] : [Math.sin(t * .7) * (parts ? 0 : .18), -6 * D];
+    const k = still ? 1 : 1 - Math.exp(-dt * 3.5); pose[0] += (goal[0] - pose[0]) * k; pose[1] += (goal[1] - pose[1]) * k;
+    w.nuri.setPose(pose[0], pose[1]);
+    // labels follow their parts on screen while the parts are apart
+    const r = stageEl.getBoundingClientRect(), cam = stage.camera, small = r.width < 560; v3 ??= new stage.THREE.Vector3();
+    labels.forEach(({a, el}) => {
+      if (small && !['cradle', 'knob'].includes(a.key)) { el.style.opacity = 0; return; }
+      a.obj.getWorldPosition(v3).project(cam);
+      const px = (v3.x + 1) / 2 * r.width, py = (1 - v3.y) / 2 * r.height, wl = el.offsetWidth + 18;
+      // keep every label inside the frame: flip it to the other side of its point if it would overflow
+      el.classList.toggle('left', a.left ? px - wl > 0 || px + wl > r.width : px + wl > r.width && px - wl > 0);
+      el.style.transform = `translate(${px.toFixed(1)}px, ${py.toFixed(1)}px)`;
+      el.style.opacity = Math.max(0, ek * 1.4 - .4).toFixed(2);
+    });
+  }
+  viewBtns.forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
+  if (!gl) { noteEl.textContent = T('3D preview needs WebGL.', 'Pratonton 3D memerlukan WebGL.'); viewBtns.forEach(b => b.disabled = true); return; }
   const io = new IntersectionObserver(es => {
     if (!es.some(e => e.isIntersecting) || stage) return; io.disconnect();
     try {
-      stage = N.createStage(stageEl, {target: [0, 0, 0], camera: [5, 3, 8], floor: false, minDist: 3, maxDist: 40});
-      stage.onFrame((t, dt) => cur && cur.frame(t, dt));
-      stage.autoPause(); build(which);
-    } catch (e) { console.warn('3D unavailable', e); stage = null; noteEl.textContent = T('3D preview unavailable on this device.', 'Pratonton 3D tidak tersedia pada peranti ini.'); exBtn.hidden = true; }
+      stage = N.createStage(stageEl, {target: [0, 0, 0], camera: [5, 3, 8], floor: false, minDist: 2, maxDist: 40});
+      stage.onFrame(frame); stage.autoPause(); build();
+    } catch (e) { console.warn('3D unavailable', e); stage = null; noteEl.textContent = T('3D preview unavailable on this device.', 'Pratonton 3D tidak tersedia pada peranti ini.'); }
   }, {rootMargin: '400px 0px'});
   io.observe(stageEl);
 })();

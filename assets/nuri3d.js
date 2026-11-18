@@ -13,7 +13,7 @@
  */
 import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/RoundedBoxGeometry.js';
-import {T as tr} from './i18n.js?v=a05019bc';
+import {T as tr} from './i18n.js?v=401659fe';
 import {OrbitControls} from 'three/addons/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/RoomEnvironment.js';
 
@@ -410,9 +410,9 @@ export function createRover(colourId = 'pearl') {
 
 /* ------------------------------------------------------------------ */
 /* Accessories: carry NURI while you walk                              */
-/* One NURI Go Cradle (latches, battery, quick-release plate) fits two  */
-/* mounts: a camera-style Strap Clip and a Shoulder Perch. Shown on a   */
-/* dress form wearing a backpack, at real size.                         */
+/* The NURI Go Cradle (latches, battery, quick-release plate) slides    */
+/* onto a camera-style Strap Clip. Shown at real size on a dress form   */
+/* wearing a backpack.                                                  */
 /* ------------------------------------------------------------------ */
 function ringGeo(ow, oh, iw, ih, r, ri, depth) {
   const sh = rr(ow, oh, r); sh.holes.push(rr(iw, ih, ri, new THREE.Path()));
@@ -454,7 +454,7 @@ function receiver(m, len) {
 }
 // dress form wearing a backpack: chest ellipsoid, shoulder bar, neck with a wooden cap
 function dressForm() {
-  const g = new THREE.Group(), linen = new THREE.MeshStandardMaterial({color: '#e8e1d4', roughness: .92}), wood = new THREE.MeshStandardMaterial({color: '#6e5038', roughness: .55});
+  const g = new THREE.Group(), linen = new THREE.MeshStandardMaterial({color: '#8a857d', roughness: .95}), wood = new THREE.MeshStandardMaterial({color: '#6e5038', roughness: .55});
   const chest = new THREE.SphereGeometry(1, 72, 48); chest.scale(mm(180), mm(250), mm(118)); add(g, chest, linen, [0, -mm(215), 0]);
   const sh = new THREE.CapsuleGeometry(mm(62), mm(250), 16, 48); sh.rotateZ(PI / 2); sh.scale(1, 1, .95); add(g, sh, linen, [0, -mm(18), 0]);
   add(g, cyl(mm(50), mm(54), mm(120), 48), linen, [0, mm(95), 0]);
@@ -485,7 +485,7 @@ function strapFrame(curve, t) {
 }
 function findT(curve, test) { let best = 0, bv = Infinity; for (let i = 0; i <= 400; i++) { const t = i / 400, v = test(curve.getPointAt(t), t); if (v < bv) { bv = v; best = t; } } return best; }
 
-export function createWearable(kind, colourId = 'pearl', name = '') {
+export function createWearable(colourId = 'pearl', name = '') {
   const m = materials(COLOURS.find(c => c.id === colourId) || COLOURS[0]);
   const root = new THREE.Group(), body = new THREE.Group(); root.add(body);
   body.add(dressForm());
@@ -505,11 +505,11 @@ export function createWearable(kind, colourId = 'pearl', name = '') {
   const bz = chestZ(0);
   add(body, rbox(mm(46), mm(26), mm(7), mm(3)), m.rubber, [0, sy, bz + mm(3)]);
   const fem = add(body, rbox(mm(18), mm(18), mm(6), mm(2)), m.accent, [mm(14), sy, bz + mm(5.5)]); fem.castShadow = false;
-  const parts = [];   // [object, explode offset in its parent's frame]
-  const nuri = createNuri({look: kind === 'strap' ? 'buddy' : 'signature', colour: colourId, showDock: false});
+  const parts = [], anchors = [];   // parts: [object, explode offset in its parent's frame]; anchors: label points
+  const nuri = createNuri({look: 'buddy', colour: colourId, showDock: false});
   const cr = goCradle(m, name), carrier = new THREE.Group(); carrier.add(cr.group, nuri.root); nuri.root.position.y = mm(1);
   let mountWorld, frameMat, maxPanToWearer;
-  if (kind === 'strap') {
+  {
     // Strap Clip: two plates clamp the strap with two thumbscrews (like a camera clip); a hinged shelf keeps NURI level
     const c = curves[0], t = findT(c, (p, t) => (t < .5 && p.z > 0) ? Math.abs(p.y + mm(165)) : 1e9), f = strapFrame(c, t);
     const mount = new THREE.Group(); body.add(mount);
@@ -536,31 +536,21 @@ export function createWearable(kind, colourId = 'pearl', name = '') {
       const tg = new THREE.ExtrudeGeometry(tri, {depth: mm(4), bevelEnabled: false}); tg.rotateY(-PI / 2); add(shelf, tg, m.dock, [sd * mm(24) + mm(2), 0, mm(4)]); });
     const rec = receiver(m, mm(70)); rec.position.set(0, mm(6), mm(48)); shelf.add(rec);
     carrier.position.set(0, mm(6) + mm(4) - cr.bottom, mm(48)); shelf.add(carrier);
-    parts.push([front, [0, 0, mm(28)]], [knobs, [0, 0, mm(55)]], [carrier, [0, mm(18), mm(70)]], [nuri.root, [0, mm(40), 0]]);
+    parts.push([front, [0, 0, mm(26)]], [knobs, [0, 0, mm(50)]], [carrier, [0, mm(40), mm(52)]], [nuri.root, [0, mm(52), 0]]);
+    const pin = (parent, key, x, y, z) => { const o = new THREE.Object3D(); o.position.set(x, y, z); parent.add(o); anchors.push({key, obj: o}); };
+    pin(cr.group, 'cradle', -(cr.W / 2 + mm(2)), mm(8), mm(10));
+    pin(cr.group, 'battery', -(cr.W / 2 + mm(2)), -mm(11), mm(20));
+    pin(shelf, 'shelf', -mm(31), mm(2), mm(70));
+    pin(front, 'plate', mm(46), mm(28), mm(6));
+    pin(knobs, 'knob', mm(47), mm(12), mm(14));
+    pin(mount, 'strap', mm(31), mm(70), -mm(7));
     maxPanToWearer = 130 * D2R;
-  } else {
-    // Shoulder Perch: EVA saddle on the backpack strap where it crosses the shoulder, two hook-and-loop straps,
-    // rigid top plate with an outrigger so NURI sits over the shoulder tip, clear of your head
-    const c = curves[0], t = findT(c, p => -p.y), f = strapFrame(c, t);
-    const mount = new THREE.Group(); body.add(mount);
-    const fwd = f.T.clone().negate(); mount.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(f.X, f.N, fwd));
-    mount.position.copy(f.p).addScaledVector(f.N, STRAP_T / 2);
-    const foam = new THREE.MeshStandardMaterial({color: '#2b2f34', roughness: 1});
-    add(mount, rbox(mm(80), mm(16), mm(120), mm(7)), foam, [0, mm(8), 0]);
-    mirror(sd => add(mount, rbox(mm(8), mm(26), mm(120), mm(3.5)), foam, [sd * (STRAP_W / 2 + mm(5)), -mm(5), 0]));
-    const straps = [-1, 1].map(sz => { const r = add(mount, ringGeo(mm(90), mm(44), mm(84), mm(38), mm(8), mm(6), mm(22)), m.accent, [0, -mm(1), sz * mm(40)]); return [r, [0, 0, sz * mm(22)]]; });
-    const top = new THREE.Group(); top.position.set(0, mm(16), 0); mount.add(top);
-    add(top, extrude(rr(mm(112), mm(100), mm(14)), mm(6), mm(1.2)).rotateX(PI / 2), m.dock, [mm(18), mm(6), 0]);
-    const rec = receiver(m, mm(70)); rec.position.set(mm(36), mm(6), 0); top.add(rec);
-    carrier.position.set(mm(36), mm(6) + mm(4) - cr.bottom, 0); top.add(carrier);
-    parts.push(...straps, [top, [0, mm(22), 0]], [carrier, [0, mm(26), 0]], [nuri.root, [0, mm(40), 0]]);
-    maxPanToWearer = 60 * D2R;   // firmware limit on the perch, so the head never swings towards your face
   }
   parts.forEach(pt => { pt.push(pt[0].position.clone()); });
   root.updateMatrixWorld(true);
   mountWorld = nuri.root.getWorldPosition(new THREE.Vector3());
   return {
-    root, body, nuri, parts, maxPanToWearer, focus: mountWorld,
+    root, body, nuri, parts, anchors, maxPanToWearer, focus: mountWorld,
     explode(k) { parts.forEach(([o, off, p0]) => o.position.set(p0.x + off[0] * k, p0.y + off[1] * k, p0.z + off[2] * k)); },
     dispose() { dispose(root); }
   };

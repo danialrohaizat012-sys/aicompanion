@@ -1,5 +1,5 @@
-import * as N from './nuri3d.js?v=a05019bc';
-import {T, asset} from './i18n.js?v=a05019bc';
+import * as N from './nuri3d.js?v=401659fe';
+import {T, asset} from './i18n.js?v=401659fe';
 
 const $ = id => document.getElementById(id);
 const state = {look: 'signature', colour: 'pearl', dock: '', name: '', rover: false, board: false, scene: 'dock', moving: false};

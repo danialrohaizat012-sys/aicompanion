@@ -19,7 +19,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Cipta Robo","url":"https://ciptarobo.com/","logo":"https://ciptarobo.com/assets/logo/icon-512.png","areaServed":"MY","contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+60199400004","availableLanguage":["ms","en"]}}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=a05019bc">
+<link rel="stylesheet" href="assets/site.css?v=401659fe">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
 </head>
 <body>
@@ -187,14 +187,15 @@
  <div class="wrap">
   <div class="section-head">
    <div><span class="label">Accessories</span><h2 style="margin-top:12px">Take NURI with you.</h2></div>
-   <p class="lead">One cradle, two ways to wear it. NURI rides in the Go Cradle, which holds it by the base, keeps it charged from its own battery and slides onto either mount with one click. Both mounts fit the backpack you already have.</p>
+   <p class="lead">Clip NURI to the backpack you already have and talk to it as you walk. NURI rides in the Go Cradle, which holds it by its base, keeps it charged from its own battery and slides onto the clip with one click.</p>
   </div>
-  <div class="tabs" role="tablist" aria-label="Accessories">
-   <button role="tab" id="tab-strap" aria-selected="true" aria-controls="panel-acc">Strap Clip</button>
-   <button role="tab" id="tab-perch" aria-selected="false" aria-controls="panel-acc">Shoulder Perch</button>
+  <div class="tabs acc-views" role="group" aria-label="View">
+   <button type="button" data-view="worn" aria-pressed="true">Worn</button>
+   <button type="button" data-view="close" aria-pressed="false">Close-up</button>
+   <button type="button" data-view="parts" aria-pressed="false">See the parts</button>
   </div>
-  <div class="addon" id="panel-acc" role="tabpanel" aria-labelledby="tab-strap">
-   <div class="addon-stage" id="accStage"><button type="button" class="stage-btn" id="accExplode" aria-pressed="false">See the parts</button><span class="stage-note" id="accNote">Animated 3D model · drag to turn</span></div>
+  <div class="addon" id="panel-acc">
+   <div class="addon-stage" id="accStage"><span class="stage-note" id="accNote">Animated 3D model · drag to turn</span></div>
    <div id="accText"></div>
   </div>
   <p class="note">Out and about, NURI connects through your phone's hotspot. Not for use while driving or cycling. Fit, weight, battery life and safety will be tested before any sale.</p>
@@ -285,6 +286,6 @@
  <div class="wrap" style="margin-top:16px;font-size:12px">NURI is in development and not yet for sale. Images are 3D renders of the planned design. Cipta Robo is not affiliated with M5Stack.</div>
 </footer>
 
-<script type="module" src="assets/home.js?v=a05019bc"></script>
+<script type="module" src="assets/home.js?v=401659fe"></script>
 </body>
 </html>
