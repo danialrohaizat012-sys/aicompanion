@@ -1,0 +1,23 @@
+<!doctype html>
+<!-- Renders NURI from the website's 3D model (assets/nuri3d.js) with a transparent background, for print.
+     Parameters: look, colour, dock, name, pan, tilt (degrees), dir (camera direction JSON), margin, size (px). -->
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:transparent}#v{width:var(--s);height:var(--s)}#v canvas{width:100%;height:100%;display:block}</style>
+<script type="importmap">{"imports":{"three":"../../vendor/three/three.module.min.js","three/addons/":"../../vendor/three/addons/"}}</script>
+</head><body><div id="v"></div>
+<script type="module">
+import * as N from '../../assets/nuri3d.js';
+const q = new URLSearchParams(location.search), size = +(q.get('size') || 1600);
+document.documentElement.style.setProperty('--s', size + 'px');
+const stage = N.createStage(document.getElementById('v'), {controls: false, fov: +(q.get('fov') || 24), floor: q.get('floor') !== '0'});
+const nuri = N.createNuri({look: q.get('look') || 'signature', colour: q.get('colour') || 'pearl', dock: q.get('dock') ?? 'slim', name: q.get('name') || ''});
+nuri.root.rotation.y = +(q.get('rot') || 0) * Math.PI / 180;
+stage.scene.add(nuri.root);
+nuri.setPose(+(q.get('pan') || 0) * Math.PI / 180, +(q.get('tilt') || -6) * Math.PI / 180);
+const dir = JSON.parse(q.get('dir') || '[0.6,0.3,1.3]');
+// 'radius' frames a fixed volume so several renders share one scale; otherwise frame the model itself
+if (q.get('radius')) stage.fit({center: [0, +(q.get('cy') || 1.45), 0], radius: +q.get('radius')}, dir, 1); else stage.fit(nuri.root, dir, +(q.get('margin') || 1.02));
+stage.renderer.setPixelRatio(1); stage.renderer.setSize(size, size);
+stage.start();
+setTimeout(() => { window.done = true; }, 1500);
+</script></body></html>
