@@ -1,6 +1,6 @@
-import * as N from './nuri3d.js?v=bf02472b';
-import {createPlayer} from './scenes.js?v=bf02472b';
-import {T} from './i18n.js?v=bf02472b';
+import * as N from './nuri3d.js?v=65cba5c4';
+import {createPlayer} from './scenes.js?v=65cba5c4';
+import {T} from './i18n.js?v=65cba5c4';
 
 /* header: border on scroll, mobile menu */
 const head = document.querySelector('.site-head');

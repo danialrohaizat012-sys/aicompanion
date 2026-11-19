@@ -6,9 +6,9 @@
  */
 import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/RoundedBoxGeometry.js';
-import * as N from './nuri3d.js?v=bf02472b';
-import {VOICE as VOICES, VOICE_FPS} from './scene-voice.js?v=bf02472b';
-import {T, LANG, asset} from './i18n.js?v=bf02472b';
+import * as N from './nuri3d.js?v=65cba5c4';
+import {VOICE as VOICES, VOICE_FPS} from './scene-voice.js?v=65cba5c4';
+import {T, LANG, asset} from './i18n.js?v=65cba5c4';
 const VOICE = VOICES[LANG];
 
 const PI = Math.PI, D2R = PI / 180, mm = v => v * N.MM;
@@ -151,12 +151,12 @@ const worldOf = obj => obj.getWorldPosition(new THREE.Vector3());
 export const SCENES = [
   {
     id: 'learn', title: 'Learn', label: 'Homework at the desk',
-    view: {center: [-.6, 2.6, 0], radius: 6.6, dir: [.1, .3, 1]},
+    view: {center: [-.15, 2.6, 0], radius: 7, dir: [.1, .3, 1]},
     build(scene) {
       const c = cueOf('learn');
       const d = desk(), nuri = N.createNuri({look: 'focus', colour: 'pearl', dock: 'slim', name: 'Reka'});
       nuri.root.position.set(-4.4, 0, -1.2); nuri.root.rotation.y = .5;
-      const board = N.createBoard(); board.group.position.set(1.6, 0, .6); board.group.rotation.y = -.42;
+      const board = N.createBoard(); board.group.position.set(2.5, 0, .6); board.group.rotation.y = -.42;
       scene.add(d, nuri.root, board.group);
       const student = V3(-1.5, 5, 11);
       // board steps appear as the conversation reaches them
@@ -171,12 +171,12 @@ export const SCENES = [
   },
   {
     id: 'reception', title: 'Reception', label: 'Greeting customers at the counter',
-    view: {center: [-.4, 2, 0], radius: 5.2, dir: [.08, .3, 1]},
+    view: {center: [.2, 2, 0], radius: 5.9, dir: [.08, .3, 1]},
     build(scene) {
       const c = cueOf('reception');
       const d = desk('#8a6a4c'), nuri = N.createNuri({look: 'buddy', colour: 'coral', dock: 'nest', name: 'Kront'});
-      nuri.root.position.set(-3.5, 0, -1); nuri.root.rotation.y = .45;
-      const tab = tablet(drawQueue); tab.group.position.set(1.5, 0, .9); tab.group.rotation.y = -.42;
+      nuri.root.position.set(-4.1, 0, -1); nuri.root.rotation.y = .45;
+      const tab = tablet(drawQueue); tab.group.position.set(2.7, 0, .9); tab.group.rotation.y = -.42;
       scene.add(d, nuri.root, tab.group);
       const customer = V3(-1.2, 5, 11);
       return {objs: [d, nuri, tab], nuri, frame(t) {
@@ -188,12 +188,12 @@ export const SCENES = [
   },
   {
     id: 'assist', title: 'Assist', label: 'Morning brief before work',
-    view: {center: [-.8, 2.4, -.2], radius: 7.4, dir: [.05, .36, 1]},
+    view: {center: [-.3, 2.4, -.2], radius: 7.9, dir: [.05, .36, 1]},
     build(scene) {
       const c = cueOf('assist');
       const d = desk('#cfc6b8'), nuri = N.createNuri({look: 'signature', colour: 'graphite', dock: 'slim', name: 'Kront'});
       nuri.root.position.set(-5.4, 0, -1.6); nuri.root.rotation.y = .5;
-      const lap = laptop(drawBrief); lap.group.position.set(1.8, 0, .4); lap.group.rotation.y = -.36;
+      const lap = laptop(drawBrief); lap.group.position.set(2.9, 0, .4); lap.group.rotation.y = -.36;
       scene.add(d, nuri.root, lap.group);
       const you = V3(-2.5, 6, 12);
       return {objs: [d, nuri, lap], nuri, frame(t) {
@@ -205,14 +205,14 @@ export const SCENES = [
   },
   {
     id: 'companion', title: 'Companion', label: 'An evening check-in', evening: true,
-    view: {center: [-.3, 1.7, .2], radius: 4.8, dir: [.12, .3, 1]},
+    view: {center: [-.1, 1.8, .2], radius: 5.5, dir: [.12, .3, 1]},
     build(scene) {
       const c = cueOf('companion');
       const d = desk('#a98a6a'), nuri = N.createNuri({look: 'buddy', colour: 'pearl', dock: 'nest', name: 'Reka'});
       nuri.root.position.set(-1.8, 0, -.8); nuri.root.rotation.y = .3;
-      const l = lamp(); l.position.set(-4.6, 0, -2.6);
-      const pills = pillBox(); pills.position.set(-1.2, 0, 2.6); pills.rotation.y = .12;
-      const ph = phone(drawCall); ph.group.position.set(2.4, 0, .9); ph.group.rotation.y = -.55;
+      const l = lamp(); l.position.set(-6.2, 0, -3.6);
+      const pills = pillBox(); pills.position.set(-2, 0, 3.1); pills.rotation.y = .12;
+      const ph = phone(drawCall); ph.group.position.set(2.9, 0, .7); ph.group.rotation.y = -.55;
       scene.add(d, nuri.root, l, pills, ph.group);
       const mak = V3(-.4, 5, 11);
       return {objs: [d, nuri, {root: l}, {root: pills}, ph], nuri, frame(t) {

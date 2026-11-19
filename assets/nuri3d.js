@@ -13,7 +13,7 @@
  */
 import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/RoundedBoxGeometry.js';
-import {T as tr} from './i18n.js?v=bf02472b';
+import {T as tr} from './i18n.js?v=65cba5c4';
 import {OrbitControls} from 'three/addons/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/RoomEnvironment.js';
 
