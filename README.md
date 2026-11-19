@@ -54,3 +54,10 @@ python3 tools/build-ms.py
 ```
 
 Run it after any change to `index.html` or `configure.html`; it stops with a list of sentences whose translation needs updating. Text set from JavaScript uses `T(en, ms)` from `assets/i18n.js`. Scene voices for both languages come from `tools/make-voice.py`.
+
+## Visitor count and SEO
+
+- `assets/visitors.js` shows one running total of visitors in the footer (never resets). Each browser is counted once.
+  Counter: abacus.jasoncameron.dev, namespace `ciptarobo-com`, key `visitors`. The admin key is kept outside the repo.
+- `tools/seo.py` (run by `tools/build-ms.py`) writes JSON-LD (Organization, WebSite, Product, FAQPage in each language)
+  and `sitemap.xml` with lastmod and hreflang alternates.

@@ -300,3 +300,4 @@ section{scroll-margin-top:72px}
 @media (max-width:560px){.acc-label{font-size:11px;padding:2px 7px}}
 @media (max-width:760px){.acc .addon-stage{aspect-ratio:1/1}}
 .acc .addon-stage .stage-note{background:#ffffffd9;color:var(--ink-2);border-radius:999px;padding:4px 10px;left:12px;bottom:12px}
+.visitors{margin-left:.6em;padding-left:.6em;border-left:1px solid var(--line-2);white-space:nowrap}
