@@ -1,0 +1,164 @@
+<!doctype html>
+<!--
+  Print-brief renders. ?shot=k151 | signature | focus | buddy | slim | nest  [&size=1600]
+  k151 uses M5Stack's official StackChan K151 structure STLs (MIT licence, github.com/m5stack/M5_Hardware).
+  The NURI shots use the website's 3D model (assets/nuri3d.js) with the printed parts pulled apart and numbered.
+-->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(../../assets/fonts/inter-latin-var.woff2) format("woff2");font-weight:100 900}
+html,body{margin:0;background:transparent;font-family:Inter,Arial,sans-serif}
+#wrap{position:relative;width:var(--w);height:var(--h)}#v{position:absolute;inset:0}#v canvas{width:100%;height:100%;display:block}
+.lab{position:absolute;left:0;top:0;white-space:nowrap;font-size:var(--fs);font-weight:650;color:#15191d;display:flex;align-items:center;gap:.45em;transform:translate(-50%,-50%)}
+.lab i{font-style:normal;display:grid;place-items:center;min-width:1.9em;height:1.9em;padding:0 .35em;box-sizing:border-box;border-radius:1em;background:#15191d;color:#fff;font-size:.9em;font-weight:700}
+.lab.note i{background:#9aa1a8}
+.lab span{background:#ffffffe6;padding:.15em .45em;border-radius:.3em}
+.lab.r{transform:translate(0,-50%)}.lab.l{transform:translate(-100%,-50%);flex-direction:row-reverse}
+svg.lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+</style>
+<script type="importmap">{"imports":{"three":"../../vendor/three/three.module.min.js","three/addons/":"../../vendor/three/addons/"}}</script>
+</head><body><div id="wrap"><div id="v"></div><svg class="lines"></svg></div>
+<script type="module">
+import * as THREE from 'three';
+import * as N from '../../assets/nuri3d.js';
+import {STLLoader} from './vendor/STLLoader.js';
+
+const q = new URLSearchParams(location.search), shot = q.get('shot') || 'k151';
+const W = +(q.get('w') || 2000), H = +(q.get('h') || 1500);
+document.documentElement.style.setProperty('--w', W + 'px'); document.documentElement.style.setProperty('--h', H + 'px');
+document.documentElement.style.setProperty('--fs', Math.round(W / 84) + 'px');
+const wrap = document.getElementById('wrap'), lines = document.querySelector('svg.lines');
+const stage = N.createStage(document.getElementById('v'), {controls: false, fov: 22, floor: false});
+stage.renderer.setPixelRatio(1); stage.renderer.setSize(W, H);
+const MM = N.MM, mm = v => v * MM;
+const labels = [];   // {obj or point, text, num, side}
+const pin = (obj, local, num, text, side = 'r', note = false) => labels.push({obj, local: new THREE.Vector3(...local), num, text, side, note});
+
+async function k151() {
+  // official parts, Z-up in the files; laid out as an exploded tower (positions illustrative, sizes true)
+  const loader = new STLLoader(), plastic = new THREE.MeshStandardMaterial({color: '#e9ebea', roughness: .55, metalness: 0});
+  const servoMat = new THREE.MeshStandardMaterial({color: '#cfd3d6', roughness: .5}), guide = new THREE.MeshPhysicalMaterial({color: '#ffffff', roughness: .2, transmission: .6, thickness: 2});
+  const P = [
+    ['StackChan-BaseCover', [0, 0, 0], plastic, 'BaseCover', '44.4 × 52.4 × 3.2'],
+    ['StackChan-Base', [0, 24, 0], plastic, 'Base (bateri, USB-C)', '48 × 56 × 11.1'],
+    ['StackChan-ServoBody', [0, 70, 0], servoMat, 'ServoBody', '46.5 × 46 × 35.8'],
+    ['StackChan-ServoCover', [0, 106, 0], servoMat, 'ServoCover', '30.1 × 35 × 8.8'],
+    ['StackChan-ServoSideCover', [0, 70, 44], servoMat, 'ServoSideCover', '34.5 × 3 × 26'],
+    ['StackChan-ServoArm', [46, 78, 0], servoMat, 'ServoArm', '4.5 × 24 × 14'],
+    ['StackChan-BearingFixture', [-46, 78, 0], servoMat, 'BearingFixture', '3.1 × 16 × 14'],
+    ['StackChan-MainBody', [0, 160, 0], plastic, 'MainBody (kepala)', '54 × 46.7 × 54'],
+    ['StackChan-LightGuideBar-A', [-20, 214, 0], guide, 'LightGuideBar A', '5 × 31 × 5.3'],
+    ['StackChan-LightGuideBar-B', [20, 214, 0], guide, 'LightGuideBar B', '5 × 31 × 5.3']
+  ];
+  const root = new THREE.Group(); stage.scene.add(root);
+  let n = 0;
+  for (const [file, pos, mat, name, size] of P) {
+    const g = await loader.loadAsync('k151-stl/' + file + '.stl');
+    g.rotateX(-Math.PI / 2); g.computeBoundingBox(); const c = g.boundingBox.getCenter(new THREE.Vector3()); g.translate(-c.x, -c.y, -c.z); g.computeVertexNormals();
+    const m = new THREE.Mesh(g, mat); m.scale.setScalar(MM); m.position.set(...pos.map(mm)); m.castShadow = m.receiveShadow = true; root.add(m);
+    const bb = g.boundingBox; n++;
+    const right = pos[0] > 0 || (pos[0] === 0 && n % 2 === 0);
+    pin(m, [0, 0, 0], 'K' + n, `${name} · ${size} mm`, 'auto');
+  }
+  // CoreS3 (electronics module, not in the structure files) in front of the head
+  const core = new THREE.Group(); core.position.set(0, mm(160), mm(62)); root.add(core);
+  core.add(new THREE.Mesh(new THREE.BoxGeometry(mm(54), mm(54), mm(14.8)), new THREE.MeshStandardMaterial({color: '#3a3e44', roughness: .45})));
+  const scr = new THREE.Mesh(new THREE.PlaneGeometry(mm(40.8), mm(30.6)), new THREE.MeshStandardMaterial({color: '#05080c', roughness: .1})); scr.position.set(0, mm(2.5), mm(7.45)); core.add(scr);
+  pin(core.children[0], [0, 0, 0], 'K11', 'CoreS3 (elektronik) · 54 × 54 × 14.8 mm', 'l');
+  return {root, dir: [1.05, .42, 1.25], margin: 1.05};
+}
+
+function lookShot(id) {
+  const colour = {signature: 'pearl', focus: 'graphite', buddy: 'coral'}[id];
+  const nuri = N.createNuri({look: id, colour, showDock: false}); stage.scene.add(nuri.root);
+  nuri.setPose(0, -6 * Math.PI / 180); nuri.root.rotation.y = -.15; nuri.root.updateMatrixWorld(true);
+  // the K151 itself in a quiet grey so the printed parts stand out
+  nuri.root.traverse(o => { if (o.isMesh && o.userData.zone !== 'suit' && o.material && !o.material.map && o !== nuri.eyes.children[0] && o !== nuri.eyes.children[1]) { o.material = o.material.clone(); if (o.material.color) o.material.color.lerp(new THREE.Color('#c7cbce'), .55); } });
+  const suit = []; nuri.root.traverse(o => { if (o.isMesh && o.userData.zone === 'suit') suit.push(o); });
+  const headC = new THREE.Vector3(0, N.K.headCY - N.K.pivot.y, -N.K.pivot.z);   // head centre in tilt-group space, roughly
+  const parts = {
+    signature: [[0, 'S1', 'Bingkai muka ×1 · 60 × 57 × 4.3 mm', [0, 0, 32]], [1, null, null, [-22, 0, 0]], [2, null, null, [-36, 0, 4]], [3, 'S2', 'Panel sisi ×2 · 30 × 25 × 3.2 mm', [22, 0, 0]], [4, 'S3', 'Jalur aksen ×2 · 19 × 2.4 × 3.4 mm', [38, 0, 8]]],
+    focus: [[0, 'F1', 'Bingkai muka ×1 · 59 × 57 × 4.3 mm', [0, 0, 32]], [1, null, null, [-20, 0, 0]], [2, null, null, [-34, 0, 0]], [3, null, null, [-44, 0, 0]],
+            [4, 'F2', 'Cawan telinga ×2 · Ø25 × 6 mm', [20, 0, 0]], [5, 'F3', 'Cincin kusyen ×2 · Ø23 × 4.4 mm', [36, 0, 0]], [6, 'F4', 'Penutup cawan ×2 · Ø10 × 1 mm', [48, 0, 0]], [7, 'F5', 'Lengkung kepala ×1 · 72 × 55 × 4 mm', [0, 30, 0]]],
+    buddy: [[0, 'B1', 'Bingkai muka ×1 · 62 × 58 × 4.3 mm', [0, 0, 32]], [1, null, null, [-24, 14, 0]], [2, null, null, [-14, -8, 0]], [3, 'B2', 'Telinga ×2 · 26 × 20 × 4.8 mm', [26, 16, 0]], [4, 'B3', 'Pemegang telinga ×2 · 14 × 12 × 3.4 mm', [16, -10, 0]]]
+  }[id];
+  for (const [i, num, text, off] of parts) {
+    const o = suit[i]; o.position.add(new THREE.Vector3(...off.map(mm)));
+    if (num) pin(o, [0, 0, 0], num, text, 'auto');
+  }
+  pin(nuri.base.children[0], [0, 0, 0], 'K', 'K151 asal · tidak dicetak', 'r', true);
+  return {root: nuri.root, dir: [.95, .32, 1], margin: 1.12};
+}
+
+function dockShot(id) {
+  const nuri = N.createNuri({look: 'signature', colour: 'pearl', dock: id, name: 'Reka'}); stage.scene.add(nuri.root); nuri.root.updateMatrixWorld(true);
+  // hide the robot itself: this sheet is about the dock
+  nuri.root.traverse(o => { if (o.isMesh && o.userData.zone !== 'dock') o.visible = false; });
+  const dock = []; nuri.root.traverse(o => { if (o.isMesh && o.userData.zone === 'dock') dock.push(o); });
+  const hex = o => o.material.map ? 'engrave' : '#' + o.material.color.getHexString();
+  const lift = (o, y, z = 0) => o.position.add(new THREE.Vector3(0, mm(y), mm(z)));
+  let first = {};
+  for (const o of dock) {
+    const c = hex(o);
+    if (id === 'slim') {
+      if (c === '#4fbf9f') { lift(o, -16); if (!first.a) first.a = pin(o, [0, 0, mm(36)], 'D2', 'Jalur aksen ×1 · 58.5 × 71.3 × 0.7 mm', 'auto'); }
+      else if (c === '#25282c') { lift(o, 16); if (!first.r) first.r = pin(o, [0, 0, -mm(24)], 'D3', 'Rusuk sokongan ×3 · 49 × 3 × 2 mm · TPU', 'auto'); }
+      else if (c === '#b9bec3') { lift(o, 30, -10); pin(o, [0, 0, 0], 'D4', 'Palam USB-C · beli, bukan cetak', 'l', true); }
+      else if (c === '#101215') { lift(o, 0, -14); }
+      else if (c === 'engrave') { if (!first.e) first.e = pin(o, [0, 0, 0], 'D5', 'Ukiran "NURI REKA" · laser / 2 warna', 'auto'); }
+      else if (o.geometry.type === 'ExtrudeGeometry' && !first.b) { first.b = pin(o, [mm(31), mm(2), 0], 'D1', 'Badan dock ×1 · 61 × 74 × 17 mm', 'auto'); }
+    } else {
+      if (c === '#d8cbb6' || c === '#99bc9a' || o.geometry.type === 'TorusGeometry') { const k = first.ring = (first.ring || 0) + 1; lift(o, 8 + k * 5.5); if (k === 5) pin(o, [mm(52), 0, 0], 'N2', 'Cincin ×9 · Ø98–108 mm, tiub Ø2.1', 'auto'); }
+      else if (o.geometry.type === 'LatheGeometry') { pin(o, [-mm(54), mm(2), 0], 'N1', 'Mangkuk ×1 · Ø109 × 11.6 mm', 'auto'); }
+      else if (c === '#25282c' && o.geometry.type === 'CylinderGeometry') { lift(o, -10); if (!first.f) first.f = pin(o, [0, 0, 0], 'N5', 'Tapak getah ×3 · Ø7 × 1 mm · TPU', 'auto'); }
+      else if (c === '#25282c' && (o.geometry.computeBoundingBox(), o.geometry.boundingBox.getSize(new THREE.Vector3()).z > mm(40))) { lift(o, 70); if (!first.r) first.r = pin(o, [0, 0, -mm(24)], 'N6', 'Rusuk sokongan ×3 · TPU', 'auto'); }
+      else if (c === '#f0f2f2' && o.geometry.type === 'BoxGeometry' && o.position.y > mm(3) && o.geometry.parameters.width > mm(30) && o.geometry.parameters.height < mm(9) && o.geometry.parameters.depth < mm(4) && o.parent !== nuri.root && Math.abs(o.parent.position.z) > mm(40)) { }
+      else if (c === '#f0f2f2' && o.geometry.type === 'BoxGeometry' && o.parent && o.parent.parent && o.parent.position.z === 0 && o.parent.position.y === 0) { lift(o, 82); if (!first.w) first.w = pin(o, [0, mm(3), 0], 'N3', 'Dinding penempat · 61 × 69 × 7 mm', 'auto'); }
+      else if (c === '#b9bec3') { lift(o, 96, -8); pin(o, [0, 0, 0], 'N7', 'Palam USB-C · beli, bukan cetak', 'l', true); }
+      else if (c === 'engrave') { if (!first.e) first.e = pin(o, [mm(18), 0, 0], 'N4', 'Tag nama ×1 · 38 × 8 × 3.3 mm', 'auto'); }
+    }
+  }
+  return {root: nuri.root, dir: id === 'slim' ? [.9, .8, 1.25] : [.75, .62, 1.2], margin: 1.3, balance: true};
+}
+
+const S = shot === 'k151' ? await k151() : ['signature', 'focus', 'buddy'].includes(shot) ? lookShot(shot) : dockShot(shot);
+S.root.updateMatrixWorld(true);
+const box = new THREE.Box3(); S.root.traverse(o => { if (o.isMesh && o.visible) box.expandByObject(o); }); const sph = box.getBoundingSphere(new THREE.Sphere());
+stage.fit({center: sph.center.toArray(), radius: sph.radius}, S.dir, S.margin * 1.18);
+stage.start();
+await new Promise(r => setTimeout(r, 900));
+// labels: project each pin, then stack labels in two columns beside the model with elbow leader lines
+const cam = stage.camera, v = new THREE.Vector3(), ns = 'http://www.w3.org/2000/svg';
+const placed = labels.map(L => {
+  L.obj.updateMatrixWorld(true);
+  const b = new THREE.Box3().setFromObject(L.obj); let x0 = 1e9, x1 = -1e9, ys = 0;
+  for (const cx of [b.min.x, b.max.x]) for (const cy of [b.min.y, b.max.y]) for (const cz of [b.min.z, b.max.z]) {
+    v.set(cx, cy, cz).project(cam); const sx = (v.x + 1) / 2 * W; x0 = Math.min(x0, sx); x1 = Math.max(x1, sx); ys += (1 - v.y) / 2 * H / 8; }
+  const side = L.side === 'auto' ? ((x0 + x1) / 2 > W / 2 ? 'r' : 'l') : L.side;
+  return {...L, side, x0, x1, x: (x0 + x1) / 2, y: ys};
+});
+const codes = q.get('codes') === '1', gap = codes ? H / 11 : H / 15, colL = W * .32, colR = W * .68;
+if (codes) document.documentElement.style.setProperty('--fs', Math.round(W / 40) + 'px');
+// keep the two columns balanced: if one side has most labels, move the ones nearest the other side across
+const autoL = placed.filter(p => p.side === 'l' && p.text && labels.find(L => L.text === p.text)?.side === 'auto');
+const autoR = placed.filter(p => p.side === 'r' && labels.find(L => L.text === p.text)?.side === 'auto');
+const nl = placed.filter(p => p.side === 'l').length, nr = placed.length - nl;
+if (S.balance && nl - nr > 1) autoL.sort((a, b) => b.x - a.x).slice(0, Math.floor((nl - nr) / 2)).forEach(p => { p.side = 'r'; });
+if (S.balance && nr - nl > 1) autoR.sort((a, b) => a.x - b.x).slice(0, Math.floor((nr - nl) / 2)).forEach(p => { p.side = 'l'; });
+placed.forEach(p => { p.x = p.side === 'r' ? p.x1 - (p.x1 - p.x0) * .12 : p.x0 + (p.x1 - p.x0) * .12; });
+for (const side of ['l', 'r']) {
+  const col = placed.filter(p => p.side === side).sort((a, b) => a.y - b.y);
+  col.forEach((p, k) => { p.ly = Math.max(p.y, k ? col[k - 1].ly + gap : H * .05); });
+  const over = col.length ? col[col.length - 1].ly - H * .95 : 0;          // shift the column up if it runs off the bottom
+  if (over > 0) col.forEach(p => { p.ly -= over; });
+  col.forEach(p => {
+    const lx = codes ? (side === 'r' ? Math.max(...col.map(c => c.x)) + W * .07 : Math.min(...col.map(c => c.x)) - W * .07) : (side === 'r' ? colR : colL), ex = side === 'r' ? lx - W * .02 : lx + W * .02;
+    const line = document.createElementNS(ns, 'polyline'); line.setAttribute('points', `${p.x},${p.y} ${ex},${p.ly} ${lx},${p.ly}`);
+    line.setAttribute('fill', 'none'); line.setAttribute('stroke', '#15191d'); line.setAttribute('stroke-width', Math.max(1.5, W / 1000)); lines.appendChild(line);
+    const dot = document.createElementNS(ns, 'circle'); dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y); dot.setAttribute('r', W / 420); dot.setAttribute('fill', '#15191d'); lines.appendChild(dot);
+    const el = document.createElement('div'); el.className = 'lab ' + side + (p.note ? ' note' : ''); el.innerHTML = codes ? `<i>${p.num}</i>` : `<i>${p.num}</i><span>${p.text}</span>`;
+    el.style.left = (side === 'r' ? lx + 8 : lx - 8) + 'px'; el.style.top = p.ly + 'px'; wrap.appendChild(el);
+  });
+}
+window.done = true;
+</script></body></html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<!-- NURI V1 print brief for 3D-printing shops. A4 landscape, 4 pages. Export: node export.js -->
+<html lang="ms"><head><meta charset="utf-8"><title>Taklimat Cetak NURI V1</title>
+<style>
+@font-face{font-family:Inter;src:url(../../assets/fonts/inter-latin-var.woff2) format("woff2");font-weight:100 900;font-display:block}
+@page{size:297mm 210mm;margin:0}
+:root{--paper:#f4f3ef;--ink:#15191d;--ink2:#3a4047;--muted:#6b7177;--line:#d9d6cf;--mint:#4fbf9f;--mint-ink:#1f7a62;--warn:#b26b00}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#d9d7d1}
+body{font-family:Inter,Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.page{position:relative;width:297mm;height:210mm;margin:6mm auto;background:var(--paper);overflow:hidden;padding:11mm 13mm 9mm;display:flex;flex-direction:column;page-break-after:always;break-after:page}
+@media print{html,body{background:none}.page{margin:0}}
+.head{display:flex;justify-content:space-between;align-items:center;border-bottom:.3mm solid var(--ink);padding-bottom:3mm;margin-bottom:5mm}
+.head svg{height:6.5mm;width:auto}
+.head .meta{font-size:2.4mm;color:var(--muted);text-align:right;line-height:1.4}
+.head .meta b{color:var(--ink)}
+.cap{font-size:2.1mm;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-ink)}
+h1{font-size:9mm;line-height:1;letter-spacing:-.035em;font-weight:700;margin:1.5mm 0 3mm}
+h2{font-size:5.2mm;letter-spacing:-.025em;font-weight:700;margin:1mm 0 2mm}
+h3{font-size:3.4mm;font-weight:700;letter-spacing:-.01em;margin-bottom:1.5mm}
+p,li{font-size:2.75mm;line-height:1.5;color:var(--ink2)}
+.small{font-size:2.3mm;color:var(--muted)}
+.foot{margin-top:auto;display:flex;justify-content:space-between;font-size:2.1mm;color:var(--muted);border-top:.25mm solid var(--line);padding-top:2mm}
+.box{background:#fff;border:.25mm solid var(--line);border-radius:2.5mm;padding:4mm}
+.warn{border-left:1.2mm solid #e2b13c;background:#fff8e6;border-radius:1.5mm;padding:2.4mm 3.2mm;font-size:2.55mm;line-height:1.45;color:#5a4400}
+.warn b{color:#3d2e00}
+table{width:100%;border-collapse:collapse;font-size:2.35mm;line-height:1.35}
+th{font-size:1.95mm;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:650;text-align:left;padding:1.2mm 1.4mm;border-bottom:.3mm solid var(--ink)}
+td{padding:1.25mm 1.4mm;border-bottom:.2mm solid var(--line);vertical-align:top;color:var(--ink2)}
+td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+td.n{white-space:nowrap}
+.code{display:inline-grid;place-items:center;min-width:5mm;height:4.2mm;padding:0 1mm;border-radius:2.1mm;background:var(--ink);color:#fff;font-size:2mm;font-weight:700}
+.code.g{background:#9aa1a8}
+.sw{display:inline-block;width:2.6mm;height:2.6mm;border-radius:50%;vertical-align:-.45mm;margin-right:1mm;border:.2mm solid #0002}
+img.fig{display:block;width:100%;height:auto}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+ol.steps{padding-left:4mm}ol.steps li{margin-bottom:1mm}
+ul.dash{list-style:none}ul.dash li{padding-left:3.2mm;position:relative;margin-bottom:.7mm}ul.dash li::before{content:"–";position:absolute;left:0;color:var(--muted)}
+.tag{display:inline-block;font-size:1.9mm;font-weight:650;letter-spacing:.06em;text-transform:uppercase;padding:.5mm 1.6mm;border-radius:1mm;background:#e9ece9;color:var(--ink2);margin-left:1.5mm;vertical-align:.3mm}
+</style></head><body>
+
+<!-- reusable header -->
+<template id="hd"></template>
+
+<!-- PAGE 1 -->
+<section class="page">
+ <div class="head">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246 64" role="img" aria-label="Cipta Robo"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/><text x="80" y="43" font-family="Inter, Helvetica, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="-0.8" fill="#15191d">Cipta Robo</text></svg>
+  <div class="meta"><b>Taklimat Cetak NURI V1</b> · untuk kedai 3D printing<br>Versi 1.0 · November 2026 · Halaman 1 / 4</div>
+ </div>
+ <div style="display:grid;grid-template-columns:86mm 1fr;gap:8mm;flex:1;min-height:0">
+  <div>
+   <span class="cap">Ringkasan</span>
+   <h1>Apa yang kami perlu dicetak.</h1>
+   <p>NURI ialah aksesori untuk robot <b>M5Stack StackChan K151</b>. Robot itu sendiri dibeli siap; kami cuma perlukan bahagian plastik yang dipasang padanya:</p>
+   <div class="box" style="margin:3.5mm 0">
+    <h3>Satu set NURI = 1 sut + 1 dock</h3>
+    <ul class="dash">
+     <li><b>Sut</b> (pilih 1 daripada 3 rupa): Signature, Focus atau Buddy · 5 hingga 9 bahagian kecil · halaman 2</li>
+     <li><b>Dock pengecas</b> (pilih 1): Slim atau Nest · halaman 3</li>
+     <li><b>Tetapan cetak, warna dan QC</b> · halaman 4</li>
+    </ul>
+   </div>
+   <h3>Kuantiti dirancang</h3>
+   <ul class="dash">
+    <li><b>Sampel pertama:</b> 1 set setiap rupa (3 sut) + 1 Slim Dock + 1 Nest Dock</li>
+    <li><b>Batch rintis:</b> 10 set selepas sampel lulus ujian muat</li>
+   </ul>
+   <div class="warn" style="margin-top:4mm"><b>Robot K151 (kanan) TIDAK dicetak.</b> Ia ditunjuk supaya anda tahu bahagian kami dipasang pada apa. Bahagian plastik K151 asli datang dari M5Stack.</div>
+   <div class="warn" style="margin-top:2.5mm"><b>Fail produksi menyusul.</b> Bentuk dalam taklimat ini ialah reka bentuk konsep untuk sebut harga. Klip dan pin pemasangan (ke lubang sisi Ø4.3 mm) akan ditambah selepas kami ukur K151 sebenar.</div>
+  </div>
+  <div style="display:flex;flex-direction:column;min-height:0">
+   <span class="cap">Rujukan · robot asal</span>
+   <h2>Pecahan StackChan K151 <span class="tag">Tidak dicetak</span></h2>
+   <img class="fig" src="img/k151-crop.png" alt="Pecahan bahagian StackChan K151 asal" style="flex:1;min-height:0;object-fit:contain;object-position:left top">
+   <p class="small" style="margin-top:2mm">Bentuk dan saiz dari fail struktur rasmi M5Stack (github.com/m5stack/M5_Hardware, lesen MIT). Kedudukan dalam pecahan ialah ilustrasi; saiz bahagian adalah sebenar. Saiz keseluruhan robot: 54 × 61.5 × 70.5 mm.</p>
+  </div>
+ </div>
+ <div class="foot"><span>Cipta Robo · ciptarobo.com · WhatsApp +60 19-940 0004</span><span>Sulit · untuk sebut harga sahaja</span></div>
+</section>
+
+<!-- PAGE 2: suits -->
+<section class="page">
+ <div class="head">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246 64"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/><text x="80" y="43" font-family="Inter, Helvetica, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="-0.8" fill="#15191d">Cipta Robo</text></svg>
+  <div class="meta"><b>Taklimat Cetak NURI V1</b> · Sut (3 rupa)<br>Halaman 2 / 4</div>
+ </div>
+ <div style="display:flex;justify-content:space-between;align-items:flex-end"><div><span class="cap">Sut · bahagian kepala</span><h2>Tiga rupa. Bahagian kecil, mesti kemas.</h2></div><p class="small" style="text-align:right">Gambar tunjuk satu sisi sahaja; bahagian ×2 ada di kedua-dua sisi kepala. <b>K</b> = robot K151 asal, tidak dicetak.<br>Warna dalam gambar ialah contoh (Signature Pearl, Focus Graphite, Buddy Coral).</p></div>
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;flex:1;min-height:0;margin-top:2mm">
+  <div style="display:flex;flex-direction:column">
+   <h3>Signature</h3>
+   <img class="fig" src="img/signature-codes-crop.png" alt="Bahagian cetak sut Signature" style="height:52mm;object-fit:contain">
+   <table style="margin-top:2mm"><tr><th>Kod</th><th>Bahagian</th><th>Qty</th><th>Saiz (mm)</th><th>Warna</th></tr>
+    <tr><td><span class="code">S1</span></td><td>Bingkai muka</td><td class="n">1</td><td class="n">60 × 57 × 4.3</td><td>Aksen</td></tr>
+    <tr><td><span class="code">S2</span></td><td>Panel sisi</td><td class="n">2</td><td class="n">30 × 25 × 3.2</td><td>Sut</td></tr>
+    <tr><td><span class="code">S3</span></td><td>Jalur aksen (sisip ke S2)</td><td class="n">2</td><td class="n">19 × 2.4 × 3.4</td><td>Aksen</td></tr>
+   </table>
+   <p class="small" style="margin-top:1.5mm">5 bahagian · anggaran 8–10 g PETG</p>
+  </div>
+  <div style="display:flex;flex-direction:column">
+   <h3>Focus</h3>
+   <img class="fig" src="img/focus-codes-crop.png" alt="Bahagian cetak sut Focus" style="height:52mm;object-fit:contain">
+   <table style="margin-top:2mm"><tr><th>Kod</th><th>Bahagian</th><th>Qty</th><th>Saiz (mm)</th><th>Warna</th></tr>
+    <tr><td><span class="code">F1</span></td><td>Bingkai muka</td><td class="n">1</td><td class="n">59 × 57 × 4.3</td><td>Sut</td></tr>
+    <tr><td><span class="code">F2</span></td><td>Cawan telinga</td><td class="n">2</td><td class="n">Ø25 × 6</td><td>Aksen</td></tr>
+    <tr><td><span class="code">F3</span></td><td>Cincin kusyen</td><td class="n">2</td><td class="n">Ø23 × 4.4</td><td>Sut · TPU pilihan</td></tr>
+    <tr><td><span class="code">F4</span></td><td>Penutup cawan</td><td class="n">2</td><td class="n">Ø10 × 1</td><td>Sut</td></tr>
+    <tr><td><span class="code">F5</span></td><td>Lengkung kepala</td><td class="n">1</td><td class="n">72 × 55 × 4</td><td>Sut</td></tr>
+   </table>
+   <p class="small" style="margin-top:1.5mm">9 bahagian · paling berat, anggaran 11–14 g · F5 perlu kuat (lentur)</p>
+  </div>
+  <div style="display:flex;flex-direction:column">
+   <h3>Buddy</h3>
+   <img class="fig" src="img/buddy-codes-crop.png" alt="Bahagian cetak sut Buddy" style="height:52mm;object-fit:contain">
+   <table style="margin-top:2mm"><tr><th>Kod</th><th>Bahagian</th><th>Qty</th><th>Saiz (mm)</th><th>Warna</th></tr>
+    <tr><td><span class="code">B1</span></td><td>Bingkai muka</td><td class="n">1</td><td class="n">62 × 58 × 4.3</td><td>Aksen</td></tr>
+    <tr><td><span class="code">B2</span></td><td>Telinga</td><td class="n">2</td><td class="n">26 × 20 × 4.8</td><td>Sut</td></tr>
+    <tr><td><span class="code">B3</span></td><td>Pemegang telinga</td><td class="n">2</td><td class="n">14 × 12 × 3.4</td><td>Aksen</td></tr>
+   </table>
+   <p class="small" style="margin-top:1.5mm">5 bahagian · anggaran 8–10 g PETG</p>
+  </div>
+ </div>
+ <div class="grid2" style="margin-top:3mm">
+  <div class="box"><h3>Cara cetak bahagian sut</h3>
+   <ul class="dash">
+    <li><b>Orientasi:</b> semua bahagian baring rata. Bingkai muka: muka depan menghadap plat untuk permukaan paling licin.</li>
+    <li><b>Sokongan:</b> tidak perlu untuk mana-mana bahagian sut.</li>
+    <li><b>Lapisan 0.12 mm</b>, 3 dinding (bahagian nipis jadi hampir padat), seam disorok di belakang.</li>
+    <li><b>S3 / F4:</b> boleh dicetak berasingan dan disisip, atau terus 2 warna bersama S2 / F2 jika mesin anda multi-warna.</li>
+   </ul></div>
+  <div class="box"><h3>Penting untuk muat</h3>
+   <ul class="dash">
+    <li>Bingkai muka klip pada tepi hadapan 3.5 mm CoreS3. <b>Toleransi ±0.15 mm.</b> Terlalu ketat boleh calar skrin.</li>
+    <li>Jangan tutup skrin, kamera, zon sentuh atas, bar LED atau port USB-C sisi.</li>
+    <li>Kepala dibawa servo: <b>jumlah sut ≤ 15 g</b>. Jangan tambah ketebalan atau infill padat tanpa tanya.</li>
+   </ul></div>
+ </div>
+ <div class="foot"><span>Saiz dari model 3D NURI (sama dengan ciptarobo.com). Fail STL produksi dengan klip menyusul.</span><span>Cipta Robo · Halaman 2 / 4</span></div>
+</section>
+
+<!-- PAGE 3: docks -->
+<section class="page">
+ <div class="head">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246 64"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/><text x="80" y="43" font-family="Inter, Helvetica, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="-0.8" fill="#15191d">Cipta Robo</text></svg>
+  <div class="meta"><b>Taklimat Cetak NURI V1</b> · Dock pengecas<br>Halaman 3 / 4</div>
+ </div>
+ <div style="display:flex;justify-content:space-between;align-items:flex-end"><div><span class="cap">Dock · bahagian paling besar</span><h2>Dua dock. NURI duduk dan mengecas di atasnya.</h2></div><p class="small" style="text-align:right">Dock ada palam USB-C yang masuk ke port tapak K151.<br>Palam dan papan input elektronik dibekalkan oleh kami, bukan dicetak.</p></div>
+ <div class="grid2" style="flex:1;min-height:0;margin-top:2mm">
+  <div style="display:flex;flex-direction:column">
+   <h3>Slim Dock <span class="tag">Termasuk dalam RM999</span></h3>
+   <img class="fig" src="img/slim-codes-crop.png" alt="Bahagian cetak Slim Dock" style="height:62mm;object-fit:contain">
+   <table style="margin-top:2mm"><tr><th>Kod</th><th>Bahagian</th><th>Qty</th><th>Saiz (mm)</th><th>Bahan · warna</th><th>Orientasi</th></tr>
+    <tr><td><span class="code">D1</span></td><td>Badan dock</td><td class="n">1</td><td class="n">61 × 74 × 17</td><td>PETG · putih dock</td><td>Tegak, tapak di plat · tanpa sokongan</td></tr>
+    <tr><td><span class="code">D2</span></td><td>Jalur aksen</td><td class="n">1</td><td class="n">58.5 × 71.3 × 0.7</td><td>PETG · aksen</td><td>Tukar filamen pada lapisan, atau sisipan</td></tr>
+    <tr><td><span class="code">D3</span></td><td>Rusuk sokongan</td><td class="n">3</td><td class="n">49 × 3 × 2</td><td>TPU 95A · hitam</td><td>Rata</td></tr>
+    <tr><td><span class="code">D5</span></td><td>Ukiran "NURI + nama"</td><td class="n">1</td><td class="n">huruf 5 mm</td><td>Laser / 2 warna</td><td>Pada bibir depan D1</td></tr>
+    <tr><td><span class="code g">D4</span></td><td>Palam USB-C</td><td class="n">1</td><td class="n">—</td><td colspan="2">Dibekalkan oleh kami · tidak dicetak</td></tr>
+   </table>
+   <p class="small" style="margin-top:1.5mm">Anggaran 25–30 g PETG + 2 g TPU</p>
+  </div>
+  <div style="display:flex;flex-direction:column">
+   <h3>Nest Dock <span class="tag">+RM50</span></h3>
+   <img class="fig" src="img/nest-codes-crop.png" alt="Bahagian cetak Nest Dock" style="height:62mm;object-fit:contain">
+   <table style="margin-top:2mm"><tr><th>Kod</th><th>Bahagian</th><th>Qty</th><th>Saiz (mm)</th><th>Bahan · warna</th><th>Orientasi</th></tr>
+    <tr><td><span class="code">N1</span></td><td>Mangkuk</td><td class="n">1</td><td class="n">Ø109 × 11.6</td><td>PETG · putih dock</td><td>Tegak · lereng &lt; 45°, tanpa sokongan</td></tr>
+    <tr><td><span class="code">N2</span></td><td>Cincin anyaman</td><td class="n">9</td><td class="n">Ø98–108, tiub Ø2.1</td><td>PETG · oat + aksen</td><td>Rata · 0.12 mm, 100% padat</td></tr>
+    <tr><td><span class="code">N3</span></td><td>Dinding penempat</td><td class="n">1</td><td class="n">61 × 69 × 7</td><td>PETG · putih dock</td><td>Tegak · boleh dicetak bersama N1</td></tr>
+    <tr><td><span class="code">N4</span></td><td>Tag nama + ukiran</td><td class="n">1</td><td class="n">38 × 8 × 3.3</td><td>PETG · putih dock</td><td>Rata, muka teks ke atas</td></tr>
+    <tr><td><span class="code">N5</span></td><td>Tapak getah</td><td class="n">3</td><td class="n">Ø7 × 1</td><td>TPU 95A · hitam</td><td>Rata</td></tr>
+    <tr><td><span class="code">N6</span></td><td>Rusuk sokongan</td><td class="n">3</td><td class="n">49 × 3 × 2</td><td>TPU 95A · hitam</td><td>Rata</td></tr>
+    <tr><td><span class="code g">N7</span></td><td>Palam USB-C</td><td class="n">1</td><td class="n">—</td><td colspan="2">Dibekalkan oleh kami · tidak dicetak</td></tr>
+   </table>
+   <p class="small" style="margin-top:1.5mm">Anggaran 40–45 g PETG + 3 g TPU · N2 rapuh, sila bungkus berasingan</p>
+  </div>
+ </div>
+ <div class="warn" style="margin-top:3mm"><b>Dock dekat dengan bateri yang sedang mengecas:</b> guna PETG (bukan PLA) supaya tak lembik bila panas. Jangan tutup lubang udara sisi, dan pastikan rusuk D3 / N6 angkat tapak robot 2 mm untuk aliran udara.</div>
+ <div class="foot"><span>Saiz dari model 3D NURI. Ukiran: tinggi huruf ≥ 5 mm, garisan ≥ 0.6 mm supaya jelas dengan muncung 0.4 mm.</span><span>Cipta Robo · Halaman 3 / 4</span></div>
+</section>
+
+<!-- PAGE 4: settings, colours, QC, quote -->
+<section class="page">
+ <div class="head">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246 64"><rect width="64" height="64" rx="16" fill="#15191d"/><rect x="11" y="14" width="42" height="36" rx="9" fill="none" stroke="#f4f3ef" stroke-width="4"/><path d="M18.5 35.5a5 5 0 0 1 10 0M35.5 35.5a5 5 0 0 1 10 0" fill="none" stroke="#4fbf9f" stroke-width="4.2" stroke-linecap="round"/><text x="80" y="43" font-family="Inter, Helvetica, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="-0.8" fill="#15191d">Cipta Robo</text></svg>
+  <div class="meta"><b>Taklimat Cetak NURI V1</b> · Tetapan, warna, QC dan sebut harga<br>Halaman 4 / 4</div>
+ </div>
+ <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5mm;flex:1;min-height:0">
+  <div>
+   <span class="cap">Tetapan cetak</span><h2>Garis panduan</h2>
+   <table>
+    <tr><th>Perkara</th><th>Sut</th><th>Dock</th></tr>
+    <tr><td>Bahan</td><td>PETG matte</td><td>PETG matte · TPU 95A untuk rusuk/tapak</td></tr>
+    <tr><td>Muncung</td><td>0.4 mm</td><td>0.4 mm</td></tr>
+    <tr><td>Lapisan</td><td>0.12 mm</td><td>0.16–0.20 mm</td></tr>
+    <tr><td>Dinding</td><td>3</td><td>4</td></tr>
+    <tr><td>Infill</td><td>15–20% (hampir padat)</td><td>20% gyroid</td></tr>
+    <tr><td>Atas/bawah</td><td>5 lapisan</td><td>5 lapisan</td></tr>
+    <tr><td>Sokongan</td><td>Tiada</td><td>Tiada</td></tr>
+    <tr><td>Toleransi</td><td>±0.15 mm</td><td>±0.2 mm</td></tr>
+    <tr><td>Kemasan</td><td colspan="2">Seam di belakang, tiada stringing, buang tepi tajam. Muka depan tiada kesan sokongan.</td></tr>
+   </table>
+   <p class="small" style="margin-top:2mm">Jangan guna PLA: dock panas semasa mengecas, dan robot mungkin diletak berhampiran tingkap.</p>
+  </div>
+  <div>
+   <span class="cap">Warna</span><h2>Padanan filamen</h2>
+   <table>
+    <tr><th>Pilihan</th><th>Warna sut</th><th>Warna aksen</th></tr>
+    <tr><td>Pearl</td><td><span class="sw" style="background:#eef1f0"></span>#EEF1F0</td><td><span class="sw" style="background:#4fbf9f"></span>#4FBF9F</td></tr>
+    <tr><td>Graphite</td><td><span class="sw" style="background:#3b4149"></span>#3B4149</td><td><span class="sw" style="background:#86d9c1"></span>#86D9C1</td></tr>
+    <tr><td>Coral</td><td><span class="sw" style="background:#f6e6de"></span>#F6E6DE</td><td><span class="sw" style="background:#e9785a"></span>#E9785A</td></tr>
+    <tr><td>Dock</td><td><span class="sw" style="background:#f0f2f2"></span>#F0F2F2</td><td>Aksen ikut warna sut</td></tr>
+    <tr><td>Nest N2</td><td><span class="sw" style="background:#d8cbb6"></span>Oat #D8CBB6</td><td>Campur dengan aksen</td></tr>
+   </table>
+   <p class="small" style="margin-top:2mm">Pilih filamen PETG matte yang paling hampir. Sila hantar gambar swatch untuk kelulusan sebelum batch.</p>
+   <div class="box" style="margin-top:3mm"><h3>Ujian sampel pertama (QC)</h3>
+    <ol class="steps">
+     <li>Bingkai muka masuk tanpa daya berlebihan, tidak tutup skrin/kamera.</li>
+     <li>Bahagian sisi tidak sentuh bar LED dan zon sentuh atas.</li>
+     <li>Kepala pusing ±130° dan dongak penuh tanpa geser.</li>
+     <li>NURI masuk dock, palam USB-C sejajar, cas berjalan.</li>
+     <li>Ruang udara 2 mm di bawah tapak robot ada.</li>
+     <li>Warna sepadan swatch; ukiran jelas dibaca dari 50 cm.</li>
+    </ol>
+    <p class="small">Ujian 1–5 kami buat dengan robot sebenar; kedai cuma perlu cetak dan semak kemasan.</p>
+   </div>
+  </div>
+  <div>
+   <span class="cap">Sebut harga</span><h2>Apa yang kami minta</h2>
+   <div class="box">
+    <ul class="dash">
+     <li>Harga seunit set (1 sut + Slim Dock) untuk kuantiti <b>1, 10 dan 50</b></li>
+     <li>Harga tambahan Nest Dock</li>
+     <li>Kos sampel pertama: 3 sut + 1 Slim + 1 Nest</li>
+     <li>Tempoh siap: sampel, dan batch 10 set</li>
+     <li>Jenama dan warna filamen dicadang (gambar swatch)</li>
+     <li>Kaedah ukiran (laser atau 2 warna) dan kosnya</li>
+     <li>Kemasan pasca-cetak yang termasuk</li>
+     <li>Bungkusan: setiap set dalam beg berlabel kod bahagian</li>
+    </ul>
+   </div>
+   <div class="box" style="margin-top:3mm"><h3>Fail daripada kami</h3>
+    <ul class="dash">
+     <li><b>Sekarang:</b> taklimat ini (gambar, saiz, tetapan) untuk sebut harga anggaran.</li>
+     <li><b>Seterusnya:</b> STL / 3MF produksi dengan klip dan pin, selepas ukur K151 sebenar. STEP jika perlu ubah suai.</li>
+     <li><b>Rujukan muat:</b> STL rasmi K151 dari M5Stack (lesen MIT).</li>
+    </ul>
+   </div>
+   <p style="margin-top:3mm"><b>Hubungi:</b> Cipta Robo · WhatsApp +60 19-940 0004 · ciptarobo.com</p>
+  </div>
+ </div>
+ <div class="foot"><span>Berat dalam taklimat ialah anggaran; sila semak dalam slicer anda.</span><span>Cipta Robo · Halaman 4 / 4</span></div>
+</section>
+</body></html>

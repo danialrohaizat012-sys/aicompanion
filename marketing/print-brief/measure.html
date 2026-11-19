@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"../../vendor/three/three.module.min.js","three/addons/":"../../vendor/three/addons/"}}</script></head><body><script type="module">
+import * as THREE from 'three';
+import * as N from '../../assets/nuri3d.js';
+const vol = g => { const p = g.attributes.position, idx = g.index; let v = 0; const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3();
+  const n = idx ? idx.count : p.count; for (let i = 0; i < n; i += 3) { const i0 = idx ? idx.getX(i) : i, i1 = idx ? idx.getX(i + 1) : i + 1, i2 = idx ? idx.getX(i + 2) : i + 2;
+  a.fromBufferAttribute(p, i0); b.fromBufferAttribute(p, i1); c.fromBufferAttribute(p, i2); v += a.dot(b.clone().cross(c)) / 6; } return Math.abs(v); };
+const out = {};
+for (const [key, opts] of [['signature', {look: 'signature', dock: ''}], ['focus', {look: 'focus', dock: ''}], ['buddy', {look: 'buddy', dock: ''}], ['slim', {look: 'signature', dock: 'slim'}], ['nest', {look: 'signature', dock: 'nest'}]]) {
+  const n = N.createNuri({colour: 'pearl', name: 'Reka', ...opts}); n.root.updateMatrixWorld(true);
+  const zone = key === 'slim' || key === 'nest' ? 'dock' : 'suit', rows = [];
+  n.root.traverse(o => { if (!o.isMesh || o.userData.zone !== zone) return;
+    const g = o.geometry.clone(); g.applyMatrix4(o.matrixWorld); g.computeBoundingBox(); const s = g.boundingBox.getSize(new THREE.Vector3()).multiplyScalar(27);
+    const mats = {suit: 'suit', accent: 'accent', dock: 'dock', rubber: 'rubber', metal: 'metal', port: 'port', hole: 'hole', nestA: 'ringA', nestB: 'ringB'};
+    rows.push({mat: o.material.map ? 'engrave' : (o.material.color ? '#' + o.material.color.getHexString() : '?'), size: [s.x, s.y, s.z].map(v => +v.toFixed(1)), vol: +(vol(g) * 27 ** 3 / 1000).toFixed(2), type: o.geometry.type}); });
+  out[key] = rows;
+}
+window.out = out;
+</script></body></html>
